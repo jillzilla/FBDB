@@ -63,8 +63,6 @@ func _ready() -> void:
 func _ask_question() -> void:
 	did_answered_correctly = false;
 	
-	print(data["answers"][answers_order[current_question]]);
-	
 	question.text = data["questions"][questions_order[current_question]];
 	
 	for i in range(4):
