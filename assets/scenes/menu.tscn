@@ -8,13 +8,13 @@ script = ExtResource("1_8omcj")
 [node name="Logo" type="Label" parent="." unique_id=600240822]
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.356
+anchor_top = 0.296
 anchor_right = 0.5
-anchor_bottom = 0.356
-offset_left = -751.5
-offset_top = -192.48001
-offset_right = 751.5
-offset_bottom = 191.51999
+anchor_bottom = 0.296
+offset_left = -768.0
+offset_top = -191.68
+offset_right = 776.0
+offset_bottom = 192.32
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 128
@@ -26,13 +26,13 @@ metadata/_edit_lock_ = true
 [node name="Buttons" type="VBoxContainer" parent="." unique_id=1717686700]
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.62200004
+anchor_top = 0.574
 anchor_right = 0.5
-anchor_bottom = 0.62200004
-offset_left = -471.25
-offset_top = -159.76007
-offset_right = 471.25
-offset_bottom = 160.23993
+anchor_bottom = 0.574
+offset_left = -512.0
+offset_top = -107.91998
+offset_right = 512.0
+offset_bottom = 108.08002
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
@@ -52,6 +52,22 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 64
 action_mode = 0
 text = "Quit"
+metadata/_edit_lock_ = true
+
+[node name="Credits" type="Label" parent="." unique_id=2071583767]
+anchors_preset = -1
+anchor_left = 0.9480001
+anchor_top = 0.97
+anchor_right = 0.9480001
+anchor_bottom = 0.97
+offset_left = -92.16016
+offset_top = -23.599976
+offset_right = 91.83984
+offset_bottom = 24.400024
+theme_override_font_sizes/font_size = 32
+text = "© don't ask"
+horizontal_alignment = 2
+vertical_alignment = 2
 metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]

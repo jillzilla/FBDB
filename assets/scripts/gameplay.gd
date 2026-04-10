@@ -15,6 +15,9 @@ var answers_group : Array[Button] = [];
 
 var did_answered_correctly : bool = false;
 
+var player_health : int = 100;
+var opponent_health : int = 100;
+
 @export_category("Data")
 @export_file_path("*.json") var stage_1 : String = "";
 @export_file_path("*.json") var stage_2 : String = "";
@@ -23,6 +26,9 @@ var did_answered_correctly : bool = false;
 @export_file_path("*.json") var stage_5 : String = "";
 
 @export_category("Gameplay Output")
+@export var player_health_bar : ProgressBar = null;
+@export var enemy_health_bar : ProgressBar = null;
+
 @export var question : Label = null;
 
 @export var answer_1 : Button = null;
@@ -87,6 +93,15 @@ func _on_button_pressed(button: Button) -> void:
 		answers_group[i].disabled = false;
 	
 	if did_answered_correctly:
+		opponent_health -= 5;
+		enemy_health_bar.value = opponent_health;
+		
 		_next_question();
 	else:
+		player_health -= 20;
+		player_health_bar.value = player_health;
+		
+		if player_health <= 0:
+			get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
+			
 		return;
