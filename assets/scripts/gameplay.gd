@@ -26,6 +26,10 @@ var opponent_health : int = 100;
 @export_file_path("*.json") var stage_5 : String = "";
 
 @export_category("Gameplay Output")
+@export var time_counter : Label;
+
+@export var timer_seconds : Timer;
+
 @export var player_health_bar : ProgressBar = null;
 @export var enemy_health_bar : ProgressBar = null;
 
@@ -65,8 +69,13 @@ func _ready() -> void:
 	answer_4.connect("pressed", _on_button_pressed.bind(answer_4));
 	
 	_ask_question();
-	
+
+func _process(_delta: float) -> void:
+	time_counter.text = str(int(timer_seconds.time_left));
+
 func _ask_question() -> void:
+	timer_seconds.start();
+	
 	did_answered_correctly = false;
 	
 	question.text = data["questions"][questions_order[current_question]];
@@ -96,10 +105,19 @@ func _on_button_pressed(button: Button) -> void:
 		opponent_health -= 5;
 		enemy_health_bar.value = opponent_health;
 	else:
-		player_health -= 20;
-		player_health_bar.value = player_health;
-		
-		if player_health <= 0:
-			get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
+		_damage_player();
 	
+	if player_health > 0:
+		timer_seconds.stop();
+		_next_question();
+
+func _damage_player() -> void:
+	player_health -= 20;
+	player_health_bar.value = player_health;
+	
+	if player_health <= 0:
+		get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
+
+func _on_timer_seconds_timeout() -> void:
+	_damage_player();
 	_next_question();
