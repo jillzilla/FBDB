@@ -95,13 +95,11 @@ func _on_button_pressed(button: Button) -> void:
 	if did_answered_correctly:
 		opponent_health -= 5;
 		enemy_health_bar.value = opponent_health;
-		
-		_next_question();
 	else:
 		player_health -= 20;
 		player_health_bar.value = player_health;
 		
 		if player_health <= 0:
 			get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
-			
-		return;
+	
+	_next_question();

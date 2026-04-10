@@ -144,7 +144,7 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 48
 action_mode = 0
 text = "A. Answer..."
-autowrap_mode = 3
+autowrap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="A2" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=1513467770]
@@ -155,7 +155,7 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 48
 action_mode = 0
 text = "B. Answer..."
-autowrap_mode = 3
+autowrap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="A3" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=337363808]
@@ -166,7 +166,7 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 48
 action_mode = 0
 text = "C. Answer..."
-autowrap_mode = 3
+autowrap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="A4" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=932022377]
@@ -177,5 +177,5 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 48
 action_mode = 0
 text = "D. Answer..."
-autowrap_mode = 3
+autowrap_mode = 2
 metadata/_edit_lock_ = true
