@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://y4p1pha4t0jh"]
+
+[ext_resource type="Script" uid="uid://o8kv7fhio2c8" path="res://assets/scripts/gameplay.gd" id="1_mrbpc"]
+[ext_resource type="Texture2D" uid="uid://daf72gm0xybfo" path="res://assets/images/fr.png" id="1_un4qs"]
+[ext_resource type="Texture2D" uid="uid://ofm7ejh3sm22" path="res://assets/images/jo.png" id="2_mrbpc"]
+
+[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("question", "answer_1", "answer_2", "answer_3", "answer_4")]
+script = ExtResource("1_mrbpc")
+stage_1 = "res://assets/stages/stage1data.json"
+stage_2 = "res://assets/stages/stage2data.json"
+stage_3 = "res://assets/stages/stage3data.json"
+stage_4 = "res://assets/stages/stage4data.json"
+stage_5 = "res://assets/stages/stage5data.json"
+question = NodePath("Control/Question")
+answer_1 = NodePath("Control/Bottom_HUD/Answers_Container/A1")
+answer_2 = NodePath("Control/Bottom_HUD/Answers_Container/A2")
+answer_3 = NodePath("Control/Bottom_HUD/Answers_Container/A3")
+answer_4 = NodePath("Control/Bottom_HUD/Answers_Container/A4")
+
+[node name="Fr" type="Sprite2D" parent="." unique_id=1860793715]
+position = Vector2(752, 720)
+texture = ExtResource("1_un4qs")
+metadata/_edit_lock_ = true
+
+[node name="Jo" type="Sprite2D" parent="." unique_id=1284717281]
+position = Vector2(360, 576)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_mrbpc")
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="." unique_id=1069374915]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Top_HUD" type="HBoxContainer" parent="Control" unique_id=1483631589]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.067
+anchor_right = 0.5
+anchor_bottom = 0.067
+offset_left = -944.0
+offset_top = -56.36
+offset_right = 944.0
+offset_bottom = 55.64
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="PlayerHealth" type="ProgressBar" parent="Control/Top_HUD" unique_id=580699380]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/font_size = 48
+value = 100.0
+metadata/_edit_lock_ = true
+
+[node name="TimerCounter" type="Label" parent="Control/Top_HUD" unique_id=1760302699]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "10:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="EnemyHealth" type="ProgressBar" parent="Control/Top_HUD" unique_id=1755953848]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_font_sizes/font_size = 48
+value = 100.0
+metadata/_edit_lock_ = true
+
+[node name="Question" type="Label" parent="Control" unique_id=1271836518]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.178
+anchor_right = 0.5
+anchor_bottom = 0.178
+offset_left = -944.0
+offset_top = -64.240005
+offset_right = 944.0
+offset_bottom = 63.759995
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "What is the capital of the USA?"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Bottom_HUD" type="Panel" parent="Control" unique_id=1299185279]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.82600003
+anchor_right = 0.5
+anchor_bottom = 0.82600003
+offset_left = -960.0
+offset_top = -188.08002
+offset_right = 960.0
+offset_bottom = 187.91998
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Answers_Container" type="GridContainer" parent="Control/Bottom_HUD" unique_id=1289494231]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.51100004
+anchor_right = 0.5
+anchor_bottom = 0.51100004
+offset_left = -576.0
+offset_top = -128.13602
+offset_right = 576.0
+offset_bottom = 127.86398
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+columns = 2
+metadata/_edit_lock_ = true
+
+[node name="A1" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=2011064063]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 48
+action_mode = 0
+text = "A. Answer..."
+autowrap_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="A2" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=1513467770]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 48
+action_mode = 0
+text = "B. Answer..."
+autowrap_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="A3" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=337363808]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 48
+action_mode = 0
+text = "C. Answer..."
+autowrap_mode = 3
+metadata/_edit_lock_ = true
+
+[node name="A4" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=932022377]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+theme_override_font_sizes/font_size = 48
+action_mode = 0
+text = "D. Answer..."
+autowrap_mode = 3
+metadata/_edit_lock_ = true
