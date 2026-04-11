@@ -3,10 +3,9 @@
 [ext_resource type="Script" uid="uid://o8kv7fhio2c8" path="res://assets/scripts/gameplay.gd" id="1_mrbpc"]
 [ext_resource type="Texture2D" uid="uid://daf72gm0xybfo" path="res://assets/images/fr.png" id="1_un4qs"]
 [ext_resource type="Texture2D" uid="uid://ofm7ejh3sm22" path="res://assets/images/jo.png" id="2_mrbpc"]
-[ext_resource type="PackedScene" uid="uid://c8g71n1ocndgf" path="res://assets/scenes/win_screen.tscn" id="4_1pg7n"]
 [ext_resource type="PackedScene" uid="uid://b4eyvgq22sg3n" path="res://assets/scenes/lose_screen.tscn" id="4_17b01"]
 
-[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "win_screen", "lose_screen", "question_text_container")]
+[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "lose_screen", "question_text_container")]
 script = ExtResource("1_mrbpc")
 stage_1 = "res://assets/stages/stage1data.json"
 stage_2 = "res://assets/stages/stage2data.json"
@@ -23,7 +22,6 @@ answer_1 = NodePath("Control/Bottom_HUD/Answers_Container/A1")
 answer_2 = NodePath("Control/Bottom_HUD/Answers_Container/A2")
 answer_3 = NodePath("Control/Bottom_HUD/Answers_Container/A3")
 answer_4 = NodePath("Control/Bottom_HUD/Answers_Container/A4")
-win_screen = NodePath("Control/WinScreen")
 lose_screen = NodePath("Control/LoseScreen")
 question_text_container = NodePath("Control/QuestionTextContainer")
 
@@ -160,6 +158,26 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
+[node name="Hint" type="Label" parent="Control/Bottom_HUD" unique_id=836623244]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82500005
+anchor_top = 0.79800004
+anchor_right = 0.82500005
+anchor_bottom = 0.79800004
+offset_left = -304.00012
+offset_top = -44.048004
+offset_right = 303.99988
+offset_bottom = 43.951996
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
+text = "Press Enter to Continue..."
+horizontal_alignment = 2
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
 [node name="Answers_Container" type="GridContainer" parent="Control/Bottom_HUD" unique_id=1289494231]
 layout_mode = 1
 anchors_preset = -1
@@ -222,10 +240,6 @@ autowrap_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="LoseScreen" parent="Control" unique_id=790205029 instance=ExtResource("4_17b01")]
-visible = false
-layout_mode = 1
-
-[node name="WinScreen" parent="Control" unique_id=1717610805 instance=ExtResource("4_1pg7n")]
 visible = false
 layout_mode = 1
 

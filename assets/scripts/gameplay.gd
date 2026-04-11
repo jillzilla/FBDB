@@ -15,6 +15,8 @@ var did_answered_correctly : bool = false;
 
 var player_health : int = 5;
 
+var did_win : bool = false;
+
 @export_category("Data")
 @export_file_path("*.json") var stage_1 : String = "";
 @export_file_path("*.json") var stage_2 : String = "";
@@ -38,7 +40,6 @@ var player_health : int = 5;
 @export var answer_3 : Button = null;
 @export var answer_4 : Button = null;
 
-@export var win_screen : Control = null;
 @export var lose_screen : Control = null;
 
 @export var question_text_container : PanelContainer;
@@ -83,6 +84,20 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	time_counter.text = str(int(timer_seconds.time_left));
+	
+	if Input.is_action_just_pressed("NextStage") && did_win:
+		if Global.stage_2_play == 5:
+			print("Best Ending")
+			Global._reset_game_status();
+			get_tree().quit(0);
+		elif Global.stage_2_play == 4 && Global.credits < 3:
+			print("Normal Ending")
+			Global._reset_game_status();
+			get_tree().quit(1);
+		else:
+			get_tree().reload_current_scene();
+		
+		Global.stage_2_play += 1;
 
 func _ask_question() -> void:
 	if player_health > 0 && Global.enemy_health > 0:
@@ -144,8 +159,9 @@ func _damage_enemy() -> void:
 	
 	if Global.enemy_health <= 0:
 		Global.enemy_health_loaded = false;
+		time_counter.visible = false;
 		_destroy_everything();
-		win_screen.visible = true;
+		did_win = true;
 
 func _on_timer_seconds_timeout() -> void:
 	if player_health > 0:
