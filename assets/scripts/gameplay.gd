@@ -27,6 +27,7 @@ var opponent_health : int = 100;
 
 @export_category("Gameplay Output")
 @export var time_counter : Label;
+@export var stage_info : Label;
 
 @export var timer_seconds : Timer;
 
@@ -74,13 +75,16 @@ func _process(_delta: float) -> void:
 	time_counter.text = str(int(timer_seconds.time_left));
 
 func _ask_question() -> void:
-	timer_seconds.start();
+	stage_info.text = "Stage " + str(Global.stage_2_play) + " - " + str(current_question + 1) + " / " + str(questions_counter);
+	
+	if player_health > 0:
+		timer_seconds.start();
 	
 	did_answered_correctly = false;
 	
 	question.text = data["questions"][questions_order[current_question]];
 	
-	for i in range(4):
+	for i in range(answers_group.size()):
 		answers_group[i].text = data["answers"][answers_order[current_question]][i];
 		
 func _next_question() -> void:

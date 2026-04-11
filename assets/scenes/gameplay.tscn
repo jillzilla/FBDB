@@ -4,14 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://daf72gm0xybfo" path="res://assets/images/fr.png" id="1_un4qs"]
 [ext_resource type="Texture2D" uid="uid://ofm7ejh3sm22" path="res://assets/images/jo.png" id="2_mrbpc"]
 
-[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4")]
+[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4")]
 script = ExtResource("1_mrbpc")
 stage_1 = "res://assets/stages/stage1data.json"
 stage_2 = "res://assets/stages/stage2data.json"
 stage_3 = "res://assets/stages/stage3data.json"
 stage_4 = "res://assets/stages/stage4data.json"
 stage_5 = "res://assets/stages/stage5data.json"
-time_counter = NodePath("Control/Top_HUD/TimerCounter")
+time_counter = NodePath("Control/Top_HUD/Info/Time")
+stage_info = NodePath("Control/Top_HUD/Info/Stage")
 timer_seconds = NodePath("Timer_Seconds")
 player_health_bar = NodePath("Control/Top_HUD/PlayerHealth")
 enemy_health_bar = NodePath("Control/Top_HUD/EnemyHealth")
@@ -62,13 +63,18 @@ metadata/_edit_lock_ = true
 [node name="PlayerHealth" type="ProgressBar" parent="Control/Top_HUD" unique_id=580699380]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 value = 100.0
 metadata/_edit_lock_ = true
 
-[node name="TimerCounter" type="Label" parent="Control/Top_HUD" unique_id=1760302699]
+[node name="Info" type="VBoxContainer" parent="Control/Top_HUD" unique_id=355604752]
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Time" type="Label" parent="Control/Top_HUD/Info" unique_id=1760302699]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -78,10 +84,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="Stage" type="Label" parent="Control/Top_HUD/Info" unique_id=2101631399]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Stage 1 - 1 / 20"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
 [node name="EnemyHealth" type="ProgressBar" parent="Control/Top_HUD" unique_id=1755953848]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
 mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 value = 100.0
@@ -91,13 +106,13 @@ metadata/_edit_lock_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.20700002
+anchor_top = 0.296
 anchor_right = 0.5
-anchor_bottom = 0.20700002
-offset_left = -704.0
-offset_top = -95.56001
-offset_right = 704.0
-offset_bottom = 96.43999
+anchor_bottom = 0.296
+offset_left = -320.0
+offset_top = -127.67999
+offset_right = 320.0
+offset_bottom = 128.32
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
