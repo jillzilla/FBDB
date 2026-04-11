@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c6rbbogvrnt6h" path="res://assets/scripts/game_over.gd" id="1_wt3e0"]
 
-[node name="GameOver" type="Node" unique_id=346087160]
+[node name="GameOver" type="Node" unique_id=346087160 node_paths=PackedStringArray("button")]
 script = ExtResource("1_wt3e0")
+button = NodePath("Button")
 
 [node name="Label" type="Label" parent="." unique_id=296495985]
 anchors_preset = -1

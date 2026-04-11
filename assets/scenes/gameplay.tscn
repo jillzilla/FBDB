@@ -5,8 +5,19 @@
 [ext_resource type="Texture2D" uid="uid://ofm7ejh3sm22" path="res://assets/images/jo.png" id="2_mrbpc"]
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="4_0hf1u"]
 [ext_resource type="PackedScene" uid="uid://b4eyvgq22sg3n" path="res://assets/scenes/lose_screen.tscn" id="4_17b01"]
+[ext_resource type="Script" uid="uid://dt364jws1e5kc" path="res://assets/components/button_component.gd" id="5_0hf1u"]
 
-[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "lose_screen", "question_text_container", "hint_next_stage")]
+[sub_resource type="LabelSettings" id="LabelSettings_0hf1u"]
+font_size = 32
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fw4li"]
+font_size = 64
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container")]
 script = ExtResource("1_mrbpc")
 stage_1 = "res://assets/stages/stage1data.json"
 stage_2 = "res://assets/stages/stage2data.json"
@@ -19,13 +30,14 @@ timer_seconds = NodePath("Timer_Seconds")
 player_health_bar = NodePath("Control/Top_HUD/PlayerHealth")
 enemy_health_bar = NodePath("Control/Top_HUD/EnemyHealth")
 question = NodePath("Control/QuestionTextContainer/ScrollContainer/Question")
-answer_1 = NodePath("Control/Bottom_HUD/Answers_Container/A1")
-answer_2 = NodePath("Control/Bottom_HUD/Answers_Container/A2")
-answer_3 = NodePath("Control/Bottom_HUD/Answers_Container/A3")
-answer_4 = NodePath("Control/Bottom_HUD/Answers_Container/A4")
+answer_1 = NodePath("Control/Bottom_HUD/Answers_Container/Control/A1")
+answer_2 = NodePath("Control/Bottom_HUD/Answers_Container/Control2/A2")
+answer_3 = NodePath("Control/Bottom_HUD/Answers_Container/Control3/A3")
+answer_4 = NodePath("Control/Bottom_HUD/Answers_Container/Control4/A4")
 lose_screen = NodePath("Control/LoseScreen")
 question_text_container = NodePath("Control/QuestionTextContainer")
 hint_next_stage = NodePath("Control/Bottom_HUD/Hint")
+scroll_container = NodePath("Control/QuestionTextContainer/ScrollContainer")
 
 [node name="Fr" type="Sprite2D" parent="." unique_id=1860793715]
 position = Vector2(752, 720)
@@ -72,7 +84,6 @@ size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 max_value = 5.0
-step = 1.0
 value = 5.0
 metadata/_edit_lock_ = true
 
@@ -88,6 +99,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 32
 text = "Stage 1"
+label_settings = SubResource("LabelSettings_0hf1u")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -98,6 +110,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_font_sizes/font_size = 64
 text = "10"
+label_settings = SubResource("LabelSettings_fw4li")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
@@ -108,7 +121,6 @@ size_flags_horizontal = 3
 mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 max_value = 5.0
-step = 1.0
 value = 5.0
 metadata/_edit_lock_ = true
 
@@ -131,15 +143,16 @@ metadata/_edit_lock_ = true
 [node name="ScrollContainer" type="ScrollContainer" parent="Control/QuestionTextContainer" unique_id=973514413]
 custom_minimum_size = Vector2(800, 320)
 layout_mode = 2
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 4
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Question" type="Label" parent="Control/QuestionTextContainer/ScrollContainer" unique_id=1271836518]
-custom_minimum_size = Vector2(800, 320)
+custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 48
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 42
 text = "What is the capital of the USA?"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -198,8 +211,22 @@ mouse_filter = 2
 columns = 2
 metadata/_edit_lock_ = true
 
-[node name="A1" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=2011064063]
+[node name="Control" type="Control" parent="Control/Bottom_HUD/Answers_Container" unique_id=1508414509]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="A1" type="Button" parent="Control/Bottom_HUD/Answers_Container/Control" unique_id=2011064063]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
@@ -209,8 +236,30 @@ text = "A. Answer..."
 autowrap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="A2" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=1513467770]
+[node name="ButtonComponent" type="Node" parent="Control/Bottom_HUD/Answers_Container/Control/A1" unique_id=354329410 node_paths=PackedStringArray("button")]
+script = ExtResource("5_0hf1u")
+button = NodePath("..")
+scale_min = 0.9
+scale_max = 1.0
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
+
+[node name="Control2" type="Control" parent="Control/Bottom_HUD/Answers_Container" unique_id=2048159793]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="A2" type="Button" parent="Control/Bottom_HUD/Answers_Container/Control2" unique_id=1513467770]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
@@ -220,8 +269,30 @@ text = "B. Answer..."
 autowrap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="A3" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=337363808]
+[node name="ButtonComponent" type="Node" parent="Control/Bottom_HUD/Answers_Container/Control2/A2" unique_id=66134991 node_paths=PackedStringArray("button")]
+script = ExtResource("5_0hf1u")
+button = NodePath("..")
+scale_min = 0.9
+scale_max = 1.0
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
+
+[node name="Control3" type="Control" parent="Control/Bottom_HUD/Answers_Container" unique_id=1398479983]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="A3" type="Button" parent="Control/Bottom_HUD/Answers_Container/Control3" unique_id=337363808]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
@@ -231,8 +302,30 @@ text = "C. Answer..."
 autowrap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="A4" type="Button" parent="Control/Bottom_HUD/Answers_Container" unique_id=932022377]
+[node name="ButtonComponent" type="Node" parent="Control/Bottom_HUD/Answers_Container/Control3/A3" unique_id=1006350734 node_paths=PackedStringArray("button")]
+script = ExtResource("5_0hf1u")
+button = NodePath("..")
+scale_min = 0.9
+scale_max = 1.0
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
+
+[node name="Control4" type="Control" parent="Control/Bottom_HUD/Answers_Container" unique_id=1620674593]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="A4" type="Button" parent="Control/Bottom_HUD/Answers_Container/Control4" unique_id=932022377]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
@@ -242,9 +335,18 @@ text = "D. Answer..."
 autowrap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="LoseScreen" parent="Control" unique_id=790205029 instance=ExtResource("4_17b01")]
+[node name="ButtonComponent" type="Node" parent="Control/Bottom_HUD/Answers_Container/Control4/A4" unique_id=843504664 node_paths=PackedStringArray("button")]
+script = ExtResource("5_0hf1u")
+button = NodePath("..")
+scale_min = 0.9
+scale_max = 1.0
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
+
+[node name="LoseScreen" parent="Control" unique_id=790205029 node_paths=PackedStringArray("timer_seconds") instance=ExtResource("4_17b01")]
 visible = false
 layout_mode = 1
+timer_seconds = NodePath("../../Timer_Seconds")
 
 [node name="Timer_Seconds" type="Timer" parent="." unique_id=488301468]
 wait_time = 11.0

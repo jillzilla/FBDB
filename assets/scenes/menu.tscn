@@ -2,9 +2,52 @@
 
 [ext_resource type="Script" uid="uid://ctew53w3dub12" path="res://assets/scripts/menu.gd" id="1_8omcj"]
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="2_8aat6"]
+[ext_resource type="Script" uid="uid://dt364jws1e5kc" path="res://assets/components/button_component.gd" id="3_ugn2o"]
 
-[node name="Menu" type="Node" unique_id=369496558]
+[sub_resource type="Animation" id="Animation_ugn2o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xuqax"]
+resource_name = "rotation"
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.08726646259971647, 0.08726646259971647]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q8r6g"]
+_data = {
+&"RESET": SubResource("Animation_ugn2o"),
+&"rotation": SubResource("Animation_xuqax")
+}
+
+[node name="Menu" type="Node" unique_id=369496558 node_paths=PackedStringArray("play_button", "settings_button", "credits_button", "quit_button")]
 script = ExtResource("1_8omcj")
+play_button = NodePath("Control/Buttons/Control/Play")
+settings_button = NodePath("Control/Buttons/Control2/Settings")
+credits_button = NodePath("Control/Buttons/Control4/Credits")
+quit_button = NodePath("Control/Buttons/Control3/Quit")
 
 [node name="Control" type="Control" parent="." unique_id=1339855302]
 layout_mode = 3
@@ -20,53 +63,154 @@ metadata/_edit_lock_ = true
 [node name="Logo" type="Label" parent="Control" unique_id=600240822]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.296
-anchor_right = 0.5
-anchor_bottom = 0.296
-offset_left = -826.5
-offset_top = -191.68
-offset_right = 826.5
-offset_bottom = 192.32
+anchor_left = 0.41900003
+anchor_top = 0.148
+anchor_right = 0.41900003
+anchor_bottom = 0.148
+offset_left = -740.48004
+offset_top = -95.84
+offset_right = 739.51996
+offset_bottom = 96.16
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 128
 text = "Fren's Bald-Day Blowout"
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Logo" unique_id=1626229824]
+libraries/ = SubResource("AnimationLibrary_q8r6g")
+autoplay = &"rotation"
+
 [node name="Buttons" type="VBoxContainer" parent="Control" unique_id=1717686700]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.574
-anchor_right = 0.5
-anchor_bottom = 0.574
-offset_left = -512.0
-offset_top = -107.91998
-offset_right = 512.0
-offset_bottom = 114.08002
+anchor_left = 0.20600002
+anchor_top = 0.652
+anchor_right = 0.20600002
+anchor_bottom = 0.652
+offset_left = -331.52002
+offset_top = -256.16003
+offset_right = 332.47998
+offset_bottom = 255.83997
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 metadata/_edit_lock_ = true
 
-[node name="Play" type="Button" parent="Control/Buttons" unique_id=1476836962]
+[node name="Control" type="Control" parent="Control/Buttons" unique_id=1978016644]
 layout_mode = 2
-focus_mode = 0
-theme_override_font_sizes/font_size = 64
-action_mode = 0
-text = "Play"
+size_flags_vertical = 3
+mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Quit" type="Button" parent="Control/Buttons" unique_id=1114254760]
-layout_mode = 2
+[node name="Play" type="Button" parent="Control/Buttons/Control" unique_id=1476836962]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 focus_mode = 0
 theme_override_font_sizes/font_size = 64
 action_mode = 0
-text = "Quit"
+text = "Start"
 metadata/_edit_lock_ = true
+
+[node name="ButtonComponent" type="Node" parent="Control/Buttons/Control/Play" unique_id=1983205352 node_paths=PackedStringArray("button")]
+script = ExtResource("3_ugn2o")
+button = NodePath("..")
+scale_min = 1.0
+scale_max = 1.1
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
+
+[node name="Control2" type="Control" parent="Control/Buttons" unique_id=1061864960]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Settings" type="Button" parent="Control/Buttons/Control2" unique_id=1348310983]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+action_mode = 0
+text = "Options"
+metadata/_edit_lock_ = true
+
+[node name="ButtonComponent" type="Node" parent="Control/Buttons/Control2/Settings" unique_id=60818540 node_paths=PackedStringArray("button")]
+script = ExtResource("3_ugn2o")
+button = NodePath("..")
+scale_min = 1.0
+scale_max = 1.1
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
+
+[node name="Control4" type="Control" parent="Control/Buttons" unique_id=1530733312]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Credits" type="Button" parent="Control/Buttons/Control4" unique_id=1458449196]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+action_mode = 0
+text = "Whodunnit"
+metadata/_edit_lock_ = true
+
+[node name="ButtonComponent" type="Node" parent="Control/Buttons/Control4/Credits" unique_id=997769660 node_paths=PackedStringArray("button")]
+script = ExtResource("3_ugn2o")
+button = NodePath("..")
+scale_min = 1.0
+scale_max = 1.1
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
+
+[node name="Control3" type="Control" parent="Control/Buttons" unique_id=1540457398]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Quit" type="Button" parent="Control/Buttons/Control3" unique_id=1114254760]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+action_mode = 0
+text = "Die"
+metadata/_edit_lock_ = true
+
+[node name="ButtonComponent" type="Node" parent="Control/Buttons/Control3/Quit" unique_id=1460247644 node_paths=PackedStringArray("button")]
+script = ExtResource("3_ugn2o")
+button = NodePath("..")
+scale_min = 1.0
+scale_max = 1.1
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
 
 [node name="Credits" type="Label" parent="Control" unique_id=2071583767]
 layout_mode = 1
@@ -85,5 +229,5 @@ horizontal_alignment = 2
 vertical_alignment = 2
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="Control/Buttons/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Control/Buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Control/Buttons/Control/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/Buttons/Control3/Quit" to="." method="_on_quit_pressed"]

@@ -17,6 +17,9 @@ var player_health : int = 4;
 
 var did_win : bool = false;
 
+@onready var tween_health_player : Tween = null;
+@onready var tween_health_opponent : Tween = null;
+
 @export_category("Data")
 @export_file_path("*.json") var stage_1 : String = "";
 @export_file_path("*.json") var stage_2 : String = "";
@@ -46,8 +49,13 @@ var did_win : bool = false;
 
 @export var hint_next_stage : Label;
 
+@export var scroll_container : ScrollContainer = null;
+
 #functions
 func _ready() -> void:
+	Transition._make_sure_it_stops();
+	Transition.animation.play_backwards("transition");
+	
 	match(Global.stage_2_play):
 		1:
 			stage_to_play_path = stage_1;
@@ -88,6 +96,10 @@ func _process(_delta: float) -> void:
 	time_counter.text = str(int(timer_seconds.time_left));
 	
 	if Input.is_action_just_pressed("NextStage") && did_win:
+		did_win = false;
+		Transition._make_sure_it_stops();
+		Transition.animation.play("transition");
+		await Transition.animation.animation_finished;
 		if Global.stage_2_play == 5:
 			print("Best Ending")
 			Global._reset_game_status();
@@ -102,6 +114,8 @@ func _process(_delta: float) -> void:
 		Global.stage_2_play += 1;
 
 func _ask_question() -> void:
+	scroll_container.scroll_vertical = 0;
+	
 	if player_health > 0 && Global.enemy_health > 0:
 		timer_seconds.start();
 	
@@ -145,19 +159,32 @@ func _on_button_pressed(button: Button) -> void:
 
 func _damage_player() -> void:
 	player_health -= 1;
-	player_health_bar.value = player_health;
+	
+	if tween_health_player:
+		tween_health_player = null;
+	tween_health_player = create_tween();
+	
+	tween_health_player.tween_property(player_health_bar,"value",player_health,0.5).set_trans(Tween.TRANS_CUBIC);
 	
 	if player_health <= 0:
+		_destroy_everything();
 		if Global.credits > 0:
-			_destroy_everything();
 			timer_seconds.start();
 			lose_screen.visible = true;
 		elif Global.credits <= 0:
+			Transition._make_sure_it_stops();
+			Transition.animation.play("transition");
+			await Transition.animation.animation_finished;
 			get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
 
 func _damage_enemy() -> void:
 	Global.enemy_health -= 1;
-	enemy_health_bar.value = Global.enemy_health;
+	
+	if tween_health_opponent:
+		tween_health_opponent = null;
+	tween_health_opponent = create_tween();
+	
+	tween_health_opponent.tween_property(enemy_health_bar,"value",Global.enemy_health,0.5).set_trans(Tween.TRANS_CUBIC);
 	
 	if Global.enemy_health <= 0:
 		Global.enemy_health_loaded = false;
@@ -171,6 +198,10 @@ func _on_timer_seconds_timeout() -> void:
 		_damage_player();
 		_next_question();
 	elif player_health <= 0:
+		lose_screen.queue_free();
+		Transition._make_sure_it_stops();
+		Transition.animation.play("transition");
+		await Transition.animation.animation_finished;
 		get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
 
 func _destroy_everything() -> void:

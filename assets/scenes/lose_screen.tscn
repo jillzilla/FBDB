@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b4eyvgq22sg3n"]
 
 [ext_resource type="Script" uid="uid://b0x6xf18fc006" path="res://assets/scripts/lose_screen.gd" id="1_68f7m"]
+[ext_resource type="Script" uid="uid://dt364jws1e5kc" path="res://assets/components/button_component.gd" id="2_fvpp7"]
 
-[node name="LoseScreen" type="Control" unique_id=790205029]
+[node name="LoseScreen" type="Control" unique_id=790205029 node_paths=PackedStringArray("next")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_68f7m")
+next = NodePath("Panel/Buttons/Control/Next")
 metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="." unique_id=489813202]
@@ -63,8 +65,20 @@ mouse_filter = 2
 theme_override_constants/separation = 32
 metadata/_edit_lock_ = true
 
-[node name="Next" type="Button" parent="Panel/Buttons" unique_id=1231440421]
+[node name="Control" type="Control" parent="Panel/Buttons" unique_id=249448241]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Next" type="Button" parent="Panel/Buttons/Control" unique_id=1231440421]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_horizontal = 3
 focus_mode = 0
 theme_override_font_sizes/font_size = 32
@@ -72,4 +86,12 @@ action_mode = 0
 text = "HELYEA"
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="Panel/Buttons/Next" to="." method="_on_next_pressed"]
+[node name="ButtonComponent" type="Node" parent="Panel/Buttons/Control/Next" unique_id=139415568 node_paths=PackedStringArray("button")]
+script = ExtResource("2_fvpp7")
+button = NodePath("..")
+scale_min = 1.0
+scale_max = 1.15
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
+
+[connection signal="pressed" from="Panel/Buttons/Control/Next" to="." method="_on_next_pressed"]
