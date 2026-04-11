@@ -41,6 +41,8 @@ var player_health : int = 5;
 @export var win_screen : Control = null;
 @export var lose_screen : Control = null;
 
+@export var question_text_container : PanelContainer;
+
 #functions
 func _ready() -> void:
 	match(Global.stage_2_play):
@@ -146,6 +148,8 @@ func _on_timer_seconds_timeout() -> void:
 	_next_question();
 
 func _destroy_everything() -> void:
+	question_text_container.visible = false;
+	
 	timer_seconds.stop();
 	time_counter.visible = false;
 	

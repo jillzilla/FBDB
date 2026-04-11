@@ -18,6 +18,6 @@ offset_right = 184.31999
 offset_bottom = 19.639893
 grow_vertical = 0
 theme_override_font_sizes/font_size = 24
-text = "Credits : 4"
+text = "Credits: 4"
 vertical_alignment = 2
 metadata/_edit_lock_ = true
