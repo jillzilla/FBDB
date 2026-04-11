@@ -44,6 +44,8 @@ var did_win : bool = false;
 
 @export var question_text_container : PanelContainer;
 
+@export var hint_next_stage : Label;
+
 #functions
 func _ready() -> void:
 	match(Global.stage_2_play):
@@ -162,6 +164,7 @@ func _damage_enemy() -> void:
 		time_counter.visible = false;
 		_destroy_everything();
 		did_win = true;
+		hint_next_stage.visible = true;
 
 func _on_timer_seconds_timeout() -> void:
 	if player_health > 0:
