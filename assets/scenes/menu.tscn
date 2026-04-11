@@ -56,14 +56,14 @@ metadata/_edit_lock_ = true
 
 [node name="Credits" type="Label" parent="." unique_id=2071583767]
 anchors_preset = -1
-anchor_left = 0.9480001
-anchor_top = 0.97
-anchor_right = 0.9480001
-anchor_bottom = 0.97
-offset_left = -92.16016
-offset_top = -23.599976
-offset_right = 91.83984
-offset_bottom = 24.400024
+anchor_left = 0.929
+anchor_top = 0.95800006
+anchor_right = 0.929
+anchor_bottom = 0.95800006
+offset_left = -119.68005
+offset_top = -26.640015
+offset_right = 120.31995
+offset_bottom = 26.359985
 theme_override_font_sizes/font_size = 32
 text = "© don't ask"
 horizontal_alignment = 2
