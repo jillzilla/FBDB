@@ -6,7 +6,7 @@ extends Control
 
 #functions
 func _ready() -> void:
-	if Global.stage_2_play == 5:
+	if Global.stage_2_play == 5 && Global.credits >= 3 || Global.stage_2_play == 4 && Global.credits < 3:
 		giveup.queue_free();
 		next.text = "The End";
 
@@ -17,8 +17,12 @@ func _on_menu_pressed() -> void:
 
 func _on_next_pressed() -> void:
 	Global.stage_2_play += 1;
-	if Global.stage_2_play < 5:
+	if next.text != "The End":
 		get_tree().reload_current_scene();
-	elif Global.stage_2_play >= 5:
-		Global.stage_2_play = 1;
-		get_tree().quit();
+	else:
+		if Global.stage_2_play == 5 && Global.credits >= 3:
+			print("Best Ending")
+			get_tree().quit(0);
+		elif Global.stage_2_play == 4 && Global.credits < 3:
+			print("Normal Ending")
+			get_tree().quit(1);

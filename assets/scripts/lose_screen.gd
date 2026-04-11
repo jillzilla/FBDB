@@ -14,6 +14,7 @@ func _ready() -> void:
 func _on_menu_pressed() -> void:
 	Global.stage_2_play = 1;
 	Global.credits = 3;
+	print("Bad Ending");
 	get_tree().change_scene_to_file("res://assets/scenes/menu.tscn");
 
 func _on_next_pressed() -> void:
