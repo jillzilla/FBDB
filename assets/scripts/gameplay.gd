@@ -13,8 +13,8 @@ var answers_group : Array[Button] = [];
 
 var did_answered_correctly : bool = false;
 
-var player_health : int = 100;
-var opponent_health : int = 100;
+var player_health : int = 5;
+var opponent_health : int = 5;
 
 @export_category("Data")
 @export_file_path("*.json") var stage_1 : String = "";
@@ -67,6 +67,7 @@ func _ready() -> void:
 	answer_3.connect("pressed", _on_button_pressed.bind(answer_3));
 	answer_4.connect("pressed", _on_button_pressed.bind(answer_4));
 	
+	stage_info.text = "Stage " + str(Global.stage_2_play);
 	questions_order.shuffle();
 	_ask_question();
 
@@ -74,9 +75,7 @@ func _process(_delta: float) -> void:
 	time_counter.text = str(int(timer_seconds.time_left));
 
 func _ask_question() -> void:
-	stage_info.text = "Stage " + str(Global.stage_2_play) + " - " + str(current_question + 1) + " / " + str(questions_counter);
-	
-	if player_health > 0:
+	if player_health > 0 && opponent_health > 0:
 		timer_seconds.start();
 	
 	did_answered_correctly = false;
@@ -107,21 +106,27 @@ func _on_button_pressed(button: Button) -> void:
 		answers_group[i].disabled = false;
 	
 	if did_answered_correctly:
-		opponent_health -= 5;
-		enemy_health_bar.value = opponent_health;
+		_damage_enemy();
 	else:
 		_damage_player();
 	
-	if player_health > 0:
+	if player_health > 0 && opponent_health > 0:
 		timer_seconds.stop();
 		_next_question();
 
 func _damage_player() -> void:
-	player_health -= 20;
+	player_health -= 1;
 	player_health_bar.value = player_health;
 	
 	if player_health <= 0:
 		get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
+
+func _damage_enemy() -> void:
+	opponent_health -= 1;
+	enemy_health_bar.value = opponent_health;
+	
+	if opponent_health <= 0:
+		get_tree().change_scene_to_file("res://assets/scenes/win.tscn");
 
 func _on_timer_seconds_timeout() -> void:
 	_damage_player();
