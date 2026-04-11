@@ -13,7 +13,7 @@ var answers_group : Array[Button] = [];
 
 var did_answered_correctly : bool = false;
 
-var player_health : int = 5;
+var player_health : int = 4;
 
 var did_win : bool = false;
 
@@ -148,12 +148,12 @@ func _damage_player() -> void:
 	player_health_bar.value = player_health;
 	
 	if player_health <= 0:
-		_destroy_everything();
 		if Global.credits > 0:
+			_destroy_everything();
 			timer_seconds.start();
-		else:
-			time_counter.visible = false;
-		lose_screen.visible = true;
+			lose_screen.visible = true;
+		elif Global.credits <= 0:
+			get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
 
 func _damage_enemy() -> void:
 	Global.enemy_health -= 1;
@@ -171,7 +171,7 @@ func _on_timer_seconds_timeout() -> void:
 		_damage_player();
 		_next_question();
 	elif player_health <= 0:
-		lose_screen.next_button.queue_free();
+		get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
 
 func _destroy_everything() -> void:
 	question_text_container.visible = false;

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d32ix7uu1wcqm"]
+
+[ext_resource type="Script" uid="uid://c6rbbogvrnt6h" path="res://assets/scripts/game_over.gd" id="1_wt3e0"]
+
+[node name="GameOver" type="Node" unique_id=346087160]
+script = ExtResource("1_wt3e0")
+
+[node name="Label" type="Label" parent="." unique_id=296495985]
+anchors_preset = -1
+anchor_left = 0.117000006
+anchor_top = 0.148
+anchor_right = 0.117000006
+anchor_bottom = 0.148
+offset_left = -160.64001
+offset_top = -95.84
+offset_right = 159.35999
+offset_bottom = 96.16
+theme_override_font_sizes/font_size = 48
+text = "GAME
+OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=1125650737]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
