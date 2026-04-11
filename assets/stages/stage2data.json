@@ -1,10 +1,12 @@
 {
+	"enemy_health" : 6,
+	
 	"questions" :
 	{
 		"q1" : "In what year did Elvis Presley die?",
 		"q2" : "Who was the youngest member of the Beatles?",
 		"q3" : "Which band released the album 'Rumours' in 1977?",
-		"q4" : "Complete the band name 'Bill Haley & ...?'",
+		"q4" : "Complete the band name 'Bill Haley & ...'?",
 		"q5" : "What band recorded the rock classic 'Walk This Way'?",
 		"q6" : "Which of these famous rockers did not die in 1970?",
 		"q7" : "'I'm so happy, 'cause today I found my friends, they're in my head, I'm so ugly that's ok cause so are you', is from which song?",
@@ -15,7 +17,7 @@
 		"q11" : "What was the old man drinking in Billy Joel's song 'Piano Man'?",
 		"q12" : "Who sang the song 'Turn! Turn! Turn!'?",
 		"q13" : "Who originally recorded Stone Cold Crazy?",
-		"q14" : "What was the sailor's name in 'Piano Man?'",
+		"q14" : "What was the sailor's name in 'Piano Man'?",
 		"q15" : "What was the original title of KISS' Let Me Know?",
 		"q16" : "Who was Yoko Ono's first child?",
 		"q17" : "Eric Clapton wrote the lyrics for 'Layla' about:",

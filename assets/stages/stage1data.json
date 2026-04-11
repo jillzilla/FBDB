@@ -1,4 +1,6 @@
 {
+	"enemy_health" : 5,
+	
 	"questions" :
 	{
 		"q1" : "In the arcade game The Tower of Druaga, the hero Gilgamesh goes how many floors?",
@@ -15,7 +17,7 @@
 		"q11" : "What is the name of the final boss in Street Fighter II?",
 		"q12" : "In the Dragon Quest series, what is the spell family only the hero class can learn?",
 		"q13" : "What is the name of the final dungeon in Ys 1?",
-		"q14" : "What is the best video game console of all time?",
+		"q14" : "What is the best selling video game console of all time?",
 		"q15" : "What was the first video game to be played in space?",
 		"q16" : "In the infamous CDI game Hotel Mario, Mario references a song of a famous band, which band is it?",
 		"q17" : "What is the name of the girl that saves Link in the beginning of The Legend of Zelda: Link’s Awakening?",

@@ -1,4 +1,6 @@
 {
+	"enemy_health" : 7,
+	
 	"questions" :
 	{
 		"q1" : "What is the name of America’s 15th state?",
@@ -40,7 +42,7 @@
 		"q11" : ["Baltimore","Houston","Pittsburgh","Chicago"],
 		"q12" : ["Columbia River","Colorado River","Missouri River","Salmon River"],
 		"q13" : ["10","15","13","18"],
-		"q14" : ["New York City","Detroit","Washington DC","…It has a capital?"],
+		"q14" : ["New York City","Detroit","Washington DC","…They have a capital?"],
 		"q15" : ["France","Greece","England","Italy"],
 		"q16" : ["The United States Coast Guard","The United States Marine Corps","The United States Air Force","The United States Navy"],
 		"q17" : ["1919","1914","1918","1917"],

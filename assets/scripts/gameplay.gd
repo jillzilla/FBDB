@@ -14,7 +14,7 @@ var answers_group : Array[Button] = [];
 var did_answered_correctly : bool = false;
 
 var player_health : int = 5;
-var opponent_health : int = 5;
+var opponent_health : int;
 
 @export_category("Data")
 @export_file_path("*.json") var stage_1 : String = "";
@@ -39,6 +39,9 @@ var opponent_health : int = 5;
 @export var answer_3 : Button = null;
 @export var answer_4 : Button = null;
 
+@export var win_screen : Control = null;
+@export var lose_screen : Control = null;
+
 #functions
 func _ready() -> void:
 	match(Global.stage_2_play):
@@ -61,6 +64,10 @@ func _ready() -> void:
 	file.close();
 	
 	data = JSON.parse_string(json_text);
+	
+	enemy_health_bar.max_value = data["enemy_health"];
+	opponent_health = data["enemy_health"];
+	enemy_health_bar.value = opponent_health;
 	
 	answer_1.connect("pressed", _on_button_pressed.bind(answer_1));
 	answer_2.connect("pressed", _on_button_pressed.bind(answer_2));
@@ -119,15 +126,27 @@ func _damage_player() -> void:
 	player_health_bar.value = player_health;
 	
 	if player_health <= 0:
-		get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
+		_destroy_everything();
+		lose_screen.visible = true;
 
 func _damage_enemy() -> void:
 	opponent_health -= 1;
 	enemy_health_bar.value = opponent_health;
 	
 	if opponent_health <= 0:
-		get_tree().change_scene_to_file("res://assets/scenes/win.tscn");
+		_destroy_everything();
+		win_screen.visible = true;
 
 func _on_timer_seconds_timeout() -> void:
 	_damage_player();
 	_next_question();
+
+func _destroy_everything() -> void:
+	timer_seconds.stop();
+	time_counter.visible = false;
+	
+	answer_1.queue_free();
+	answer_2.queue_free();
+	answer_3.queue_free();
+	answer_4.queue_free();
+	question.queue_free();
