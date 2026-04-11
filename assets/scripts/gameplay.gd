@@ -4,8 +4,6 @@ extends Node
 var stage_to_play_path : String = "";
 
 var questions_order : Array[String] = ["q1","q2","q3","q4","q5","q6","q7","q8","q9","q10","q11","q12","q13","q14","q15","q16","q17","q18","q19","q20"];
-var answers_order : Array[String] = ["q1","q2","q3","q4","q5","q6","q7","q8","q9","q10","q11","q12","q13","q14","q15","q16","q17","q18","q19","q20"];
-var correct_answers_order : Array[String] = ["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10","a11","a12","a13","a14","a15","a16","a17","a18","a19","a20"];
 
 var current_question : int = 0;
 var questions_counter : int = 20;
@@ -69,6 +67,7 @@ func _ready() -> void:
 	answer_3.connect("pressed", _on_button_pressed.bind(answer_3));
 	answer_4.connect("pressed", _on_button_pressed.bind(answer_4));
 	
+	questions_order.shuffle();
 	_ask_question();
 
 func _process(_delta: float) -> void:
@@ -87,7 +86,7 @@ func _ask_question() -> void:
 	answers_group.shuffle();
 	
 	for i in range(answers_group.size()):
-		answers_group[i].text = data["answers"][answers_order[current_question]][i];
+		answers_group[i].text = data["answers"][questions_order[current_question]][i];
 		
 func _next_question() -> void:
 	current_question += 1;
@@ -101,7 +100,7 @@ func _on_button_pressed(button: Button) -> void:
 	for i in range(answers_group.size()):
 		answers_group[i].disabled = true;
 	
-	if button.text == data["correct_answers"][correct_answers_order[current_question]]: 
+	if button.text == data["correct_answers"][questions_order[current_question]]: 
 		did_answered_correctly = true;
 	
 	for i in range(answers_group.size()):
