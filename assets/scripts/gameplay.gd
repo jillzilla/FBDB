@@ -132,7 +132,10 @@ func _damage_player() -> void:
 	
 	if player_health <= 0:
 		_destroy_everything();
-		timer_seconds.start();
+		if Global.credits > 0:
+			timer_seconds.start();
+		else:
+			time_counter.visible = false;
 		lose_screen.visible = true;
 
 func _damage_enemy() -> void:
