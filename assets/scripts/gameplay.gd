@@ -84,6 +84,8 @@ func _ask_question() -> void:
 	
 	question.text = data["questions"][questions_order[current_question]];
 	
+	answers_group.shuffle();
+	
 	for i in range(answers_group.size()):
 		answers_group[i].text = data["answers"][answers_order[current_question]][i];
 		
