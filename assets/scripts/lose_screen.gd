@@ -12,8 +12,7 @@ func _ready() -> void:
 		next_button.queue_free();
 
 func _on_menu_pressed() -> void:
-	Global.stage_2_play = 1;
-	Global.credits = 3;
+	Global._reset_game_status();
 	print("Bad Ending");
 	get_tree().change_scene_to_file("res://assets/scenes/menu.tscn");
 

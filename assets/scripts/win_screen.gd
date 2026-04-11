@@ -11,8 +11,7 @@ func _ready() -> void:
 		next.text = "The End";
 
 func _on_menu_pressed() -> void:
-	Global.stage_2_play = 1;
-	Global.credits = 3;
+	Global._reset_game_status();
 	get_tree().change_scene_to_file("res://assets/scenes/menu.tscn");
 
 func _on_next_pressed() -> void:
@@ -22,7 +21,9 @@ func _on_next_pressed() -> void:
 	else:
 		if Global.stage_2_play == 5 && Global.credits >= 3:
 			print("Best Ending")
+			Global._reset_game_status();
 			get_tree().quit(0);
 		elif Global.stage_2_play == 4 && Global.credits < 3:
 			print("Normal Ending")
+			Global._reset_game_status();
 			get_tree().quit(1);

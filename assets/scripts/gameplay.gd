@@ -14,7 +14,6 @@ var answers_group : Array[Button] = [];
 var did_answered_correctly : bool = false;
 
 var player_health : int = 5;
-var opponent_health : int;
 
 @export_category("Data")
 @export_file_path("*.json") var stage_1 : String = "";
@@ -66,8 +65,10 @@ func _ready() -> void:
 	data = JSON.parse_string(json_text);
 	
 	enemy_health_bar.max_value = data["enemy_health"];
-	opponent_health = data["enemy_health"];
-	enemy_health_bar.value = opponent_health;
+	if !Global.enemy_health_loaded:
+		Global.enemy_health = data["enemy_health"];
+		Global.enemy_health_loaded = true;
+	enemy_health_bar.value = Global.enemy_health;
 	
 	answer_1.connect("pressed", _on_button_pressed.bind(answer_1));
 	answer_2.connect("pressed", _on_button_pressed.bind(answer_2));
@@ -82,7 +83,7 @@ func _process(_delta: float) -> void:
 	time_counter.text = str(int(timer_seconds.time_left));
 
 func _ask_question() -> void:
-	if player_health > 0 && opponent_health > 0:
+	if player_health > 0 && Global.enemy_health > 0:
 		timer_seconds.start();
 	
 	did_answered_correctly = false;
@@ -100,7 +101,9 @@ func _next_question() -> void:
 	if current_question < questions_counter:
 		_ask_question();
 	elif current_question >= questions_counter:
-		get_tree().change_scene_to_file("res://assets/scenes/win.tscn");
+		current_question = 0;
+		questions_order.shuffle();
+		_ask_question();
 		
 func _on_button_pressed(button: Button) -> void:
 	for i in range(answers_group.size()):
@@ -117,7 +120,7 @@ func _on_button_pressed(button: Button) -> void:
 	else:
 		_damage_player();
 	
-	if player_health > 0 && opponent_health > 0:
+	if player_health > 0 && Global.enemy_health > 0:
 		timer_seconds.stop();
 		_next_question();
 
@@ -130,10 +133,11 @@ func _damage_player() -> void:
 		lose_screen.visible = true;
 
 func _damage_enemy() -> void:
-	opponent_health -= 1;
-	enemy_health_bar.value = opponent_health;
+	Global.enemy_health -= 1;
+	enemy_health_bar.value = Global.enemy_health;
 	
-	if opponent_health <= 0:
+	if Global.enemy_health <= 0:
+		Global.enemy_health_loaded = false;
 		_destroy_everything();
 		win_screen.visible = true;
 
