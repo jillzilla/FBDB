@@ -132,6 +132,7 @@ func _damage_player() -> void:
 	
 	if player_health <= 0:
 		_destroy_everything();
+		timer_seconds.start();
 		lose_screen.visible = true;
 
 func _damage_enemy() -> void:
@@ -144,14 +145,16 @@ func _damage_enemy() -> void:
 		win_screen.visible = true;
 
 func _on_timer_seconds_timeout() -> void:
-	_damage_player();
-	_next_question();
+	if player_health > 0:
+		_damage_player();
+		_next_question();
+	elif player_health <= 0:
+		lose_screen.next_button.queue_free();
 
 func _destroy_everything() -> void:
 	question_text_container.visible = false;
 	
 	timer_seconds.stop();
-	time_counter.visible = false;
 	
 	answer_1.queue_free();
 	answer_2.queue_free();
