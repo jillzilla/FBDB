@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://f7dndtbwghms"]
 
 [ext_resource type="Script" uid="uid://c41anujxrrear" path="res://assets/scripts/global_hud.gd" id="1_ws0sm"]
+[ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="2_u62rm"]
 
 [node name="Global_HUD" type="CanvasLayer" unique_id=834348981 node_paths=PackedStringArray("credits_counter")]
 script = ExtResource("1_ws0sm")
@@ -8,15 +9,16 @@ credits_counter = NodePath("Credits_Counter")
 
 [node name="Credits_Counter" type="Label" parent="." unique_id=1475466767]
 anchors_preset = -1
-anchor_left = 0.104
-anchor_top = 0.96700007
-anchor_right = 0.104
-anchor_bottom = 0.96700007
-offset_left = -183.68001
-offset_top = -20.360107
-offset_right = 184.31999
-offset_bottom = 19.639893
+anchor_left = 0.108
+anchor_top = 0.95900005
+anchor_right = 0.108
+anchor_bottom = 0.95900005
+offset_left = -183.36
+offset_top = -19.720093
+offset_right = 184.64
+offset_bottom = 20.279907
 grow_vertical = 0
+theme = ExtResource("2_u62rm")
 theme_override_font_sizes/font_size = 24
 text = "Credits: 4"
 vertical_alignment = 2

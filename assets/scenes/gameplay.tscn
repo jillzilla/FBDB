@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://o8kv7fhio2c8" path="res://assets/scripts/gameplay.gd" id="1_mrbpc"]
 [ext_resource type="Texture2D" uid="uid://daf72gm0xybfo" path="res://assets/images/fr.png" id="1_un4qs"]
 [ext_resource type="Texture2D" uid="uid://ofm7ejh3sm22" path="res://assets/images/jo.png" id="2_mrbpc"]
+[ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="4_0hf1u"]
 [ext_resource type="PackedScene" uid="uid://b4eyvgq22sg3n" path="res://assets/scenes/lose_screen.tscn" id="4_17b01"]
 
 [node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "lose_screen", "question_text_container", "hint_next_stage")]
@@ -46,6 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
+theme = ExtResource("4_0hf1u")
 metadata/_edit_lock_ = true
 
 [node name="Top_HUD" type="HBoxContainer" parent="Control" unique_id=1483631589]
