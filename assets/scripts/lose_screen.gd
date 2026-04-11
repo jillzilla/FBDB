@@ -2,12 +2,9 @@ extends Control
 
 #variables
 @export var next_button : Button = null;
-@export var credits_counter : Label = null;
 
 #functions
 func _ready() -> void:
-	credits_counter.text = "Credits: " + str(Global.credits);
-	
 	if Global.credits <= 0:
 		next_button.queue_free();
 
@@ -18,4 +15,5 @@ func _on_menu_pressed() -> void:
 
 func _on_next_pressed() -> void:
 	Global.credits -= 1;
+	GlobalHud._update_credits_counter();
 	get_tree().reload_current_scene();

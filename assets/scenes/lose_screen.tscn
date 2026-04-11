@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0x6xf18fc006" path="res://assets/scripts/lose_screen.gd" id="1_68f7m"]
 
-[node name="LoseScreen" type="Control" unique_id=790205029 node_paths=PackedStringArray("next_button", "credits_counter")]
+[node name="LoseScreen" type="Control" unique_id=790205029 node_paths=PackedStringArray("next_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_68f7m")
 next_button = NodePath("Panel/Buttons/Next")
-credits_counter = NodePath("Panel/Credits")
 metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="." unique_id=489813202]
@@ -44,22 +43,6 @@ theme_override_font_sizes/font_size = 64
 text = "YOU LOSE"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Credits" type="Label" parent="Panel" unique_id=1717879159]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.072000004
-anchor_top = 0.97200006
-anchor_right = 0.072000004
-anchor_bottom = 0.97200006
-offset_left = -111.80801
-offset_top = -16.70404
-offset_right = 112.19199
-offset_bottom = 17.29596
-theme_override_font_sizes/font_size = 24
-text = "Credits: 3"
-vertical_alignment = 2
 metadata/_edit_lock_ = true
 
 [node name="Buttons" type="HBoxContainer" parent="Panel" unique_id=2139877455]
