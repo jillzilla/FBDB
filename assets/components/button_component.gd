@@ -15,13 +15,15 @@ func _ready() -> void:
 	button.connect("mouse_exited",_on_button_mouse_exited);
 
 func _on_button_mouse_entered() -> void:
-	if tween:
-		tween = null;
-	tween = create_tween();
-	tween.tween_property(button,"scale",Vector2(scale_max,scale_max),speed).set_trans(Tween.TRANS_CUBIC);
+	if !button.disabled:
+		if tween:
+			tween = null;
+		tween = create_tween();
+		tween.tween_property(button,"scale",Vector2(scale_max,scale_max),speed).set_trans(Tween.TRANS_CUBIC);
 	
 func _on_button_mouse_exited() -> void:
-	if tween:
-		tween = null;
-	tween = create_tween();
-	tween.tween_property(button,"scale",Vector2(scale_min,scale_min),speed).set_trans(Tween.TRANS_CUBIC);
+	if !button.disabled:
+		if tween:
+			tween = null;
+		tween = create_tween();
+		tween.tween_property(button,"scale",Vector2(scale_min,scale_min),speed).set_trans(Tween.TRANS_CUBIC);

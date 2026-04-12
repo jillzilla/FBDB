@@ -50,9 +50,12 @@ var did_win : bool = false;
 @export var hint_next_stage : Label;
 
 @export var scroll_container : ScrollContainer = null;
+@export var next_scene_button : Button;
 
 #functions
 func _ready() -> void:
+	answers_group = [answer_1,answer_2,answer_3,answer_4];
+	
 	Transition._make_sure_it_stops();
 	Transition.animation.play_backwards("transition");
 	
@@ -67,8 +70,6 @@ func _ready() -> void:
 			stage_to_play_path = stage_4;
 		5:
 			stage_to_play_path = stage_5;
-			
-	answers_group = [answer_1,answer_2,answer_3,answer_4];
 	
 	var file : FileAccess = FileAccess.open(stage_to_play_path, FileAccess.READ);
 	var json_text : String = file.get_as_text();
@@ -94,30 +95,17 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	time_counter.text = str(int(timer_seconds.time_left));
-	
-	if Input.is_action_just_pressed("NextStage") && did_win:
-		did_win = false;
-		Transition._make_sure_it_stops();
-		Transition.animation.play("transition");
-		await Transition.animation.animation_finished;
-		if Global.stage_2_play == 5:
-			print("Best Ending")
-			Global._reset_game_status();
-			get_tree().quit(0);
-		elif Global.stage_2_play == 4 && Global.credits < 3:
-			print("Normal Ending")
-			Global._reset_game_status();
-			get_tree().quit(1);
-		else:
-			get_tree().reload_current_scene();
-		
-		Global.stage_2_play += 1;
 
 func _ask_question() -> void:
 	scroll_container.scroll_vertical = 0;
 	
-	if player_health > 0 && Global.enemy_health > 0:
-		timer_seconds.start();
+	#if player_health > 0 && Global.enemy_health > 0:
+		#timer_seconds.start();
+	
+	for i in range(answers_group.size()):
+		answers_group[i].disabled = true;
+		answers_group[i].scale = Vector2(0.5,0.5);
+		answers_group[i].modulate.a = 0;
 	
 	did_answered_correctly = false;
 	
@@ -127,6 +115,8 @@ func _ask_question() -> void:
 	
 	for i in range(answers_group.size()):
 		answers_group[i].text = data["answers"][questions_order[current_question]][i];
+
+	_button_appear_effect();
 		
 func _next_question() -> void:
 	current_question += 1;
@@ -192,6 +182,7 @@ func _damage_enemy() -> void:
 		_destroy_everything();
 		did_win = true;
 		hint_next_stage.visible = true;
+		next_scene_button.visible = true;
 
 func _on_timer_seconds_timeout() -> void:
 	if player_health > 0:
@@ -214,3 +205,37 @@ func _destroy_everything() -> void:
 	answer_3.queue_free();
 	answer_4.queue_free();
 	question.queue_free();
+
+func _on_next_stage_pressed() -> void:
+	next_scene_button.visible = false;
+	
+	Transition._make_sure_it_stops();
+	Transition.animation.play("transition");
+	await Transition.animation.animation_finished;
+	if Global.stage_2_play == 5:
+		print("Best Ending")
+		Global._reset_game_status();
+		get_tree().quit(0);
+	elif Global.stage_2_play == 4 && Global.credits < 3:
+		print("Normal Ending")
+		Global._reset_game_status();
+		get_tree().quit(1);
+	else:
+		get_tree().reload_current_scene();
+	
+	Global.stage_2_play += 1;
+
+func _button_appear_effect() -> void:
+	for i in range(answers_group.size()):
+		var t1 : Tween = create_tween();
+		var t2 : Tween = create_tween();
+		
+		t1.tween_property(answers_group[i],"scale",Vector2(0.9,0.9),0.5).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(answers_group[i],"modulate:a",1,0.5).set_trans(Tween.TRANS_CUBIC);
+		
+		await t1.finished;
+		
+	for i in range(answers_group.size()):
+		answers_group[i].disabled = false;
+	
+	timer_seconds.start();

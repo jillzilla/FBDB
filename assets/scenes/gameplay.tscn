@@ -17,7 +17,7 @@ font_size = 64
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container")]
+[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container", "next_scene_button")]
 script = ExtResource("1_mrbpc")
 stage_1 = "res://assets/stages/stage1data.json"
 stage_2 = "res://assets/stages/stage2data.json"
@@ -38,6 +38,7 @@ lose_screen = NodePath("Control/LoseScreen")
 question_text_container = NodePath("Control/QuestionTextContainer")
 hint_next_stage = NodePath("Control/Bottom_HUD/Hint")
 scroll_container = NodePath("Control/QuestionTextContainer/ScrollContainer")
+next_scene_button = NodePath("Control/NextStage")
 
 [node name="Fr" type="Sprite2D" parent="." unique_id=1860793715]
 position = Vector2(752, 720)
@@ -189,7 +190,7 @@ offset_bottom = 43.951996
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 32
-text = "Press Enter to Continue..."
+text = "Click to Continue..."
 horizontal_alignment = 2
 vertical_alignment = 2
 metadata/_edit_lock_ = true
@@ -348,8 +349,21 @@ visible = false
 layout_mode = 1
 timer_seconds = NodePath("../../Timer_Seconds")
 
+[node name="NextStage" type="Button" parent="Control" unique_id=1941078989]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+action_mode = 0
+flat = true
+
 [node name="Timer_Seconds" type="Timer" parent="." unique_id=488301468]
 wait_time = 11.0
 one_shot = true
 
+[connection signal="pressed" from="Control/NextStage" to="." method="_on_next_stage_pressed"]
 [connection signal="timeout" from="Timer_Seconds" to="." method="_on_timer_seconds_timeout"]

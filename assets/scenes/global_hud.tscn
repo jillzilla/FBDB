@@ -14,14 +14,14 @@ credits_counter = NodePath("Credits_Counter")
 
 [node name="Credits_Counter" type="Label" parent="." unique_id=1475466767]
 anchors_preset = -1
-anchor_left = 0.112
-anchor_top = 0.95900005
-anchor_right = 0.112
-anchor_bottom = 0.95900005
+anchor_left = 0.13700001
+anchor_top = 0.952
+anchor_right = 0.13700001
+anchor_bottom = 0.952
 offset_left = -183.04001
-offset_top = -19.720093
+offset_top = -20.160034
 offset_right = 184.95999
-offset_bottom = 20.279907
+offset_bottom = 19.839966
 grow_vertical = 0
 theme = ExtResource("2_u62rm")
 theme_override_font_sizes/font_size = 24
