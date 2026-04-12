@@ -1,5 +1,7 @@
 extends Node
 
+signal blinky;
+
 #variables
 var stage_to_play_path : String = "";
 
@@ -45,6 +47,8 @@ var did_win : bool = false;
 @export var answer_2 : Button = null;
 @export var answer_3 : Button = null;
 @export var answer_4 : Button = null;
+
+@export var timer_flash : Timer;
 
 @export var lose_screen : Control = null;
 
@@ -130,6 +134,10 @@ func _on_button_pressed(button: Button) -> void:
 	
 	if button.text == data["correct_answers"][questions_order[current_question]]: 
 		did_answered_correctly = true;
+	
+	_blink_effect();
+	
+	await blinky;
 	
 	if did_answered_correctly:
 		_damage_enemy();
@@ -285,3 +293,23 @@ func _button_disappear_effect() -> void:
 		
 		t1.tween_property(answers_group_unshuffled[i],"scale",Vector2(0.5,0.5),0.5).set_trans(Tween.TRANS_CUBIC);
 		t2.tween_property(answers_group_unshuffled[i],"modulate:a",0,0.5).set_trans(Tween.TRANS_CUBIC);
+
+func _blink_effect() -> void:
+	var correct_button : Button = null;
+	
+	for i in range(answers_group_unshuffled.size()):
+		if answers_group_unshuffled[i].text == data["correct_answers"][questions_order[current_question]]:
+			correct_button = answers_group_unshuffled[i];
+			break;
+		
+	for i in range(8):
+		timer_flash.start();
+		
+		if correct_button.modulate.a != 0:
+			correct_button.modulate.a = 0;
+		elif correct_button.modulate.a == 0:
+			correct_button.modulate.a = 1;
+		
+		await timer_flash.timeout;
+
+	blinky.emit();
