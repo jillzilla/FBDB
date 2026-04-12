@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="4_0hf1u"]
 [ext_resource type="PackedScene" uid="uid://b4eyvgq22sg3n" path="res://assets/scenes/lose_screen.tscn" id="4_17b01"]
 [ext_resource type="Script" uid="uid://dt364jws1e5kc" path="res://assets/components/button_component.gd" id="5_0hf1u"]
+[ext_resource type="PackedScene" uid="uid://bgqrhf856akis" path="res://assets/scenes/super_secret_pause_menu.tscn" id="7_fw4li"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hf1u"]
 font_size = 32
@@ -56,6 +57,7 @@ _data = {
 }
 
 [node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "buttons_cover", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container", "next_scene_button", "animation_question_message_box")]
+process_mode = 1
 script = ExtResource("1_mrbpc")
 stage_1 = "res://assets/stages/stage1data.json"
 stage_2 = "res://assets/stages/stage2data.json"
@@ -395,6 +397,7 @@ metadata/_custom_type_script = "uid://dt364jws1e5kc"
 
 [node name="Buttons_Cover" type="Control" parent="Control/Bottom_HUD" unique_id=52170714]
 layout_mode = 1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -403,6 +406,8 @@ offset_left = -960.0
 offset_top = -188.0
 offset_right = 960.0
 offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="LoseScreen" parent="Control" unique_id=790205029 node_paths=PackedStringArray("timer_seconds") instance=ExtResource("4_17b01")]
@@ -425,6 +430,13 @@ flat = true
 [node name="Timer_Seconds" type="Timer" parent="." unique_id=488301468]
 wait_time = 11.0
 one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=318037572]
+layer = 3
+
+[node name="Super_Secret_Pause_Menu" parent="CanvasLayer" unique_id=1900549973 instance=ExtResource("7_fw4li")]
+process_mode = 3
+visible = false
 
 [connection signal="pressed" from="Control/NextStage" to="." method="_on_next_stage_pressed"]
 [connection signal="timeout" from="Timer_Seconds" to="." method="_on_timer_seconds_timeout"]
