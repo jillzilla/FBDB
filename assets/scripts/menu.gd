@@ -21,7 +21,7 @@ func _on_play_pressed() -> void:
 	await Transition.animation.animation_finished;
 	Global.credits -= 1;
 	GlobalHud._update_credits_counter();
-	get_tree().change_scene_to_file("res://assets/scenes/gameplay.tscn");
+	get_tree().change_scene_to_file("res://assets/scenes/vs_screen.tscn");
 
 func _on_quit_pressed() -> void:
 	get_tree().quit(0);

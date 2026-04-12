@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://cxunn7np2l1be"]
+
+[ext_resource type="Script" uid="uid://d0ermeh3qrdsk" path="res://assets/scripts/vs_screen.gd" id="1_e3bu7"]
+[ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="1_ltfk0"]
+[ext_resource type="Texture2D" uid="uid://bfpd2dri4tsql" path="res://assets/images/battle_sprites/battle_fren.png" id="2_e3bu7"]
+
+[sub_resource type="Animation" id="Animation_e3bu7"]
+resource_name = "whole_anim"
+length = 8.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VS:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0, 1, 1),
+"update": 0,
+"values": [Vector2(876, 1100), Vector2(876, 1100), Vector2(876, 448)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-668, 640), Vector2(300, 640)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Opponent:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(0, 1, 1),
+"update": 0,
+"values": [Vector2(2588, 640), Vector2(2488, 640), Vector2(1650, 640)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Zoom:zoom")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3.5, 4, 4.5),
+"transitions": PackedFloat32Array(0, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ts7py"]
+_data = {
+&"whole_anim": SubResource("Animation_e3bu7")
+}
+
+[node name="VSScreen" type="Node" unique_id=1979009933 node_paths=PackedStringArray("name2text", "opponent")]
+script = ExtResource("1_e3bu7")
+name2text = NodePath("Name2")
+stage_1 = "res://assets/stages/stage1data.json"
+stage_2 = "res://assets/stages/stage2data.json"
+stage_3 = "res://assets/stages/stage3data.json"
+stage_4 = "res://assets/stages/stage4data.json"
+stage_5 = "res://assets/stages/stage5data.json"
+opponent = NodePath("Opponent")
+
+[node name="BG" type="ColorRect" parent="." unique_id=274234780]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Player" type="Sprite2D" parent="." unique_id=253206375]
+position = Vector2(-668, 640)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_e3bu7")
+metadata/_edit_lock_ = true
+
+[node name="Opponent" type="Sprite2D" parent="." unique_id=965576284]
+position = Vector2(2588, 640)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("2_e3bu7")
+flip_h = true
+metadata/_edit_lock_ = true
+
+[node name="Cover" type="ColorRect" parent="." unique_id=1317948411]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.88500005
+anchor_right = 0.5
+anchor_bottom = 0.88500005
+offset_left = -960.0
+offset_top = -123.80005
+offset_right = 960.0
+offset_bottom = 124.19995
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="VS" type="Label" parent="." unique_id=2060176886]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = 560.0
+offset_right = 84.0
+offset_bottom = 744.001
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("1_ltfk0")
+theme_override_font_sizes/font_size = 128
+text = "VS"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Name1" type="Label" parent="." unique_id=507616389]
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.859
+anchor_right = 0.25
+anchor_bottom = 0.859
+offset_left = -416.0
+offset_top = -95.72003
+offset_right = 416.0
+offset_bottom = 96.27997
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("1_ltfk0")
+theme_override_font_sizes/font_size = 128
+text = "Joel"
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Name2" type="Label" parent="." unique_id=1209960938]
+anchors_preset = -1
+anchor_left = 0.61700004
+anchor_top = 0.859
+anchor_right = 0.61700004
+anchor_bottom = 0.859
+offset_left = -672.64014
+offset_top = -95.72003
+offset_right = 671.35986
+offset_bottom = 96.27997
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme = ExtResource("1_ltfk0")
+theme_override_font_sizes/font_size = 128
+text = "LOSER 2"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Zoom" type="Camera2D" parent="." unique_id=266784485]
+position = Vector2(960, 540)
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1145867675]
+libraries/ = SubResource("AnimationLibrary_ts7py")
+autoplay = &"whole_anim"
+speed_scale = 1.5
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

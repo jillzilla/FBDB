@@ -1,5 +1,11 @@
 {
+	"enemy_name" : "Mr. Bones",
+	
+	"category" : "Music",
+	
 	"enemy_health" : 6,
+	
+	"battle_enemy_sprite" : "res://assets/images/battle_sprites/battle_fren.png",
 	
 	"questions" :
 	{

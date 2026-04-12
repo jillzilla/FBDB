@@ -61,6 +61,8 @@ var did_win : bool = false;
 
 @export var animation_question_message_box : AnimationPlayer = null;
 
+@export var opponent : Sprite2D;
+
 #functions
 func _ready() -> void:
 	answers_group = [answer_1,answer_2,answer_3,answer_4];
@@ -88,6 +90,8 @@ func _ready() -> void:
 	
 	data = JSON.parse_string(json_text);
 	
+	opponent.texture = load(data["battle_enemy_sprite"]);
+	
 	enemy_health_bar.max_value = data["enemy_health"];
 	
 	if !Global.enemy_health_loaded:
@@ -101,7 +105,7 @@ func _ready() -> void:
 	answer_3.connect("pressed", _on_button_pressed.bind(answer_3));
 	answer_4.connect("pressed", _on_button_pressed.bind(answer_4));
 	
-	stage_info.text = "Stage " + str(Global.stage_2_play);
+	stage_info.text = "Stage " + str(Global.stage_2_play) + "\n" + data["category"];
 	questions_order.shuffle();
 	_ask_question();
 
@@ -132,6 +136,9 @@ func _next_question() -> void:
 func _on_button_pressed(button: Button) -> void:
 	buttons_cover.visible = true;
 	
+	if player_health > 0 && Global.enemy_health > 0:
+		timer_seconds.stop();
+	
 	if button.text == data["correct_answers"][questions_order[current_question]]: 
 		did_answered_correctly = true;
 	
@@ -145,7 +152,6 @@ func _on_button_pressed(button: Button) -> void:
 		_damage_player();
 	
 	if player_health > 0 && Global.enemy_health > 0:
-		timer_seconds.stop();
 		_next_question();
 
 func _damage_player() -> void:
@@ -218,7 +224,7 @@ func _on_next_stage_pressed() -> void:
 		Global._reset_game_status();
 		get_tree().quit(1);
 	else:
-		get_tree().reload_current_scene();
+		get_tree().change_scene_to_file("res://assets/scenes/vs_screen.tscn");
 	
 	Global.stage_2_play += 1;
 

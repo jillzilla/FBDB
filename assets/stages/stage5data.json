@@ -1,5 +1,11 @@
 {
+	"enemy_name" : "Dilto Kirkland",
+	
+	"category" : "Vargskelethor Joel Trivia",
+	
 	"enemy_health" : 9,
+	
+	"battle_enemy_sprite" : "res://assets/images/battle_sprites/battle_fren.png",
 	
 	"questions" :
 	{

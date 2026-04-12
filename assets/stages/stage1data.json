@@ -1,5 +1,11 @@
 {
+	"enemy_name" : "Skeleduende",
+	
+	"category" : "Video Games",
+	
 	"enemy_health" : 5,
+	
+	"battle_enemy_sprite" : "res://assets/images/battle_sprites/battle_fren.png",
 	
 	"questions" :
 	{

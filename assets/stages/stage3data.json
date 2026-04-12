@@ -1,5 +1,11 @@
 {
+	"enemy_name" : "Jawbone",
+	
+	"category" : "Animation and Comics",
+	
 	"enemy_health" : 7,
+	
+	"battle_enemy_sprite" : "res://assets/images/battle_sprites/battle_fren.png",
 	
 	"questions" :
 	{
@@ -47,7 +53,7 @@
 		"q16" : ["Marco","Murco","Mirco","Merco"],
 		"q17" : ["Axis","Jupitoris","Solar Ray Cannon","Asteroid Bomb"],
 		"q18" : ["Crisis Empire","Shocker","Golgom","Titania"],
-		"q19" : ["Hada","Balus","Modem","Flying Squirrel"],
+		"q19" : ["Hadal","Balus","Modem","Flying Squirrel"],
 		"q20" : ["Easel","Musel","Mauser","Kaise"],
 	},
 	

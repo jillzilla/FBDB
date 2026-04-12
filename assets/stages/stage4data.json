@@ -1,5 +1,11 @@
 {
+	"enemy_name" : "Michael of Jabronos",
+	
+	"category" : "USA",
+	
 	"enemy_health" : 7,
+	
+	"battle_enemy_sprite" : "res://assets/images/battle_sprites/battle_fren.png",
 	
 	"questions" :
 	{
