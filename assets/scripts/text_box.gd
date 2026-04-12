@@ -5,9 +5,11 @@ signal text_end;
 #variables
 const CHAR_READ_RATE : float = 0.03;
 
-@onready var tween : Tween = null;
-@export var text_box_container : MarginContainer;
+@export var whole_thing : Control;
+
 @export var text_dialogue : Label;
+
+@onready var tween : Tween = null;
 
 enum States
 {
@@ -23,9 +25,11 @@ var text_queue : Array[String] = [];
 func _ready() -> void:
 	text_end.connect(_text_ended);
 	_hide_textbox();
+	
+	_queue_text("Joel: Test Test Test. It's working, it's actually working!")
 
 func _hide_textbox() -> void:
-	text_box_container.visible = false;
+	whole_thing.visible = false;
 	text_dialogue.text = "";
 
 func _process(_delta: float) -> void:
@@ -44,7 +48,7 @@ func _process(_delta: float) -> void:
 				_hide_textbox();
 
 func _show_textbox() -> void:
-	text_box_container.visible = true;
+	whole_thing.visible = true;
 
 func _queue_text(t: String) -> void:
 	text_queue.push_back(t);
