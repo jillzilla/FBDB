@@ -99,13 +99,10 @@ func _process(_delta: float) -> void:
 func _ask_question() -> void:
 	scroll_container.scroll_vertical = 0;
 	
-	#if player_health > 0 && Global.enemy_health > 0:
-		#timer_seconds.start();
-	
 	for i in range(answers_group.size()):
 		answers_group[i].disabled = true;
-		answers_group[i].scale = Vector2(0.5,0.5);
 		answers_group[i].modulate.a = 0;
+		answers_group[i].scale = Vector2(0.5,0.5);
 	
 	did_answered_correctly = false;
 	
@@ -187,6 +184,8 @@ func _damage_enemy() -> void:
 func _on_timer_seconds_timeout() -> void:
 	if player_health > 0:
 		_damage_player();
+		if player_health <= 0:
+			return;
 		_next_question();
 	elif player_health <= 0:
 		lose_screen.queue_free();
@@ -200,11 +199,7 @@ func _destroy_everything() -> void:
 	
 	timer_seconds.stop();
 	
-	answer_1.queue_free();
-	answer_2.queue_free();
-	answer_3.queue_free();
-	answer_4.queue_free();
-	question.queue_free();
+	_button_disappear_effect();
 
 func _on_next_stage_pressed() -> void:
 	next_scene_button.visible = false;
@@ -239,3 +234,14 @@ func _button_appear_effect() -> void:
 		answers_group[i].disabled = false;
 	
 	timer_seconds.start();
+
+func _button_disappear_effect() -> void:
+	for i in range(answers_group.size()):
+		answers_group[i].disabled = true;
+	
+	for i in range(answers_group.size()):
+		var t1 : Tween = create_tween();
+		var t2 : Tween = create_tween();
+		
+		t1.tween_property(answers_group[i],"scale",Vector2(0.5,0.5),0.5).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(answers_group[i],"modulate:a",0,0.5).set_trans(Tween.TRANS_CUBIC);
