@@ -17,7 +17,45 @@ font_size = 64
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container", "next_scene_button")]
+[sub_resource type="Animation" id="Animation_0hf1u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fw4li"]
+resource_name = "transition"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.8, 0), Vector2(0.8, 0.8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqp6g"]
+_data = {
+&"RESET": SubResource("Animation_0hf1u"),
+&"transition": SubResource("Animation_fw4li")
+}
+
+[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "buttons_cover", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container", "next_scene_button", "animation_question_message_box")]
 script = ExtResource("1_mrbpc")
 stage_1 = "res://assets/stages/stage1data.json"
 stage_2 = "res://assets/stages/stage2data.json"
@@ -26,6 +64,7 @@ stage_4 = "res://assets/stages/stage4data.json"
 stage_5 = "res://assets/stages/stage5data.json"
 time_counter = NodePath("Control/Top_HUD/Info/Time")
 stage_info = NodePath("Control/Top_HUD/Info/Stage")
+buttons_cover = NodePath("Control/Bottom_HUD/Buttons_Cover")
 timer_seconds = NodePath("Timer_Seconds")
 player_health_bar = NodePath("Control/Top_HUD/PlayerHealth")
 enemy_health_bar = NodePath("Control/Top_HUD/EnemyHealth")
@@ -39,6 +78,7 @@ question_text_container = NodePath("Control/QuestionTextContainer")
 hint_next_stage = NodePath("Control/Bottom_HUD/Hint")
 scroll_container = NodePath("Control/QuestionTextContainer/ScrollContainer")
 next_scene_button = NodePath("Control/NextStage")
+animation_question_message_box = NodePath("Control/QuestionTextContainer/AnimationPlayer")
 
 [node name="Fr" type="Sprite2D" parent="." unique_id=1860793715]
 position = Vector2(752, 720)
@@ -123,6 +163,7 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 max_value = 5.0
 value = 5.0
+fill_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="QuestionTextContainer" type="PanelContainer" parent="Control" unique_id=911040747]
@@ -138,6 +179,7 @@ offset_right = 400.0
 offset_bottom = 160.19998
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
@@ -159,6 +201,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/QuestionTextContainer" unique_id=187911677]
+libraries/ = SubResource("AnimationLibrary_kqp6g")
 
 [node name="Bottom_HUD" type="Panel" parent="Control" unique_id=1299185279]
 layout_mode = 1
@@ -347,6 +392,18 @@ scale_min = 0.9
 scale_max = 1.0
 speed = 0.1
 metadata/_custom_type_script = "uid://dt364jws1e5kc"
+
+[node name="Buttons_Cover" type="Control" parent="Control/Bottom_HUD" unique_id=52170714]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -188.0
+offset_right = 960.0
+offset_bottom = 188.0
+metadata/_edit_lock_ = true
 
 [node name="LoseScreen" parent="Control" unique_id=790205029 node_paths=PackedStringArray("timer_seconds") instance=ExtResource("4_17b01")]
 visible = false

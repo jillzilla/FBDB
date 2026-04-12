@@ -10,6 +10,7 @@ var questions_counter : int = 20;
 
 var data : Dictionary = {};
 var answers_group : Array[Button] = [];
+var answers_group_unshuffled : Array[Button] = [];
 
 var did_answered_correctly : bool = false;
 
@@ -30,6 +31,8 @@ var did_win : bool = false;
 @export_category("Gameplay Output")
 @export var time_counter : Label;
 @export var stage_info : Label;
+
+@export var buttons_cover : Control;
 
 @export var timer_seconds : Timer;
 
@@ -52,9 +55,12 @@ var did_win : bool = false;
 @export var scroll_container : ScrollContainer = null;
 @export var next_scene_button : Button;
 
+@export var animation_question_message_box : AnimationPlayer = null;
+
 #functions
 func _ready() -> void:
 	answers_group = [answer_1,answer_2,answer_3,answer_4];
+	answers_group_unshuffled = [answer_1,answer_2,answer_3,answer_4];
 	
 	Transition._make_sure_it_stops();
 	Transition.animation.play_backwards("transition");
@@ -79,9 +85,11 @@ func _ready() -> void:
 	data = JSON.parse_string(json_text);
 	
 	enemy_health_bar.max_value = data["enemy_health"];
+	
 	if !Global.enemy_health_loaded:
 		Global.enemy_health = data["enemy_health"];
 		Global.enemy_health_loaded = true;
+		
 	enemy_health_bar.value = Global.enemy_health;
 	
 	answer_1.connect("pressed", _on_button_pressed.bind(answer_1));
@@ -94,30 +102,17 @@ func _ready() -> void:
 	_ask_question();
 
 func _process(_delta: float) -> void:
-	time_counter.text = str(int(timer_seconds.time_left));
+	if time_counter.text != str(int(timer_seconds.time_left)):
+		time_counter.text = str(int(timer_seconds.time_left));
 
 func _ask_question() -> void:
 	scroll_container.scroll_vertical = 0;
-	
-	answer_1.modulate.a = 0;
-	answer_2.modulate.a = 0;
-	answer_3.modulate.a = 0;
-	answer_4.modulate.a = 0;
-	
-	answer_1.scale = Vector2(0.5,0.5);
-	answer_2.scale = Vector2(0.5,0.5);
-	answer_3.scale = Vector2(0.5,0.5);
-	answer_4.scale = Vector2(0.5,0.5);
-	
 	did_answered_correctly = false;
-	
 	question.text = data["questions"][questions_order[current_question]];
-	
 	answers_group.shuffle();
 	
 	for i in range(answers_group.size()):
 		answers_group[i].text = data["answers"][questions_order[current_question]][i];
-
 	_button_appear_effect();
 		
 func _next_question() -> void:
@@ -131,20 +126,7 @@ func _next_question() -> void:
 		_ask_question();
 		
 func _on_button_pressed(button: Button) -> void:
-	answer_1.disabled = true;
-	answer_2.disabled = true;
-	answer_3.disabled = true;
-	answer_4.disabled = true;
-	
-	answer_1.modulate.a = 0;
-	answer_2.modulate.a = 0;
-	answer_3.modulate.a = 0;
-	answer_4.modulate.a = 0;
-	
-	answer_1.scale = Vector2(0.5,0.5);
-	answer_2.scale = Vector2(0.5,0.5);
-	answer_3.scale = Vector2(0.5,0.5);
-	answer_4.scale = Vector2(0.5,0.5);
+	buttons_cover.visible = true;
 	
 	if button.text == data["correct_answers"][questions_order[current_question]]: 
 		did_answered_correctly = true;
@@ -169,6 +151,7 @@ func _damage_player() -> void:
 	
 	if player_health <= 0:
 		_destroy_everything();
+		await animation_question_message_box.animation_finished;
 		if Global.credits > 0:
 			timer_seconds.start();
 			lose_screen.visible = true;
@@ -209,10 +192,7 @@ func _on_timer_seconds_timeout() -> void:
 		get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
 
 func _destroy_everything() -> void:
-	question_text_container.visible = false;
-	
 	timer_seconds.stop();
-	
 	_button_disappear_effect();
 
 func _on_next_stage_pressed() -> void:
@@ -235,6 +215,11 @@ func _on_next_stage_pressed() -> void:
 	Global.stage_2_play += 1;
 
 func _button_appear_effect() -> void:
+	answer_1.disabled = true;
+	answer_2.disabled = true;
+	answer_3.disabled = true;
+	answer_4.disabled = true;
+	
 	answer_1.modulate.a = 0;
 	answer_2.modulate.a = 0;
 	answer_3.modulate.a = 0;
@@ -245,14 +230,27 @@ func _button_appear_effect() -> void:
 	answer_3.scale = Vector2(0.5,0.5);
 	answer_4.scale = Vector2(0.5,0.5);
 	
-	for i in range(answers_group.size()):
-		var t1 : Tween = create_tween();
-		var t2 : Tween = create_tween();
+	var t1 : Tween = null;
+	var t2 : Tween = null;
+	
+	animation_question_message_box.play("transition");
+	
+	await animation_question_message_box.animation_finished;
+	
+	for i in range(answers_group_unshuffled.size()):
+		if t1:
+			t1 = null;
+		if t2:
+			t2 = null;
+			
+		t1 = create_tween();
+		t2 = create_tween();
 		
-		t1.tween_property(answers_group[i],"scale",Vector2(0.9,0.9),0.5).set_trans(Tween.TRANS_CUBIC);
-		t2.tween_property(answers_group[i],"modulate:a",1,0.5).set_trans(Tween.TRANS_CUBIC);
+		t1.tween_property(answers_group_unshuffled[i],"scale",Vector2(0.9,0.9),0.5).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(answers_group_unshuffled[i],"modulate:a",1,0.5).set_trans(Tween.TRANS_CUBIC);
 		
 		await t1.finished;
+		await t2.finished;
 		
 	answer_1.disabled = false;
 	answer_2.disabled = false;
@@ -260,6 +258,8 @@ func _button_appear_effect() -> void:
 	answer_4.disabled = false;
 	
 	timer_seconds.start();
+	
+	buttons_cover.visible = false;
 
 func _button_disappear_effect() -> void:
 	answer_1.disabled = true;
@@ -267,9 +267,21 @@ func _button_disappear_effect() -> void:
 	answer_3.disabled = true;
 	answer_4.disabled = true;
 	
-	for i in range(answers_group.size()):
+	answer_1.modulate.a = 1;
+	answer_2.modulate.a = 1;
+	answer_3.modulate.a = 1;
+	answer_4.modulate.a = 1;
+	
+	answer_1.scale = Vector2(0.9,0.9);
+	answer_2.scale = Vector2(0.9,0.9);
+	answer_3.scale = Vector2(0.9,0.9);
+	answer_4.scale = Vector2(0.9,0.9);
+	
+	animation_question_message_box.play_backwards("transition");
+	
+	for i in range(answers_group_unshuffled.size()):
 		var t1 : Tween = create_tween();
 		var t2 : Tween = create_tween();
 		
-		t1.tween_property(answers_group[i],"scale",Vector2(0.5,0.5),0.5).set_trans(Tween.TRANS_CUBIC);
-		t2.tween_property(answers_group[i],"modulate:a",0,0.5).set_trans(Tween.TRANS_CUBIC);
+		t1.tween_property(answers_group_unshuffled[i],"scale",Vector2(0.5,0.5),0.5).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(answers_group_unshuffled[i],"modulate:a",0,0.5).set_trans(Tween.TRANS_CUBIC);
