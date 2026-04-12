@@ -99,10 +99,15 @@ func _process(_delta: float) -> void:
 func _ask_question() -> void:
 	scroll_container.scroll_vertical = 0;
 	
-	for i in range(answers_group.size()):
-		answers_group[i].disabled = true;
-		answers_group[i].modulate.a = 0;
-		answers_group[i].scale = Vector2(0.5,0.5);
+	answer_1.modulate.a = 0;
+	answer_2.modulate.a = 0;
+	answer_3.modulate.a = 0;
+	answer_4.modulate.a = 0;
+	
+	answer_1.scale = Vector2(0.5,0.5);
+	answer_2.scale = Vector2(0.5,0.5);
+	answer_3.scale = Vector2(0.5,0.5);
+	answer_4.scale = Vector2(0.5,0.5);
 	
 	did_answered_correctly = false;
 	
@@ -126,14 +131,23 @@ func _next_question() -> void:
 		_ask_question();
 		
 func _on_button_pressed(button: Button) -> void:
-	for i in range(answers_group.size()):
-		answers_group[i].disabled = true;
+	answer_1.disabled = true;
+	answer_2.disabled = true;
+	answer_3.disabled = true;
+	answer_4.disabled = true;
+	
+	answer_1.modulate.a = 0;
+	answer_2.modulate.a = 0;
+	answer_3.modulate.a = 0;
+	answer_4.modulate.a = 0;
+	
+	answer_1.scale = Vector2(0.5,0.5);
+	answer_2.scale = Vector2(0.5,0.5);
+	answer_3.scale = Vector2(0.5,0.5);
+	answer_4.scale = Vector2(0.5,0.5);
 	
 	if button.text == data["correct_answers"][questions_order[current_question]]: 
 		did_answered_correctly = true;
-	
-	for i in range(answers_group.size()):
-		answers_group[i].disabled = false;
 	
 	if did_answered_correctly:
 		_damage_enemy();
@@ -221,6 +235,16 @@ func _on_next_stage_pressed() -> void:
 	Global.stage_2_play += 1;
 
 func _button_appear_effect() -> void:
+	answer_1.modulate.a = 0;
+	answer_2.modulate.a = 0;
+	answer_3.modulate.a = 0;
+	answer_4.modulate.a = 0;
+	
+	answer_1.scale = Vector2(0.5,0.5);
+	answer_2.scale = Vector2(0.5,0.5);
+	answer_3.scale = Vector2(0.5,0.5);
+	answer_4.scale = Vector2(0.5,0.5);
+	
 	for i in range(answers_group.size()):
 		var t1 : Tween = create_tween();
 		var t2 : Tween = create_tween();
@@ -230,14 +254,18 @@ func _button_appear_effect() -> void:
 		
 		await t1.finished;
 		
-	for i in range(answers_group.size()):
-		answers_group[i].disabled = false;
+	answer_1.disabled = false;
+	answer_2.disabled = false;
+	answer_3.disabled = false;
+	answer_4.disabled = false;
 	
 	timer_seconds.start();
 
 func _button_disappear_effect() -> void:
-	for i in range(answers_group.size()):
-		answers_group[i].disabled = true;
+	answer_1.disabled = true;
+	answer_2.disabled = true;
+	answer_3.disabled = true;
+	answer_4.disabled = true;
 	
 	for i in range(answers_group.size()):
 		var t1 : Tween = create_tween();
