@@ -1,6 +1,8 @@
 {
 	"enemy_name" : "Jawbone",
 	
+	"stage_theme" : "res://assets/music/Stage 3 - Numbskull - Monkey Wrench Plague Walker OST.mp3",
+	
 	"category" : "Animation and Comics",
 	
 	"enemy_health" : 7,

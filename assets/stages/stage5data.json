@@ -1,6 +1,8 @@
 {
 	"enemy_name" : "Dilto Kirkland",
 	
+	"stage_theme" : "res://assets/music/Stage 5 - Pokey Means Business JP Version - EarthBound.mp3",
+	
 	"category" : "Vargskelethor Joel Trivia",
 	
 	"enemy_health" : 9,

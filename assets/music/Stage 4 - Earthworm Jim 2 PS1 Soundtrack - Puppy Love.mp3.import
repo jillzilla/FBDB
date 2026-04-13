@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://34qv23b50tnr"
+path="res://.godot/imported/Stage 4 - Earthworm Jim 2 PS1 Soundtrack - Puppy Love.mp3-420ebbeec5e5828a07e520e6e5465099.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Stage 4 - Earthworm Jim 2 PS1 Soundtrack - Puppy Love.mp3"
+dest_files=["res://.godot/imported/Stage 4 - Earthworm Jim 2 PS1 Soundtrack - Puppy Love.mp3-420ebbeec5e5828a07e520e6e5465099.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

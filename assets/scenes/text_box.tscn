@@ -3,10 +3,12 @@
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="1_ghwiw"]
 [ext_resource type="Script" uid="uid://b0ppktqmsgv4e" path="res://assets/scripts/text_box.gd" id="1_pho2x"]
 
-[node name="TextBox" type="CanvasLayer" unique_id=1591762175 node_paths=PackedStringArray("whole_thing", "text_dialogue")]
+[node name="TextBox" type="CanvasLayer" unique_id=1591762175 node_paths=PackedStringArray("whole_thing", "name_container", "name_dialogue", "text_dialogue")]
 layer = 0
 script = ExtResource("1_pho2x")
 whole_thing = NodePath("Control")
+name_container = NodePath("Control/NameContainer")
+name_dialogue = NodePath("Control/NameContainer/MarginContainer/Text")
 text_dialogue = NodePath("Control/DialogueContainer/MarginContainer/Text")
 
 [node name="Control" type="Control" parent="." unique_id=1384950693]
@@ -19,19 +21,55 @@ grow_vertical = 2
 theme = ExtResource("1_ghwiw")
 metadata/_edit_lock_ = true
 
+[node name="NameContainer" type="MarginContainer" parent="Control" unique_id=1776616719]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.194
+anchor_top = 0.596
+anchor_right = 0.194
+anchor_bottom = 0.596
+offset_left = -204.48001
+offset_top = -35.679993
+offset_right = 203.51999
+offset_bottom = 35.320007
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Panel" type="Panel" parent="Control/NameContainer" unique_id=320896521]
+layout_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/NameContainer" unique_id=317327100]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+metadata/_edit_lock_ = true
+
+[node name="Text" type="Label" parent="Control/NameContainer/MarginContainer" unique_id=1554190233]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Joel"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
 [node name="DialogueContainer" type="MarginContainer" parent="Control" unique_id=646321230]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.8
+anchor_top = 0.79200006
 anchor_right = 0.5
-anchor_bottom = 0.8
+anchor_bottom = 0.79200006
 offset_left = -791.5
-offset_top = -160.0
+offset_top = -168.36005
 offset_right = 791.5
-offset_bottom = 160.0
+offset_bottom = 168.63995
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="Control/DialogueContainer" unique_id=428723262]
 layout_mode = 2
@@ -39,7 +77,6 @@ metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/DialogueContainer" unique_id=1664660525]
 layout_mode = 2
-size_flags_horizontal = 8
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
@@ -47,11 +84,11 @@ theme_override_constants/margin_bottom = 24
 metadata/_edit_lock_ = true
 
 [node name="Text" type="Label" parent="Control/DialogueContainer/MarginContainer" unique_id=1678684271]
-custom_minimum_size = Vector2(1535, 272)
+custom_minimum_size = Vector2(1535, 289)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 48
 text = "Text..."
-autowrap_mode = 2
+autowrap_mode = 3
 metadata/_edit_lock_ = true

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ch8mgys0rbn6p"
+path="res://.godot/imported/Stage 2 - Mr. Bones SEGA Saturn OST - 04 - Dont Think Play.mp3-7fe32db42d9b26992f4e046183a00ebe.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Stage 2 - Mr. Bones SEGA Saturn OST - 04 - Dont Think Play.mp3"
+dest_files=["res://.godot/imported/Stage 2 - Mr. Bones SEGA Saturn OST - 04 - Dont Think Play.mp3-7fe32db42d9b26992f4e046183a00ebe.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

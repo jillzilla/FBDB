@@ -1,6 +1,8 @@
 {
 	"enemy_name" : "Skeleduende",
 	
+	"stage_theme" : "res://assets/music/Stage 1 - Kingdom Hearts 2 - Old Friends, Old Rivals.mp3",
+	
 	"category" : "Video Games",
 	
 	"enemy_health" : 5,

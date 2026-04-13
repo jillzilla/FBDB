@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bbciryflr504t"]
+
+[ext_resource type="PackedScene" uid="uid://b7vtu3ps7q8vc" path="res://assets/scenes/text_box.tscn" id="1_u1lyv"]
+[ext_resource type="Script" uid="uid://daetbuo45wmy0" path="res://assets/scripts/pre_battle_dialogues.gd" id="1_x68sk"]
+
+[node name="PreBattleDialogues" type="Node" unique_id=1218523115 node_paths=PackedStringArray("textbox")]
+script = ExtResource("1_x68sk")
+textbox = NodePath("TextBox")
+
+[node name="TextBox" parent="." unique_id=1591762175 instance=ExtResource("1_u1lyv")]

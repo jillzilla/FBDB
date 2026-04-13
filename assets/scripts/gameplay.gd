@@ -90,6 +90,9 @@ func _ready() -> void:
 	
 	data = JSON.parse_string(json_text);
 	
+	if !AudioManager.music.is_playing():
+		AudioManager._play_music(data["stage_theme"]);
+	
 	opponent.texture = load(data["battle_enemy_sprite"]);
 	
 	enemy_health_bar.max_value = data["enemy_health"];
@@ -173,6 +176,7 @@ func _damage_player() -> void:
 			Transition._make_sure_it_stops();
 			Transition.animation.play("transition");
 			await Transition.animation.animation_finished;
+			AudioManager._stop_music();
 			get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
 
 func _damage_enemy() -> void:
@@ -203,6 +207,7 @@ func _on_timer_seconds_timeout() -> void:
 		Transition._make_sure_it_stops();
 		Transition.animation.play("transition");
 		await Transition.animation.animation_finished;
+		AudioManager._stop_music();
 		get_tree().change_scene_to_file("res://assets/scenes/game_over.tscn");
 
 func _destroy_everything() -> void:
@@ -224,7 +229,8 @@ func _on_next_stage_pressed() -> void:
 		Global._reset_game_status();
 		get_tree().quit(1);
 	else:
-		get_tree().change_scene_to_file("res://assets/scenes/vs_screen.tscn");
+		AudioManager._stop_music();
+		get_tree().change_scene_to_file("res://assets/scenes/pre_battle_dialogues.tscn");
 	
 	Global.stage_2_play += 1;
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://djbgbryy8q2db"
+path="res://.godot/imported/Dialogue - Madou Monogatari 1-2-3 (PC-98) OST Track 03.mp3-833f9bb30df072276554412c4c94df50.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Dialogue - Madou Monogatari 1-2-3 (PC-98) OST Track 03.mp3"
+dest_files=["res://.godot/imported/Dialogue - Madou Monogatari 1-2-3 (PC-98) OST Track 03.mp3-833f9bb30df072276554412c4c94df50.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

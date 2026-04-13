@@ -17,6 +17,8 @@ var data : Dictionary = {};
 
 #functions
 func _ready() -> void:
+	AudioManager._play_music("res://assets/music/Versus - Street Fighter Arranged - Versus.mp3");
+	
 	match(Global.stage_2_play):
 		1:
 			stage_to_play_path = stage_1;
@@ -48,4 +50,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		Transition._make_sure_it_stops();
 		Transition.animation.play("transition");
 		await Transition.animation.animation_finished;
+		AudioManager._stop_music();
 		get_tree().change_scene_to_file("res://assets/scenes/gameplay.tscn");

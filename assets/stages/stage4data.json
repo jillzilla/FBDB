@@ -1,6 +1,8 @@
 {
 	"enemy_name" : "Michael of Jabronos",
 	
+	"stage_theme" : "res://assets/music/Stage 4 - Earthworm Jim 2 PS1 Soundtrack - Puppy Love.mp3",
+	
 	"category" : "USA",
 	
 	"enemy_health" : 7,

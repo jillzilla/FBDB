@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c76qx3pqusdyv"
+path="res://.godot/imported/Stage 3 - Numbskull - Monkey Wrench Plague Walker OST.mp3-d8545512ec9878fb5447fee5d05a9a1e.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Stage 3 - Numbskull - Monkey Wrench Plague Walker OST.mp3"
+dest_files=["res://.godot/imported/Stage 3 - Numbskull - Monkey Wrench Plague Walker OST.mp3-d8545512ec9878fb5447fee5d05a9a1e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

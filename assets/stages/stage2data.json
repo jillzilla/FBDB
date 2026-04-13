@@ -1,6 +1,8 @@
 {
 	"enemy_name" : "Mr. Bones",
 	
+	"stage_theme" : "res://assets/music/Stage 2 - Mr. Bones SEGA Saturn OST - 04 - Dont Think Play.mp3",
+	
 	"category" : "Music",
 	
 	"enemy_health" : 6,
