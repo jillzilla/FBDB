@@ -63,6 +63,9 @@ var did_win : bool = false;
 
 @export var opponent : Sprite2D;
 
+@export var correctsfx : AudioStreamPlayer;
+@export var wrongsfx : AudioStreamPlayer;
+
 #functions
 func _ready() -> void:
 	answers_group = [answer_1,answer_2,answer_3,answer_4];
@@ -143,7 +146,10 @@ func _on_button_pressed(button: Button) -> void:
 		timer_seconds.stop();
 	
 	if button.text == data["correct_answers"][questions_order[current_question]]: 
+		correctsfx.play();
 		did_answered_correctly = true;
+	else:
+		wrongsfx.play();
 	
 	_blink_effect();
 	

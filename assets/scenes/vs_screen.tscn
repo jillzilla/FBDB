@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d0ermeh3qrdsk" path="res://assets/scripts/vs_screen.gd" id="1_e3bu7"]
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="1_ltfk0"]
 [ext_resource type="Texture2D" uid="uid://bfpd2dri4tsql" path="res://assets/images/battle_sprites/battle_fren.png" id="2_e3bu7"]
+[ext_resource type="Texture2D" uid="uid://mmwynf4xif1t" path="res://assets/images/battle_sprites/b_joel.png" id="2_ts7py"]
 
 [sub_resource type="Animation" id="Animation_e3bu7"]
 resource_name = "whole_anim"
@@ -84,7 +85,7 @@ metadata/_edit_lock_ = true
 [node name="Player" type="Sprite2D" parent="." unique_id=253206375]
 position = Vector2(-668, 640)
 scale = Vector2(1.3, 1.3)
-texture = ExtResource("2_e3bu7")
+texture = ExtResource("2_ts7py")
 metadata/_edit_lock_ = true
 
 [node name="Opponent" type="Sprite2D" parent="." unique_id=965576284]

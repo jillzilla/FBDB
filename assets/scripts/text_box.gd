@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal text_end;
 signal dialogue_finished;
+signal update_graphics;
 
 #variables
 const CHAR_READ_RATE : float = 0.03;
@@ -12,6 +13,9 @@ const CHAR_READ_RATE : float = 0.03;
 
 @export var name_dialogue : Label;
 @export var text_dialogue : Label;
+
+@export var character_1 : TextureRect;
+@export var character_2 : TextureRect;
 
 @onready var tween : Tween = null;
 
@@ -32,6 +36,24 @@ func _ready() -> void:
 	text_end.connect(_text_ended);
 	_hide_textbox();
 
+func _show_char_1() -> void:
+	character_1.visible = true;
+
+func _hide_char_1() -> void:
+	character_1.visible = false;
+	
+func _change_char1_texture(spr_name: String) -> void:
+	character_1.texture = load("res://assets/images/dialogue_sprites/" + spr_name + ".png");
+
+func _change_char2_texture(spr_name: String) -> void:
+	character_2.texture = load("res://assets/images/dialogue_sprites/" + spr_name + ".png");
+
+func _show_char_2() -> void:
+	character_2.visible = true;
+	
+func _hide_char_2() -> void:
+	character_2.visible = false;
+	
 func _hide_textbox() -> void:
 	whole_thing.visible = false;
 	text_dialogue.text = "";
@@ -52,6 +74,7 @@ func _process(_delta: float) -> void:
 		States.FINISHED:
 			if Input.is_action_just_pressed("ProgressDialogue"):
 				_change_state(States.READY);
+				update_graphics.emit();
 
 func _show_textbox() -> void:
 	whole_thing.visible = true;

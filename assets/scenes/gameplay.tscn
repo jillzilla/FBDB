@@ -5,9 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bfpd2dri4tsql" path="res://assets/images/battle_sprites/battle_fren.png" id="2_kqp6g"]
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="4_0hf1u"]
 [ext_resource type="PackedScene" uid="uid://b4eyvgq22sg3n" path="res://assets/scenes/lose_screen.tscn" id="4_17b01"]
+[ext_resource type="Texture2D" uid="uid://mmwynf4xif1t" path="res://assets/images/battle_sprites/b_joel.png" id="4_f1ux5"]
 [ext_resource type="Script" uid="uid://dt364jws1e5kc" path="res://assets/components/button_component.gd" id="5_0hf1u"]
 [ext_resource type="PackedScene" uid="uid://bgqrhf856akis" path="res://assets/scenes/super_secret_pause_menu.tscn" id="7_fw4li"]
 [ext_resource type="Texture2D" uid="uid://b0t4wrjeb3t6n" path="res://assets/images/simpleflips.png" id="8_kqp6g"]
+[ext_resource type="AudioStream" uid="uid://cffqu80tamuyw" path="res://assets/sounds/correct.ogg" id="10_hogfr"]
+[ext_resource type="AudioStream" uid="uid://bphy8en1six6t" path="res://assets/sounds/wrong.ogg" id="11_ndvee"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0hf1u"]
 font_size = 32
@@ -41,7 +44,94 @@ _data = {
 &"transition": SubResource("Animation_fw4li")
 }
 
-[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "buttons_cover", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "timer_flash", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container", "next_scene_button", "animation_question_message_box", "opponent")]
+[sub_resource type="Animation" id="Animation_f1ux5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Joel:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fren:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Opponent:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qk4f4"]
+resource_name = "bounce"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Joel:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 50), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fren:offset")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 50), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Opponent:offset")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 50), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hogfr"]
+_data = {
+&"RESET": SubResource("Animation_f1ux5"),
+&"bounce": SubResource("Animation_qk4f4")
+}
+
+[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "buttons_cover", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "timer_flash", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container", "next_scene_button", "animation_question_message_box", "opponent", "correctsfx", "wrongsfx")]
 process_mode = 1
 script = ExtResource("1_mrbpc")
 stage_1 = "res://assets/stages/stage1data.json"
@@ -68,6 +158,8 @@ scroll_container = NodePath("Control/QuestionTextContainer/ScrollContainer")
 next_scene_button = NodePath("Control/NextStage")
 animation_question_message_box = NodePath("Control/QuestionTextContainer/AnimationPlayer")
 opponent = NodePath("Opponent")
+correctsfx = NodePath("Correct")
+wrongsfx = NodePath("Wrong")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=1325288160]
 position = Vector2(960, 540)
@@ -83,11 +175,11 @@ metadata/_edit_lock_ = true
 [node name="Joel" type="Sprite2D" parent="." unique_id=347856946]
 position = Vector2(384, 472)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_kqp6g")
+texture = ExtResource("4_f1ux5")
 metadata/_edit_lock_ = true
 
 [node name="Fren" type="Sprite2D" parent="." unique_id=621701693]
-position = Vector2(600.00006, 576)
+position = Vector2(680, 640.00006)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("2_kqp6g")
 metadata/_edit_lock_ = true
@@ -449,6 +541,18 @@ visible = false
 [node name="Timer_Flash" type="Timer" parent="." unique_id=802341408]
 wait_time = 0.1
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1312477789]
+libraries/ = SubResource("AnimationLibrary_hogfr")
+autoplay = &"bounce"
+speed_scale = 0.1
+
+[node name="Correct" type="AudioStreamPlayer" parent="." unique_id=28876572]
+stream = ExtResource("10_hogfr")
+volume_db = -10.0
+
+[node name="Wrong" type="AudioStreamPlayer" parent="." unique_id=855120930]
+stream = ExtResource("11_ndvee")
 
 [connection signal="pressed" from="Control/NextStage" to="." method="_on_next_stage_pressed"]
 [connection signal="timeout" from="Timer_Seconds" to="." method="_on_timer_seconds_timeout"]
