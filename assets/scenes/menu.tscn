@@ -2,7 +2,46 @@
 
 [ext_resource type="Script" uid="uid://ctew53w3dub12" path="res://assets/scripts/menu.gd" id="1_8omcj"]
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="2_8aat6"]
+[ext_resource type="Texture2D" uid="uid://jvms8c1h8v5w" path="res://assets/images/menu_screen.png" id="2_xuqax"]
 [ext_resource type="Script" uid="uid://dt364jws1e5kc" path="res://assets/components/button_component.gd" id="3_ugn2o"]
+
+[sub_resource type="Animation" id="Animation_q8r6g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l0v2w"]
+resource_name = "move"
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -100), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0wlwb"]
+_data = {
+&"RESET": SubResource("Animation_q8r6g"),
+&"move": SubResource("Animation_l0v2w")
+}
 
 [sub_resource type="Animation" id="Animation_ugn2o"]
 length = 0.001
@@ -49,6 +88,16 @@ settings_button = NodePath("Control/Buttons/Control2/Settings")
 credits_button = NodePath("Control/Buttons/Control4/Credits")
 quit_button = NodePath("Control/Buttons/Control3/Quit")
 
+[node name="MenuScreen" type="Sprite2D" parent="." unique_id=828187027]
+position = Vector2(792, 552)
+texture = ExtResource("2_xuqax")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuScreen" unique_id=337562509]
+libraries/ = SubResource("AnimationLibrary_0wlwb")
+autoplay = &"move"
+speed_scale = 0.3
+
 [node name="Control" type="Control" parent="." unique_id=1339855302]
 layout_mode = 3
 anchors_preset = 15
@@ -88,16 +137,17 @@ autoplay = &"rotation"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.20600002
-anchor_top = 0.652
+anchor_top = 0.53300005
 anchor_right = 0.20600002
-anchor_bottom = 0.652
+anchor_bottom = 0.53300005
 offset_left = -331.52002
-offset_top = -256.16003
+offset_top = -127.640076
 offset_right = 332.47998
-offset_bottom = 255.83997
+offset_bottom = 128.35992
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
+metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="Control" type="Control" parent="Control/Buttons" unique_id=1978016644]
@@ -129,6 +179,7 @@ speed = 0.1
 metadata/_custom_type_script = "uid://dt364jws1e5kc"
 
 [node name="Control2" type="Control" parent="Control/Buttons" unique_id=1061864960]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -157,6 +208,7 @@ speed = 0.1
 metadata/_custom_type_script = "uid://dt364jws1e5kc"
 
 [node name="Control4" type="Control" parent="Control/Buttons" unique_id=1530733312]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2

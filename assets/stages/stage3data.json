@@ -7,7 +7,7 @@
 	
 	"enemy_health" : 7,
 	
-	"battle_enemy_sprite" : "res://assets/images/battle_sprites/battle_fren.png",
+	"battle_enemy_sprite" : "res://assets/images/battle_sprites/b_jawbone.png",
 	
 	"questions" :
 	{

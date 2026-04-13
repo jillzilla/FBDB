@@ -1,7 +1,7 @@
 extends Node
 
 #variables
-var stage_2_play : int = 5;
+var stage_2_play : int = 1;
 var credits : int = 4;
 
 var enemy_health : int = 0;
