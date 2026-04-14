@@ -4,7 +4,10 @@
 [ext_resource type="Script" uid="uid://daetbuo45wmy0" path="res://assets/scripts/pre_battle_dialogues.gd" id="1_x68sk"]
 [ext_resource type="Texture2D" uid="uid://d0px34dk58pcx" path="res://assets/images/bg_1.png" id="2_3qr6m"]
 
-[node name="PreBattleDialogues" type="Node" unique_id=1218523115 node_paths=PackedStringArray("textbox", "background")]
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_3qr6m"]
+file = "res://assets/cutscenes/bg_carcrashFINAL.ogv"
+
+[node name="PreBattleDialogues" type="Node" unique_id=1218523115 node_paths=PackedStringArray("textbox", "background", "diltocutscene")]
 script = ExtResource("1_x68sk")
 stage_1 = "res://assets/stages/stage1data.json"
 stage_2 = "res://assets/stages/stage2data.json"
@@ -13,6 +16,7 @@ stage_4 = "res://assets/stages/stage4data.json"
 stage_5 = "res://assets/stages/stage5data.json"
 textbox = NodePath("TextBox")
 background = NodePath("Bg")
+diltocutscene = NodePath("DiltoCutscene")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=695736961]
 position = Vector2(959.99994, 540)
@@ -21,3 +25,13 @@ texture = ExtResource("2_3qr6m")
 metadata/_edit_lock_ = true
 
 [node name="TextBox" parent="." unique_id=1591762175 instance=ExtResource("1_u1lyv")]
+
+[node name="DiltoCutscene" type="VideoStreamPlayer" parent="." unique_id=1508254390]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stream = SubResource("VideoStreamTheora_3qr6m")
+metadata/_edit_lock_ = true

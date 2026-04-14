@@ -14,6 +14,8 @@ var data : Dictionary = {};
 @export var textbox : CanvasLayer;
 @export var background : Sprite2D;
 
+@export var diltocutscene : VideoStreamPlayer;
+
 #functions
 func _ready() -> void:
 	match(Global.stage_2_play):
@@ -58,10 +60,12 @@ func _ready() -> void:
 			
 			await textbox.update_graphics;
 			
+			textbox._change_char2_texture("d_skeleduende2");
 			textbox._queue_text("Skeleduende","And pineapples don’t belong on pizzas, shithead.");
 			
 			await textbox.update_graphics;
 			
+			textbox._change_char2_texture("d_skeleduende1");
 			textbox._change_char1_texture("d_joel1");
 			textbox._queue_text("Joel","I’m all over it, to be honest, I think pineapples are kinda okay on pizzas, but you do you, ma–");
 			
@@ -174,14 +178,13 @@ func _ready() -> void:
 			await textbox.update_graphics;
 			
 			textbox._hide_char_2();
-			textbox._queue_text("","A CAR COMES AND HITS MIKE, SENDING HIM OFF THE TOWER");
+			AudioManager.music.stream_paused = true;
+			diltocutscene.play();
 			
-			await textbox.update_graphics;
+			await diltocutscene.finished;
 			
-			textbox._queue_text("","Dilto Kirkland leaves the car...");
-			
-			await textbox.update_graphics;
-			
+			diltocutscene.queue_free();
+			AudioManager.music.stream_paused = false;
 			textbox._change_char2_texture("d_dilto");
 			textbox._show_char_2();
 			textbox._queue_text("Dilto","hey you know a place i could park my car with as few people as possible walking around i wanna fuck it later i bet you understand");
