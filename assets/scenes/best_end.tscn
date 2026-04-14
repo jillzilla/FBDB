@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cqpcfst2vcj8b"]
+
+[ext_resource type="Script" uid="uid://f3xd04q85cl" path="res://assets/scripts/scriptforprettymucheverycutscene.gd" id="1_sdk5d"]
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_sdk5d"]
+file = "res://assets/cutscenes/bg_carcrashFINAL.ogv"
+
+[node name="BestEnd" type="Node" unique_id=1185612714 node_paths=PackedStringArray("cutscene")]
+script = ExtResource("1_sdk5d")
+cutscene = NodePath("VideoStreamPlayer")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1610792564]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = SubResource("VideoStreamTheora_sdk5d")
+autoplay = true
+metadata/_edit_lock_ = true

@@ -48,11 +48,11 @@ func _on_button_pressed() -> void:
 	if Global.stage_2_play == 5:
 		print("Best Ending")
 		Global._reset_game_status();
-		get_tree().quit(0);
+		get_tree().change_scene_to_file("res://assets/scenes/best_end.tscn");
 	elif Global.stage_2_play == 4 && Global.credits < 3:
 		print("Normal Ending")
 		Global._reset_game_status();
-		get_tree().quit(1);
+		get_tree().change_scene_to_file("res://assets/scenes/good_end.tscn");
 	else:
 		AudioManager._stop_music();
 		get_tree().change_scene_to_file("res://assets/scenes/pre_battle_dialogues.tscn");
