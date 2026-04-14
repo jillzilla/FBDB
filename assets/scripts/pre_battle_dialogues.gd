@@ -96,7 +96,7 @@ func _ready() -> void:
 			
 			await textbox.update_graphics;
 		
-			textbox._queue_text("Mr. Bones"," I think blues just doesn’t jibe with people anymore. Not to mention, my ghost wife left me, but forget it.");
+			textbox._queue_text("Mr. Bones","I think blues just doesn’t jibe with people anymore. Not to mention, my ghost wife left me, but forget it.");
 		
 			await textbox.update_graphics;
 			
@@ -111,7 +111,7 @@ func _ready() -> void:
 			await textbox.update_graphics;
 			
 			textbox._change_char1_texture("d_joel1");
-			textbox._queue_text("Joel"," hope life finds you good, dude, you gotta do whatever you love to live in life, sorry that happened to ya. Wig looks stupid, but you know.");
+			textbox._queue_text("Joel","Hope life finds you good, dude, you gotta do whatever you love to live in life, sorry that happened to ya. Wig looks stupid, but you know.");
 			
 			await textbox.update_graphics;
 			
