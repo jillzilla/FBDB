@@ -4,6 +4,8 @@
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="2_8aat6"]
 [ext_resource type="Texture2D" uid="uid://jvms8c1h8v5w" path="res://assets/images/menu_screen.png" id="2_xuqax"]
 [ext_resource type="Script" uid="uid://dt364jws1e5kc" path="res://assets/components/button_component.gd" id="3_ugn2o"]
+[ext_resource type="AudioStream" uid="uid://bsful3gnchdt" path="res://assets/sounds/start_or_select_kirby.ogg" id="5_q8r6g"]
+[ext_resource type="AudioStream" uid="uid://beyifnit1qtin" path="res://assets/music/Snowboarding  Club Penguin Elite Penguin Force OST.mp3" id="6_l0v2w"]
 
 [sub_resource type="Animation" id="Animation_q8r6g"]
 length = 0.001
@@ -81,8 +83,9 @@ _data = {
 &"rotation": SubResource("Animation_xuqax")
 }
 
-[node name="Menu" type="Node" unique_id=369496558 node_paths=PackedStringArray("play_button", "settings_button", "credits_button", "quit_button")]
+[node name="Menu" type="Node" unique_id=369496558 node_paths=PackedStringArray("start", "play_button", "settings_button", "credits_button", "quit_button")]
 script = ExtResource("1_8omcj")
+start = NodePath("start")
 play_button = NodePath("Control/Buttons/Control/Play")
 settings_button = NodePath("Control/Buttons/Control2/Settings")
 credits_button = NodePath("Control/Buttons/Control4/Credits")
@@ -137,13 +140,13 @@ autoplay = &"rotation"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.20600002
-anchor_top = 0.53300005
+anchor_top = 0.563
 anchor_right = 0.20600002
-anchor_bottom = 0.53300005
+anchor_bottom = 0.563
 offset_left = -331.52002
-offset_top = -127.640076
+offset_top = -160.04004
 offset_right = 332.47998
-offset_bottom = 128.35992
+offset_bottom = 159.95996
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
@@ -280,6 +283,13 @@ text = "© Team don't ask"
 horizontal_alignment = 2
 vertical_alignment = 2
 metadata/_edit_lock_ = true
+
+[node name="start" type="AudioStreamPlayer" parent="." unique_id=1378141808]
+stream = ExtResource("5_q8r6g")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=39415466]
+stream = ExtResource("6_l0v2w")
+autoplay = true
 
 [connection signal="pressed" from="Control/Buttons/Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Control/Buttons/Control3/Quit" to="." method="_on_quit_pressed"]

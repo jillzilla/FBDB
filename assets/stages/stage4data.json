@@ -9,6 +9,8 @@
 	
 	"battle_enemy_sprite" : "res://assets/images/battle_sprites/b_mike.png",
 	
+	"background" : "res://assets/images/bg_4.png",
+	
 	"questions" :
 	{
 		"q1" : "What is the name of America’s 15th state?",

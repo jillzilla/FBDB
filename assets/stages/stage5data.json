@@ -9,6 +9,8 @@
 	
 	"battle_enemy_sprite" : "res://assets/images/battle_sprites/b_dilto.png",
 	
+	"background" : "res://assets/images/bg_4.png",
+	
 	"questions" :
 	{
 		"q1" : "What was Joel’s first stream?",

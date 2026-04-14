@@ -1,9 +1,42 @@
 extends Node
 
+@export_category("Data")
+@export_file_path("*.json") var stage_1 : String = "";
+@export_file_path("*.json") var stage_2 : String = "";
+@export_file_path("*.json") var stage_3 : String = "";
+@export_file_path("*.json") var stage_4 : String = "";
+@export_file_path("*.json") var stage_5 : String = "";
+
+var stage_to_play_path : String = "";
+
+var data : Dictionary = {};
+
 @export var textbox : CanvasLayer;
+@export var background : Sprite2D;
 
 #functions
 func _ready() -> void:
+	match(Global.stage_2_play):
+		1:
+			stage_to_play_path = stage_1;
+		2:
+			stage_to_play_path = stage_2;
+		3:
+			stage_to_play_path = stage_3;
+		4:
+			stage_to_play_path = stage_4;
+		5:
+			stage_to_play_path = stage_5;
+	
+	var file : FileAccess = FileAccess.open(stage_to_play_path, FileAccess.READ);
+	var json_text : String = file.get_as_text();
+	
+	file.close();
+	
+	data = JSON.parse_string(json_text);
+	
+	background.texture = load(data["background"]);
+	
 	AudioManager._play_music("res://assets/music/Dialogue - Madou Monogatari 1-2-3 (PC-98) OST Track 03.mp3");
 	
 	Transition._make_sure_it_stops();

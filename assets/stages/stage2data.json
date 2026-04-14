@@ -9,6 +9,8 @@
 	
 	"battle_enemy_sprite" : "res://assets/images/battle_sprites/b_mrbones.png",
 	
+	"background" : "res://assets/images/bg_2.png",
+	
 	"questions" :
 	{
 		"q1" : "In what year did Elvis Presley die?",

@@ -1,6 +1,8 @@
 extends Node
 
 #variables
+@export var start : AudioStreamPlayer;
+
 @export var play_button : Button = null;
 @export var settings_button : Button = null;
 @export var credits_button : Button = null;
@@ -12,6 +14,7 @@ func _ready() -> void:
 	Transition.animation.play_backwards("transition");
 
 func _on_play_pressed() -> void:
+	start.play();
 	play_button.queue_free();
 	settings_button.queue_free();
 	quit_button.queue_free();

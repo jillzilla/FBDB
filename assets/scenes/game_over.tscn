@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c6rbbogvrnt6h" path="res://assets/scripts/game_over.gd" id="1_wt3e0"]
 [ext_resource type="Texture2D" uid="uid://c2k1c6ijdwg52" path="res://assets/images/game_over_screen.png" id="2_3vif2"]
+[ext_resource type="AudioStream" uid="uid://r3evxhjowhfl" path="res://assets/music/Felix the Cat (Mega Drive) - Game Over (UWOL - Game Over).mp3" id="3_d2d1n"]
 
 [node name="GameOver" type="Node" unique_id=346087160 node_paths=PackedStringArray("button")]
 script = ExtResource("1_wt3e0")
@@ -42,6 +43,10 @@ theme_override_colors/font_color = Color(0.3529412, 0.34509805, 0.8509804, 1)
 theme_override_font_sizes/font_size = 128
 text = "GAME OVER"
 metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=898742719]
+stream = ExtResource("3_d2d1n")
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

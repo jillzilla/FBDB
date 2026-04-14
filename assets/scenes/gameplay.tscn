@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://y4p1pha4t0jh"]
 
 [ext_resource type="Script" uid="uid://o8kv7fhio2c8" path="res://assets/scripts/gameplay.gd" id="1_mrbpc"]
-[ext_resource type="Texture2D" uid="uid://dde75o0kvypju" path="res://assets/images/bg.png" id="2_f1ux5"]
+[ext_resource type="Texture2D" uid="uid://d0px34dk58pcx" path="res://assets/images/bg_1.png" id="2_hogfr"]
 [ext_resource type="Texture2D" uid="uid://bfpd2dri4tsql" path="res://assets/images/battle_sprites/battle_fren.png" id="2_kqp6g"]
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="4_0hf1u"]
 [ext_resource type="PackedScene" uid="uid://b4eyvgq22sg3n" path="res://assets/scenes/lose_screen.tscn" id="4_17b01"]
@@ -131,7 +131,7 @@ _data = {
 &"bounce": SubResource("Animation_qk4f4")
 }
 
-[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "buttons_cover", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "timer_flash", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container", "next_scene_button", "animation_question_message_box", "opponent", "correctsfx", "wrongsfx")]
+[node name="Gameplay" type="Node" unique_id=1463193121 node_paths=PackedStringArray("time_counter", "stage_info", "buttons_cover", "timer_seconds", "player_health_bar", "enemy_health_bar", "question", "answer_1", "answer_2", "answer_3", "answer_4", "timer_flash", "lose_screen", "question_text_container", "hint_next_stage", "scroll_container", "next_scene_button", "animation_question_message_box", "opponent", "correctsfx", "wrongsfx", "background")]
 process_mode = 1
 script = ExtResource("1_mrbpc")
 stage_1 = "res://assets/stages/stage1data.json"
@@ -160,11 +160,12 @@ animation_question_message_box = NodePath("Control/QuestionTextContainer/Animati
 opponent = NodePath("Opponent")
 correctsfx = NodePath("Correct")
 wrongsfx = NodePath("Wrong")
+background = NodePath("Opponent")
 
 [node name="Bg" type="Sprite2D" parent="." unique_id=1325288160]
 position = Vector2(960, 540)
-scale = Vector2(2, 2)
-texture = ExtResource("2_f1ux5")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_hogfr")
 metadata/_edit_lock_ = true
 
 [node name="Simpleflips" type="Sprite2D" parent="." unique_id=449249172]

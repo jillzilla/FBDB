@@ -19,6 +19,10 @@ const CHAR_READ_RATE : float = 0.03;
 
 @onready var tween : Tween = null;
 
+@export var strt : AudioStreamPlayer;
+
+@export var five_big_booms : AudioStreamPlayer;
+
 enum States
 {
 	READY,
@@ -30,6 +34,8 @@ var current_state : Variant = States.READY;
 
 var name_queue : Array[String] = [];
 var text_queue : Array[String] = [];
+
+@export var timer : Timer;
 
 #functions
 func _ready() -> void:
@@ -71,10 +77,12 @@ func _process(_delta: float) -> void:
 				text_dialogue.visible_ratio = 1;
 				tween.stop();
 				_change_state(States.FINISHED);
+				timer.stop();
 		States.FINISHED:
 			if Input.is_action_just_pressed("ProgressDialogue"):
 				_change_state(States.READY);
 				update_graphics.emit();
+				strt.play()
 
 func _show_textbox() -> void:
 	whole_thing.visible = true;
@@ -104,6 +112,7 @@ func _display_text() -> void:
 		tween = null;
 	tween = create_tween();
 	
+	timer.start();
 	tween.tween_property(text_dialogue,"visible_ratio", 1, len(t) * CHAR_READ_RATE);
 	
 	await tween.finished;
@@ -112,6 +121,10 @@ func _display_text() -> void:
 
 func _text_ended() -> void:
 	_change_state(States.FINISHED);
+	timer.stop();
 
 func _change_state(next_state : Variant) -> void:
 	current_state = next_state;
+
+func _on_timer_timeout() -> void:
+	five_big_booms.play();

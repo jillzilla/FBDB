@@ -66,6 +66,8 @@ var did_win : bool = false;
 @export var correctsfx : AudioStreamPlayer;
 @export var wrongsfx : AudioStreamPlayer;
 
+@export var background : Sprite2D;
+
 #functions
 func _ready() -> void:
 	answers_group = [answer_1,answer_2,answer_3,answer_4];
@@ -92,6 +94,8 @@ func _ready() -> void:
 	file.close();
 	
 	data = JSON.parse_string(json_text);
+	
+	background.texture = load(data["background"]);
 	
 	if !AudioManager.music.is_playing():
 		AudioManager._play_music(data["stage_theme"]);

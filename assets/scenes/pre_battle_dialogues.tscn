@@ -2,9 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://b7vtu3ps7q8vc" path="res://assets/scenes/text_box.tscn" id="1_u1lyv"]
 [ext_resource type="Script" uid="uid://daetbuo45wmy0" path="res://assets/scripts/pre_battle_dialogues.gd" id="1_x68sk"]
+[ext_resource type="Texture2D" uid="uid://d0px34dk58pcx" path="res://assets/images/bg_1.png" id="2_3qr6m"]
 
-[node name="PreBattleDialogues" type="Node" unique_id=1218523115 node_paths=PackedStringArray("textbox")]
+[node name="PreBattleDialogues" type="Node" unique_id=1218523115 node_paths=PackedStringArray("textbox", "background")]
 script = ExtResource("1_x68sk")
+stage_1 = "res://assets/stages/stage1data.json"
+stage_2 = "res://assets/stages/stage2data.json"
+stage_3 = "res://assets/stages/stage3data.json"
+stage_4 = "res://assets/stages/stage4data.json"
+stage_5 = "res://assets/stages/stage5data.json"
 textbox = NodePath("TextBox")
+background = NodePath("Bg")
+
+[node name="Bg" type="Sprite2D" parent="." unique_id=695736961]
+position = Vector2(960, 540)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_3qr6m")
+metadata/_edit_lock_ = true
 
 [node name="TextBox" parent="." unique_id=1591762175 instance=ExtResource("1_u1lyv")]
