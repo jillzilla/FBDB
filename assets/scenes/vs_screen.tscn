@@ -7,7 +7,7 @@
 
 [sub_resource type="Animation" id="Animation_e3bu7"]
 resource_name = "whole_anim"
-length = 8.0
+length = 8.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -116,11 +116,12 @@ anchor_bottom = 0.5
 offset_left = -84.0
 offset_top = 560.0
 offset_right = 84.0
-offset_bottom = 744.0011
+offset_bottom = 744.001
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme = ExtResource("1_ltfk0")
+theme_override_constants/outline_size = 32
 theme_override_font_sizes/font_size = 128
 text = "VS"
 horizontal_alignment = 1
