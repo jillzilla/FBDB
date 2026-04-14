@@ -4,6 +4,7 @@
 [ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="2_8aat6"]
 [ext_resource type="Texture2D" uid="uid://jvms8c1h8v5w" path="res://assets/images/menu_screen.png" id="2_xuqax"]
 [ext_resource type="Script" uid="uid://dt364jws1e5kc" path="res://assets/components/button_component.gd" id="3_ugn2o"]
+[ext_resource type="Script" uid="uid://cqht1jlmpk3oe" path="res://assets/scripts/credits.gd" id="5_0wlwb"]
 [ext_resource type="AudioStream" uid="uid://bsful3gnchdt" path="res://assets/sounds/start_or_select_kirby.ogg" id="5_q8r6g"]
 [ext_resource type="AudioStream" uid="uid://beyifnit1qtin" path="res://assets/music/Snowboarding  Club Penguin Elite Penguin Force OST.mp3" id="6_l0v2w"]
 
@@ -126,6 +127,7 @@ offset_bottom = 96.16
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_constants/outline_size = 32
 theme_override_font_sizes/font_size = 128
 text = "Fren's Bald-Day Blowout"
 horizontal_alignment = 1
@@ -140,13 +142,13 @@ autoplay = &"rotation"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.20600002
-anchor_top = 0.563
+anchor_top = 0.59300005
 anchor_right = 0.20600002
-anchor_bottom = 0.563
+anchor_bottom = 0.59300005
 offset_left = -331.52002
-offset_top = -160.04004
+offset_top = -192.44006
 offset_right = 332.47998
-offset_bottom = 159.95996
+offset_bottom = 191.55994
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
@@ -211,7 +213,6 @@ speed = 0.1
 metadata/_custom_type_script = "uid://dt364jws1e5kc"
 
 [node name="Control4" type="Control" parent="Control/Buttons" unique_id=1530733312]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
@@ -278,11 +279,136 @@ offset_left = -151.04016
 offset_top = -51.960022
 offset_right = 152.95984
 offset_bottom = 52.039978
+theme_override_constants/outline_size = 16
 theme_override_font_sizes/font_size = 32
 text = "© Team don't ask"
 horizontal_alignment = 2
 vertical_alignment = 2
 metadata/_edit_lock_ = true
+
+[node name="credits" type="Control" parent="." unique_id=557935855]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_8aat6")
+script = ExtResource("5_0wlwb")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="credits" unique_id=1080038215]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -384.0
+offset_right = 512.0
+offset_bottom = 384.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="credits/MarginContainer" unique_id=100178286]
+layout_mode = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="credits/MarginContainer/Panel" unique_id=427676501]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="credits/MarginContainer/Panel/MarginContainer" unique_id=1124205086]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Label" type="RichTextLabel" parent="credits/MarginContainer/Panel/MarginContainer/ScrollContainer" unique_id=1441597882]
+custom_minimum_size = Vector2(952, 2247)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "- CREDITS -
+
+Director: BerserkerKong02 (G-Desu)
+Writers: BerserkerKong02 (G-Desu) and Yaikat
+Artist: Yaikat
+Programmer: Jill Zilla
+
+Music used:
+
+[TITLE] Snowboarding - Club Penguin: Elite Penguin Force | Composer: Bart Roijmans
+
+[DIALOGUE] Madou Monogatari 1-2-3 - TRY OUT | Composers: Toshiaki Sakoda and Masanobu Tsukamoto
+
+[VERSUS] Fighting Street - Versus | Composer: Yoshihiro Sakaguchi
+
+[VICTORY] Battletoads (Mega Drive) - Level Complete | Composer: David Wise (Mega Drive arrangement by Hikoshi Hashimoto)
+
+[STAGE 1] Kingdom Hearts 2 - Old Friends, Old Rivals | Composer: Yoko Shimomura
+
+[STAGE 2] Mr. Bones - Don’t Think, Play | Composer: Ronnie Montrose
+
+[STAGE 3] Monkey Wrench: Plague Walker - Numbskull | Composer: Ockeroid -[url=https://ockeroid.bandcamp.com/album/monkey-wrench-plague-walker]GET IT HERE![/url] (Jill, don’t forget the hyperlink!!!!)
+
+[STAGE 4] Earthworm Jim 2 - Puppy Love | Composer: Tommy Tallarico (his mom is very proud)
+
+[???] Pokey Means Business (JP Version) - EarthBound | by SiIvaGunner (original version from NICO NICO DOUGA) (original music by Keiichi Suzuki and Hirokazu Tanaka)
+
+Game Over - UWOL: Quest For Money - Game Over
+
+Special Thanks:
+MrLupin
+Berserker’s cat Rei
+Yaikat's stupid tablet for the constant technical difficulties
+My team for not getting sick of me -Berserker"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="credits" unique_id=919223913]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35000002
+anchor_top = 0.90700006
+anchor_right = 0.35000002
+anchor_bottom = 0.90700006
+offset_left = -224.00006
+offset_top = -43.56006
+offset_right = 223.99994
+offset_bottom = 44.43994
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Return"
+metadata/_edit_lock_ = true
+
+[node name="ButtonComponent" type="Node" parent="credits/Button" unique_id=980872853 node_paths=PackedStringArray("button")]
+script = ExtResource("3_ugn2o")
+button = NodePath("..")
+scale_min = 1.0
+scale_max = 1.2
+speed = 0.1
+metadata/_custom_type_script = "uid://dt364jws1e5kc"
 
 [node name="start" type="AudioStreamPlayer" parent="." unique_id=1378141808]
 stream = ExtResource("5_q8r6g")
@@ -292,4 +418,7 @@ stream = ExtResource("6_l0v2w")
 autoplay = true
 
 [connection signal="pressed" from="Control/Buttons/Control/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Control/Buttons/Control4/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Control/Buttons/Control3/Quit" to="." method="_on_quit_pressed"]
+[connection signal="meta_clicked" from="credits/MarginContainer/Panel/MarginContainer/ScrollContainer/Label" to="credits" method="_on_label_meta_clicked"]
+[connection signal="pressed" from="credits/Button" to="credits" method="_on_button_pressed"]

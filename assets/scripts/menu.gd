@@ -28,3 +28,6 @@ func _on_play_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit(0);
+
+func _on_credits_pressed() -> void:
+	$credits.show();

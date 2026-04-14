@@ -208,6 +208,7 @@ func _damage_enemy() -> void:
 
 func _on_timer_seconds_timeout() -> void:
 	if player_health > 0:
+		wrongsfx.play();
 		_damage_player();
 		if player_health <= 0:
 			return;
