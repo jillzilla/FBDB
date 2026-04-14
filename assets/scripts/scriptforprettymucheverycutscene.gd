@@ -9,6 +9,13 @@ func _ready() -> void:
 	AudioManager._stop_music();
 	cutscene.connect("finished",_is_cutscene_finished);
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("pause_cutscenes"):
+		if !cutscene.paused:
+			cutscene.paused = true;
+		else:
+			cutscene.paused = false;
+
 func _is_cutscene_finished() -> void:
 	Transition._make_sure_it_stops();
 	Transition.animation.play("transition");
