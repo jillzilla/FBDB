@@ -11,6 +11,8 @@
 	
 	"background" : "res://assets/images/bg_2.png",
 	
+	"win_screen" :  "res://assets/images/enemy balded 2.png",
+	
 	"questions" :
 	{
 		"q1" : "In what year did Elvis Presley die?",

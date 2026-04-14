@@ -11,6 +11,8 @@
 	
 	"background" : "res://assets/images/bg_1.png",
 	
+	"win_screen" :  "res://assets/images/enemy balded 1.png",
+	
 	"questions" :
 	{
 		"q1" : "In the arcade game The Tower of Druaga, the hero Gilgamesh goes how many floors?",

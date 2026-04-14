@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dxpp5qauwwqeu"
+path="res://.godot/imported/Battletoads - Level Complete (GENESISMEGA DRIVE OST).mp3-beb64b49b72b3a06b3d7e042c7c3746d.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Battletoads - Level Complete (GENESISMEGA DRIVE OST).mp3"
+dest_files=["res://.godot/imported/Battletoads - Level Complete (GENESISMEGA DRIVE OST).mp3-beb64b49b72b3a06b3d7e042c7c3746d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

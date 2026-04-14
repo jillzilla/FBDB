@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bsyvheiej1fb6"]
+
+[ext_resource type="Texture2D" uid="uid://bwcl6h6iwpgvr" path="res://assets/images/enemy balded 1.png" id="1_arm4e"]
+[ext_resource type="Script" uid="uid://johlvrw8lh1b" path="res://assets/scripts/winner.gd" id="1_yyycm"]
+[ext_resource type="Theme" uid="uid://bx3e8s5o62yt6" path="res://assets/themes/main_theme.tres" id="2_7fl7n"]
+[ext_resource type="AudioStream" uid="uid://dxpp5qauwwqeu" path="res://assets/music/Battletoads - Level Complete (GENESISMEGA DRIVE OST).mp3" id="4_i2htt"]
+
+[node name="Winner" type="Node" unique_id=1773345755]
+script = ExtResource("1_yyycm")
+stage_1 = "res://assets/stages/stage1data.json"
+stage_2 = "res://assets/stages/stage2data.json"
+stage_3 = "res://assets/stages/stage3data.json"
+stage_4 = "res://assets/stages/stage4data.json"
+stage_5 = "res://assets/stages/stage5data.json"
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1485737462]
+position = Vector2(960.00006, 540)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_arm4e")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="." unique_id=750814783]
+anchors_preset = -1
+anchor_left = 0.296
+anchor_top = 0.1
+anchor_right = 0.296
+anchor_bottom = 0.1
+offset_left = -536.32
+offset_top = -92.0
+offset_right = 534.68
+offset_bottom = 92.0
+theme = ExtResource("2_7fl7n")
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/font_size = 128
+text = "ENEMY BALDED!!!"
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1497849846]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2114233808]
+stream = ExtResource("4_i2htt")
+autoplay = true
+
+[node name="Label2" type="Label" parent="." unique_id=1135073078]
+anchors_preset = -1
+anchor_left = 0.92
+anchor_top = 0.97
+anchor_right = 0.92
+anchor_bottom = 0.97
+offset_left = -142.40002
+offset_top = -23.599976
+offset_right = 141.59998
+offset_bottom = 21.400024
+theme = ExtResource("2_7fl7n")
+theme_override_constants/outline_size = 16
+theme_override_font_sizes/font_size = 32
+text = "Click to continue..."
+horizontal_alignment = 2
+vertical_alignment = 2
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

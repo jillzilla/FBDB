@@ -9,7 +9,9 @@
 	
 	"battle_enemy_sprite" : "res://assets/images/battle_sprites/b_jawbone.png",
 	
-	"background" : "res://assets/images/bg_2.png",
+	"background" : "res://assets/images/bg_3.png",
+	
+	"win_screen" :  "res://assets/images/enemy balded 3.png",
 	
 	"questions" :
 	{

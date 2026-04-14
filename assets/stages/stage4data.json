@@ -11,6 +11,8 @@
 	
 	"background" : "res://assets/images/bg_4.png",
 	
+	"win_screen" :  "res://assets/images/enemy balded 4.png",
+	
 	"questions" :
 	{
 		"q1" : "What is the name of America’s 15th state?",

@@ -18,8 +18,6 @@ var did_answered_correctly : bool = false;
 
 var player_health : int = 4;
 
-var did_win : bool = false;
-
 @onready var tween_health_player : Tween = null;
 @onready var tween_health_opponent : Tween = null;
 
@@ -54,10 +52,7 @@ var did_win : bool = false;
 
 @export var question_text_container : PanelContainer;
 
-@export var hint_next_stage : Label;
-
 @export var scroll_container : ScrollContainer = null;
-@export var next_scene_button : Button;
 
 @export var animation_question_message_box : AnimationPlayer = null;
 
@@ -202,9 +197,11 @@ func _damage_enemy() -> void:
 		Global.enemy_health_loaded = false;
 		time_counter.visible = false;
 		_destroy_everything();
-		did_win = true;
-		hint_next_stage.visible = true;
-		next_scene_button.visible = true;
+		Transition._make_sure_it_stops();
+		Transition.animation.play("transition");
+		await Transition.animation.animation_finished;
+		AudioManager._stop_music();
+		get_tree().change_scene_to_file("res://assets/scenes/winner.tscn");
 
 func _on_timer_seconds_timeout() -> void:
 	if player_health > 0:
@@ -226,24 +223,7 @@ func _destroy_everything() -> void:
 	_button_disappear_effect();
 
 func _on_next_stage_pressed() -> void:
-	next_scene_button.visible = false;
-	
-	Transition._make_sure_it_stops();
-	Transition.animation.play("transition");
-	await Transition.animation.animation_finished;
-	if Global.stage_2_play == 5:
-		print("Best Ending")
-		Global._reset_game_status();
-		get_tree().quit(0);
-	elif Global.stage_2_play == 4 && Global.credits < 3:
-		print("Normal Ending")
-		Global._reset_game_status();
-		get_tree().quit(1);
-	else:
-		AudioManager._stop_music();
-		get_tree().change_scene_to_file("res://assets/scenes/pre_battle_dialogues.tscn");
-	
-	Global.stage_2_play += 1;
+	pass;
 
 func _button_appear_effect() -> void:
 	answer_1.disabled = true;

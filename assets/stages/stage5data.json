@@ -11,6 +11,8 @@
 	
 	"background" : "res://assets/images/bg_4.png",
 	
+	"win_screen" :  "res://assets/images/enemy balded 5.png",
+	
 	"questions" :
 	{
 		"q1" : "What was Joel’s first stream?",

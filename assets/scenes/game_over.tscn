@@ -32,14 +32,14 @@ metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="." unique_id=1853622880]
 anchors_preset = -1
-anchor_left = 0.19900002
-anchor_top = 0.096
-anchor_right = 0.19900002
-anchor_bottom = 0.096
-offset_left = -366.08002
-offset_top = -87.68
-offset_right = 367.91998
-offset_bottom = 87.32
+anchor_left = 0.208
+anchor_top = 0.1
+anchor_right = 0.208
+anchor_bottom = 0.1
+offset_left = -367.36002
+offset_top = -92.0
+offset_right = 366.63998
+offset_bottom = 92.0
 theme = ExtResource("3_8bpri")
 theme_override_constants/outline_size = 32
 theme_override_font_sizes/font_size = 128
