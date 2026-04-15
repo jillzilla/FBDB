@@ -54,7 +54,6 @@ func _on_button_pressed() -> void:
 		Global._reset_game_status();
 		get_tree().change_scene_to_file("res://assets/scenes/good_end.tscn");
 	else:
+		Global.stage_2_play += 1;
 		AudioManager._stop_music();
 		get_tree().change_scene_to_file("res://assets/scenes/pre_battle_dialogues.tscn");
-	
-	Global.stage_2_play += 1;
