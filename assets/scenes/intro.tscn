@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://f3xd04q85cl" path="res://assets/scripts/scriptforprettymucheverycutscene.gd" id="1_e2c8y"]
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_e2c8y"]
-file = "res://assets/cutscenes/frenjam-intro_2.ogv"
+file = "res://assets/cutscenes/frenjam_intro.ogv"
 
 [node name="Intro" type="Node" unique_id=1769682069 node_paths=PackedStringArray("cutscene")]
 script = ExtResource("1_e2c8y")
