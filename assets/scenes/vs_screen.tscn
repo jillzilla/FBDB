@@ -7,7 +7,7 @@
 
 [sub_resource type="Animation" id="Animation_e3bu7"]
 resource_name = "whole_anim"
-length = 8.5
+length = 9.5
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
