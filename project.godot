@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Fren's Bald-Day Blowout"
-run/main_scene="uid://bg1xwiy2es1kj"
+run/main_scene="uid://b7fglsg1p51vj"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 

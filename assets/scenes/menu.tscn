@@ -347,12 +347,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
-text = "- CREDITS -
-
-Director: BerserkerKong02 (G-Desu)
+text = "Director: BerserkerKong02 (G-Desu)
 Writers: BerserkerKong02 (G-Desu) and Yaikat
 Artist: Yaikat
 Programmer: Jill Zilla
+
+Special Thanks:
+MrLupin
+Berserker’s cat Rei
+Yaikat's stupid tablet for the constant technical difficulties
+My team for not getting sick of me -Berserker
 
 Music used:
 
@@ -374,19 +378,14 @@ Music used:
 
 [STAGE 4] Earthworm Jim 2 - Puppy Love | Composer: Tommy Tallarico (his mom is very proud)
 
-[END] FINAL FANTASY VI - Magic House | Composer: Nobou Uematsu
-
-[???] Normal Stage - Puzzle Bobble | Composers: Kazuko Umino and Yasuko Yamada
+[END] FINAL FANTASY VI - Magic House | Composer: Nobou Uematsu 
 
 [???] Pokey Means Business (JP Version) - EarthBound | by SiIvaGunner (original version from NICO NICO DOUGA) (original music by Keiichi Suzuki and Hirokazu Tanaka)
 
-[GAME OVER] Game Over - UWOL: Quest For Money
+[???] Puzzle Bobble - Normal Stage | Composers: Kazuko Umino and Yasuko Yamada
 
-Special Thanks:
-MrLupin
-Berserker’s cat Rei
-Yaikat's stupid tablet for the constant technical difficulties
-My team for not getting sick of me -Berserker"
+[GAME OVER] UWOL: Quest For Money - Game Over | Composer: Augusto Ruiz"
+fit_content = true
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
