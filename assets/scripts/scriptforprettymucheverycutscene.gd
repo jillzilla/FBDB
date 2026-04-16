@@ -15,6 +15,9 @@ func _process(_delta: float) -> void:
 			cutscene.paused = true;
 		else:
 			cutscene.paused = false;
+	
+	if Input.is_action_just_pressed("skip_scenes"):
+		get_tree().change_scene_to_file("res://assets/scenes/menu.tscn");
 
 func _is_cutscene_finished() -> void:
 	Transition._make_sure_it_stops();
