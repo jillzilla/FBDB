@@ -26,8 +26,8 @@ func _on_play_pressed() -> void:
 	GlobalHud._update_credits_counter();
 	get_tree().change_scene_to_file("res://assets/scenes/pre_battle_dialogues.tscn");
 
-func _on_quit_pressed() -> void:
-	get_tree().quit(0);
-
 func _on_credits_pressed() -> void:
 	credits.show();
+
+func _on_quit_pressed() -> void:
+	get_tree().quit(0);

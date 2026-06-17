@@ -3,6 +3,11 @@ extends Node
 signal blinky;
 
 #variables
+const DISABLEDBUTTONMODULATE: float = 0.5;
+const ENABLEDBUTTONMODULATE: float = 1;
+const BUTTONSCALEDMIN: float = 0.5;
+const BUTTONSCALEDMAX: float = 0.9;
+
 var questions_order: Array[String] = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10", "q11", "q12", "q13", "q14", "q15", "q16", "q17", "q18", "q19", "q20"];
 
 var current_question: int = 0;
@@ -108,7 +113,6 @@ func _ask_question() -> void:
 	did_answered_correctly = false;
 	question.text = data["questions"][questions_order[current_question]];
 	answers_group.shuffle();
-	
 	for i in range(answers_group.size()):
 		answers_group[i].text = data["answers"][questions_order[current_question]][i];
 	_button_appear_effect();
@@ -211,74 +215,57 @@ func _on_next_stage_pressed() -> void:
 	pass ;
 
 func _button_appear_effect() -> void:
-	answer_1.disabled = true;
-	answer_2.disabled = true;
-	answer_3.disabled = true;
-	answer_4.disabled = true;
-	
-	answer_1.modulate.a = 0;
-	answer_2.modulate.a = 0;
-	answer_3.modulate.a = 0;
-	answer_4.modulate.a = 0;
-	
-	answer_1.scale = Vector2(0.5, 0.5);
-	answer_2.scale = Vector2(0.5, 0.5);
-	answer_3.scale = Vector2(0.5, 0.5);
-	answer_4.scale = Vector2(0.5, 0.5);
+	for a in answers_group_unshuffled:
+		a.release_focus();
+		a.mouse_filter = Control.MOUSE_FILTER_IGNORE;
+		a.self_modulate.a = DISABLEDBUTTONMODULATE;
+		a.scale = Vector2(BUTTONSCALEDMIN, BUTTONSCALEDMIN);
+		a.modulate.a = 0;
 	
 	animation_question_message_box.play("transition");
-	
 	await animation_question_message_box.animation_finished;
 	
-	for i in range(answers_group_unshuffled.size()):
+	for a in answers_group_unshuffled:
 		var t1: Tween = create_tween();
 		var t2: Tween = create_tween();
-		
-		t1.tween_property(answers_group_unshuffled[i], "scale", Vector2(0.9, 0.9), 0.5).set_trans(Tween.TRANS_CUBIC);
-		t2.tween_property(answers_group_unshuffled[i], "modulate:a", 1, 0.5).set_trans(Tween.TRANS_CUBIC);
-		
+		a.scale = Vector2(BUTTONSCALEDMIN, BUTTONSCALEDMIN);
+		a.modulate.a = 0;
+		t1.tween_property(a, "scale", Vector2(BUTTONSCALEDMAX, BUTTONSCALEDMAX), 0.5).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(a, "modulate:a", 1, 0.5).set_trans(Tween.TRANS_CUBIC);
 		await t1.finished;
-		
-	answer_1.disabled = false;
-	answer_2.disabled = false;
-	answer_3.disabled = false;
-	answer_4.disabled = false;
+
+	for a in answers_group_unshuffled:
+		a.mouse_filter = Control.MOUSE_FILTER_STOP;
+		a.self_modulate.a = ENABLEDBUTTONMODULATE;
 	
 	timer_seconds.start();
 	
 	buttons_cover.visible = false;
 
 func _button_disappear_effect() -> void:
-	answer_1.disabled = true;
-	answer_2.disabled = true;
-	answer_3.disabled = true;
-	answer_4.disabled = true;
-	
-	answer_1.modulate.a = 1;
-	answer_2.modulate.a = 1;
-	answer_3.modulate.a = 1;
-	answer_4.modulate.a = 1;
-	
-	answer_1.scale = Vector2(0.9, 0.9);
-	answer_2.scale = Vector2(0.9, 0.9);
-	answer_3.scale = Vector2(0.9, 0.9);
-	answer_4.scale = Vector2(0.9, 0.9);
+	for a in answers_group_unshuffled:
+		a.release_focus();
+		a.mouse_filter = Control.MOUSE_FILTER_IGNORE;
+		a.self_modulate.a = BUTTONSCALEDMIN;
+		a.scale = Vector2(BUTTONSCALEDMAX, BUTTONSCALEDMAX);
+		a.modulate.a = 1;
 	
 	animation_question_message_box.play_backwards("transition");
 	
-	for i in range(answers_group_unshuffled.size()):
+	for a in answers_group_unshuffled:
 		var t1: Tween = create_tween();
 		var t2: Tween = create_tween();
-		
-		t1.tween_property(answers_group_unshuffled[i], "scale", Vector2(0.5, 0.5), 0.5).set_trans(Tween.TRANS_CUBIC);
-		t2.tween_property(answers_group_unshuffled[i], "modulate:a", 0, 0.5).set_trans(Tween.TRANS_CUBIC);
+		a.scale = Vector2(BUTTONSCALEDMAX, BUTTONSCALEDMAX);
+		a.modulate.a = 1;
+		t1.tween_property(a, "scale", Vector2(BUTTONSCALEDMIN, BUTTONSCALEDMIN), 0.5).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(a, "modulate:a", 0, 0.5).set_trans(Tween.TRANS_CUBIC);
 
 func _blink_effect() -> void:
 	var correct_button: Button = null;
 	
-	for i in range(answers_group_unshuffled.size()):
-		if answers_group_unshuffled[i].text == data["correct_answers"][questions_order[current_question]]:
-			correct_button = answers_group_unshuffled[i];
+	for a in answers_group_unshuffled:
+		if a.text == data["correct_answers"][questions_order[current_question]]:
+			correct_button = a;
 			break ;
 		
 	for i in range(8):

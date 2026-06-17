@@ -1,90 +1,175 @@
 {
-	"enemy_name" : "Jawbone",
-	
-	"stage_theme" : "res://assets/music/Stage 3 - Numbskull - Monkey Wrench Plague Walker OST.mp3",
-	
-	"category" : "Animation and Comics",
-	
-	"enemy_health" : 7,
-	
-	"battle_enemy_sprite" : "res://assets/images/battle_sprites/b_jawbone.png",
-	
-	"background" : "res://assets/images/bg_3.png",
-	
-	"win_screen" :  "res://assets/images/enemy balded 3.png",
-	
-	"questions" :
-	{
-		"q1" : "Approximately how old is the Hokuto Shinken art of assassination??",
-		"q2" : "What is the name of Ash Ketchum in the Japanese version of Pokémon?",
-		"q3" : "In Neon Genesis Evangelion, what is Ryouji Kaji’s hobby?",
-		"q4" : "In Lupin the Third, Goemon Ishikawa is which generation in his family line??'",
-		"q5" : "The motorcycle-loving heroine of “Bubblegum Crisis” is…?",
-		"q6" : "In the anime film Laputa: Castle in the Sky, what is the pendant the protagonist Sheeta wears?",
-		"q7" : "In Dragon Ball, what is Mercenary Tao’s preferred way of transportation?",
-		"q8" : "In Ranma ½, what does Ryoga’s Bakusai Tenketsu technique do?",
-		"q9" : "In the manga Maison Ikkoku, what is Kyoko’s occupation?",
-		"q10" : "What is the secret technique of the Joestar bloodline?",
-		
-		"q11" : "How does King Crimson work?",
-		"q12" : "In the anime Tiger Mask, where is Tiger Mask from?",
-		"q13" : "In the anime City Hunter, what was Umibozu’s code name when he was a soldier?",
-		"q14" : "In the high rating anime Nyan! Neko Sugar Girls, what was the animal the bit Raku-chan?",
-		"q15" : "In the anime Stop!! Hibari Kun, what kind of business does Hibari’s family run?",
-		"q16" : "In the anime 3000 Leagues in Search of Mother, what is the protagonist’s name?",
-		"q17" : "What does Char plan to drop on Earth in Gundam: Char's Counterattack?",
-		"q18" : "In Kamen Rider Black RX, what is the name of the enemy organization?",
-		"q19" : "What is the magic spell at the end of Laputa: Castle in the Sky?:",
-		"q20" : "In Legend of the Galactic Heroes, Reinhard Von Lohengramm’s former last name is…?"
+	"enemy_name": "Jawbone",
+	"stage_theme": "res://assets/music/Stage 3 - Numbskull - Monkey Wrench Plague Walker OST.mp3",
+	"category": "Animation and Comics",
+	"enemy_health": 7,
+	"battle_enemy_sprite": "res://assets/images/battle_sprites/b_jawbone.png",
+	"background": "res://assets/images/bg_3.png",
+	"win_screen": "res://assets/images/enemy balded 3.png",
+	"questions": {
+		"q1": "Approximately how old is the Hokuto Shinken art of assassination??",
+		"q2": "What is the name of Ash Ketchum in the Japanese version of Pokémon?",
+		"q3": "In Neon Genesis Evangelion, what is Ryouji Kaji’s hobby?",
+		"q4": "In Lupin the Third, Goemon Ishikawa is which generation in his family line??'",
+		"q5": "The motorcycle-loving heroine of “Bubblegum Crisis” is…?",
+		"q6": "In the anime film Laputa: Castle in the Sky, what is the pendant the protagonist Sheeta wears?",
+		"q7": "In Dragon Ball, what is Mercenary Tao’s preferred way of transportation?",
+		"q8": "In Ranma ½, what does Ryoga’s Bakusai Tenketsu technique do?",
+		"q9": "In the manga Maison Ikkoku, what is Kyoko’s occupation?",
+		"q10": "What is the secret technique of the Joestar bloodline?",
+		"q11": "How does King Crimson work?",
+		"q12": "In the anime Tiger Mask, where is Tiger Mask from?",
+		"q13": "In the anime City Hunter, what was Umibozu’s code name when he was a soldier?",
+		"q14": "In the high rating anime Nyan! Neko Sugar Girls, what was the animal the bit Raku-chan?",
+		"q15": "In the anime Stop!! Hibari Kun, what kind of business does Hibari’s family run?",
+		"q16": "In the anime 3000 Leagues in Search of Mother, what is the protagonist’s name?",
+		"q17": "What does Char plan to drop on Earth in Gundam: Char's Counterattack?",
+		"q18": "In Kamen Rider Black RX, what is the name of the enemy organization?",
+		"q19": "What is the magic spell at the end of Laputa: Castle in the Sky?:",
+		"q20": "In Legend of the Galactic Heroes, Reinhard Von Lohengramm’s former last name is…?"
 	},
-	
-	"answers" :
-	{
-		"q1" : ["1800 years","2000 years","1900 years","3000 years"],
-		"q2" : ["It was just Ash Ketchum","Satoshi","Shigeru","Takeshi"],
-		"q3" : ["Bonsai","Military equipment","Watermelons","Marine biology"],
-		"q4" : ["8th generation","2nd generation","18th generation","13th generation"],
-		"q5" : ["Sylia","Pudding","Nene","Priss"],
-		"q6" : ["Floatstone","Flightstone","Levistone","Airstone"],
-		"q7" : ["By jetpack","Riding on tree logs","He just flies","Running"],
-		"q8" : ["Send people flying","Explosions","Paralyze opponents","Shatter rocks"],
-		"q9" : ["Housewife","Caretaker","Custodian","Landlady"],
-		"q10" : ["Running away","Their wits","Stands","Hamon"],
-		
-		"q11" : ["It skips time","It erases time","It stops time, then skips","I don't know how King Crimson works"],
-		"q12" : ["Bear Hole","Snake Hole","Bird Hole","Tiger Hole"],
-		"q13" : ["Condor","Falcon","Swallow","Eagle"],
-		"q14" : ["A squirrel","A cat","A rat","A dog"],
-		"q15" : ["Bakery","Yakuza","Pharmacy","Rental"],
-		"q16" : ["Marco","Murco","Mirco","Merco"],
-		"q17" : ["Axis","Jupitoris","Solar Ray Cannon","Asteroid Bomb"],
-		"q18" : ["Crisis Empire","Shocker","Golgom","Titania"],
-		"q19" : ["Hadal","Balus","Modem","Flying Squirrel"],
-		"q20" : ["Easel","Musel","Mauser","Kaise"]
+	"answers": {
+		"q1": [
+			"1800 years",
+			"2000 years",
+			"1900 years",
+			"3000 years"
+		],
+		"q2": [
+			"It was just Ash Ketchum",
+			"Satoshi",
+			"Shigeru",
+			"Takeshi"
+		],
+		"q3": [
+			"Bonsai",
+			"Military equipment",
+			"Watermelons",
+			"Marine biology"
+		],
+		"q4": [
+			"8th generation",
+			"2nd generation",
+			"18th generation",
+			"13th generation"
+		],
+		"q5": [
+			"Sylia",
+			"Pudding",
+			"Nene",
+			"Priss"
+		],
+		"q6": [
+			"Floatstone",
+			"Flightstone",
+			"Levistone",
+			"Airstone"
+		],
+		"q7": [
+			"By jetpack",
+			"Riding on tree logs",
+			"He just flies",
+			"Running"
+		],
+		"q8": [
+			"Send people flying",
+			"Explosions",
+			"Paralyze opponents",
+			"Shatter rocks"
+		],
+		"q9": [
+			"Housewife",
+			"Caretaker",
+			"Custodian",
+			"Landlady"
+		],
+		"q10": [
+			"Running away",
+			"Their wits",
+			"Stands",
+			"Hamon"
+		],
+		"q11": [
+			"It skips time",
+			"It erases time",
+			"It stops time, then skips",
+			"I don't know how King Crimson works"
+		],
+		"q12": [
+			"Bear Hole",
+			"Snake Hole",
+			"Bird Hole",
+			"Tiger Hole"
+		],
+		"q13": [
+			"Condor",
+			"Falcon",
+			"Swallow",
+			"Eagle"
+		],
+		"q14": [
+			"A squirrel",
+			"A cat",
+			"A rat",
+			"A dog"
+		],
+		"q15": [
+			"Bakery",
+			"Yakuza",
+			"Pharmacy",
+			"Rental"
+		],
+		"q16": [
+			"Marco",
+			"Murco",
+			"Mirco",
+			"Merco"
+		],
+		"q17": [
+			"Axis",
+			"Jupitoris",
+			"Solar Ray Cannon",
+			"Asteroid Bomb"
+		],
+		"q18": [
+			"Crisis Empire",
+			"Shocker",
+			"Golgom",
+			"Titania"
+		],
+		"q19": [
+			"Hadal",
+			"Balus",
+			"Modem",
+			"Flying Squirrel"
+		],
+		"q20": [
+			"Easel",
+			"Musel",
+			"Mauser",
+			"Kaise"
+		]
 	},
-	
-	"correct_answers" : 
-	{
-		"q1" : "1800 years",
-		"q2" : "Satoshi",
-		"q3" : "Watermelons",
-		"q4" : "13th generation",
-		"q5" : "Priss",
-		"q6" : "Levistone",
-		"q7" : "Riding on tree logs",
-		"q8" : "Shatter rocks",
-		"q9" : "Caretaker",
-		
-		"q10" : "Running away",
-		"q11" : "It erases time",
-		"q12" : "Tiger Hole",
-		"q13" : "Falcon",
-		"q14" : "A squirrel",
-		"q15" : "Yakuza",
-		"q16" : "Marco",
-		"q17" : "Axis",
-		"q18" : "Crisis Empire",
-		"q19" : "Balus",
-		"q20" : "Musel"
+	"correct_answers": {
+		"q1": "1800 years",
+		"q2": "Satoshi",
+		"q3": "Watermelons",
+		"q4": "13th generation",
+		"q5": "Priss",
+		"q6": "Levistone",
+		"q7": "Riding on tree logs",
+		"q8": "Shatter rocks",
+		"q9": "Caretaker",
+		"q10": "Running away",
+		"q11": "It erases time",
+		"q12": "Tiger Hole",
+		"q13": "Falcon",
+		"q14": "A squirrel",
+		"q15": "Yakuza",
+		"q16": "Marco",
+		"q17": "Axis",
+		"q18": "Crisis Empire",
+		"q19": "Balus",
+		"q20": "Musel"
 	}
 }

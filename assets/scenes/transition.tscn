@@ -51,10 +51,10 @@ _data = {
 &"transition": SubResource("Animation_p3f57")
 }
 
-[node name="Transition" type="CanvasLayer" unique_id=1082871854 node_paths=PackedStringArray("animation")]
+[node name="Transition" type="CanvasLayer" unique_id=1082871854]
+process_mode = 3
 layer = 2
 script = ExtResource("1_dl0he")
-animation = NodePath("Animations")
 
 [node name="Texture" type="ColorRect" parent="." unique_id=1914793630]
 modulate = Color(1, 1, 1, 0)

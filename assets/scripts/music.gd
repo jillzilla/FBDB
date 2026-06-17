@@ -1,7 +1,7 @@
 extends Node
 
 #variables
-@export var music: AudioStreamPlayer;
+@onready var music: AudioStreamPlayer = $Music;
 
 #functions
 func _play_music(path: String) -> void:

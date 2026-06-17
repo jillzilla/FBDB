@@ -1,90 +1,175 @@
 {
-	"enemy_name" : "Mr. Bones",
-	
-	"stage_theme" : "res://assets/music/Stage 2 - Mr. Bones SEGA Saturn OST - 04 - Dont Think Play.mp3",
-	
-	"category" : "Music",
-	
-	"enemy_health" : 6,
-	
-	"battle_enemy_sprite" : "res://assets/images/battle_sprites/b_mrbones.png",
-	
-	"background" : "res://assets/images/bg_2.png",
-	
-	"win_screen" :  "res://assets/images/enemy balded 2.png",
-	
-	"questions" :
-	{
-		"q1" : "In what year did Elvis Presley die?",
-		"q2" : "Who was the youngest member of the Beatles?",
-		"q3" : "Which band released the album 'Rumours' in 1977?",
-		"q4" : "Complete the band name 'Bill Haley & ...'?",
-		"q5" : "What band recorded the rock classic 'Walk This Way'?",
-		"q6" : "Which of these famous rockers did not die in 1970?",
-		"q7" : "'I'm so happy, 'cause today I found my friends, they're in my head, I'm so ugly that's ok cause so are you', is from which song?",
-		"q8" : "Alex Lifeson, Geddy Lee, and Neil Peart have been what band for over 20 years?",
-		"q9" : "Which group had an 'Appetite For Destruction' in 1987?",
-		"q10" : "Which Beatles' song contains the lyric, 'When I was young, so much younger than today'?",
-		
-		"q11" : "What was the old man drinking in Billy Joel's song 'Piano Man'?",
-		"q12" : "Who sang the song 'Turn! Turn! Turn!'?",
-		"q13" : "Who originally recorded Stone Cold Crazy?",
-		"q14" : "What was the sailor's name in 'Piano Man'?",
-		"q15" : "What was the original title of KISS' Let Me Know?",
-		"q16" : "Who was Yoko Ono's first child?",
-		"q17" : "Eric Clapton wrote the lyrics for 'Layla' about:",
-		"q18" : "'Stairway To Heaven' is featured on which Led Zeppelin album?:",
-		"q19" : "The rock anthem 'The Final Countdown' was by which group and from which country?:",
-		"q20" : "Sid Vicious was a member of:"
+	"enemy_name": "Mr. Bones",
+	"stage_theme": "res://assets/music/Stage 2 - Mr. Bones SEGA Saturn OST - 04 - Dont Think Play.mp3",
+	"category": "Music",
+	"enemy_health": 6,
+	"battle_enemy_sprite": "res://assets/images/battle_sprites/b_mrbones.png",
+	"background": "res://assets/images/bg_2.png",
+	"win_screen": "res://assets/images/enemy balded 2.png",
+	"questions": {
+		"q1": "In what year did Elvis Presley die?",
+		"q2": "Who was the youngest member of the Beatles?",
+		"q3": "Which band released the album 'Rumours' in 1977?",
+		"q4": "Complete the band name 'Bill Haley & ...'?",
+		"q5": "What band recorded the rock classic 'Walk This Way'?",
+		"q6": "Which of these famous rockers did not die in 1970?",
+		"q7": "'I'm so happy, 'cause today I found my friends, they're in my head, I'm so ugly that's ok cause so are you', is from which song?",
+		"q8": "Alex Lifeson, Geddy Lee, and Neil Peart have been what band for over 20 years?",
+		"q9": "Which group had an 'Appetite For Destruction' in 1987?",
+		"q10": "Which Beatles' song contains the lyric, 'When I was young, so much younger than today'?",
+		"q11": "What was the old man drinking in Billy Joel's song 'Piano Man'?",
+		"q12": "Who sang the song 'Turn! Turn! Turn!'?",
+		"q13": "Who originally recorded Stone Cold Crazy?",
+		"q14": "What was the sailor's name in 'Piano Man'?",
+		"q15": "What was the original title of KISS' Let Me Know?",
+		"q16": "Who was Yoko Ono's first child?",
+		"q17": "Eric Clapton wrote the lyrics for 'Layla' about:",
+		"q18": "'Stairway To Heaven' is featured on which Led Zeppelin album?:",
+		"q19": "The rock anthem 'The Final Countdown' was by which group and from which country?:",
+		"q20": "Sid Vicious was a member of:"
 	},
-	
-	"answers" :
-	{
-		"q1" : ["1975","1976","1977","1978"],
-		"q2" : ["Paul McCartney","John Lennon","Ringo Starr","George Harrison"],
-		"q3" : ["Pink Floyd","Dire Straits","Fleetwood Mac","Led Zeppelin"],
-		"q4" : ["His Halos","His Comets","His Meteors","His Merry Men"],
-		"q5" : ["Aerosmith","AC/DC","Led Zeppelin","Van Halen"],
-		"q6" : ["Jimi Hendrix","John Lennon","Jim Morrison","Janis Joplin"],
-		"q7" : ["Mouth by Bush","So Much For The Afterglow by Everclear","Jailhouse Rock by Elvis Presley","Lithium by Nirvana"],
-		"q8" : ["Rush","Pink Floyd","Thin Lizzy","They Might Be Giants"],
-		"q9" : ["Guns ‘N Roses","Metallica","Poison","Motley Crue"],
-		"q10" : ["Eight Days A Week","Blackbird","All You Need Is Love","Help"],
-		
-		"q11" : ["Vodka Tonic","Bloody Mary","Tonic and Gin","Screwdriver"],
-		"q12" : ["Supertramp","The Allman Brothers","The Byrds","ELO"],
-		"q13" : ["Rammstein","Aerosmith","Metallica","Queen"],
-		"q14" : ["Jim","John","Davy","Captain Jack"],
-		"q15" : ["2000 Men","Monday Man","Black Diamond","Sunday Driver"],
-		"q16" : ["May","Yamizori","Toshiba","Kyoko"],
-		"q17" : ["An obsessed fan named Layla","George Harrison’s wife Pattie","His sister","An ex girlfriend"],
-		"q18" : ["Led Zeppelin III","Led Zeppelin IV","Led Zeppelin II","House Of The Holy"],
-		"q19" : ["Europe, Sweden","Yes, England","Asia, USA","Modern Talking, Germany"],
-		"q20" : ["Boomtown Rats","The Sex Pistols","Slade","Oasis"]
+	"answers": {
+		"q1": [
+			"1975",
+			"1976",
+			"1977",
+			"1978"
+		],
+		"q2": [
+			"Paul McCartney",
+			"John Lennon",
+			"Ringo Starr",
+			"George Harrison"
+		],
+		"q3": [
+			"Pink Floyd",
+			"Dire Straits",
+			"Fleetwood Mac",
+			"Led Zeppelin"
+		],
+		"q4": [
+			"His Halos",
+			"His Comets",
+			"His Meteors",
+			"His Merry Men"
+		],
+		"q5": [
+			"Aerosmith",
+			"AC/DC",
+			"Led Zeppelin",
+			"Van Halen"
+		],
+		"q6": [
+			"Jimi Hendrix",
+			"John Lennon",
+			"Jim Morrison",
+			"Janis Joplin"
+		],
+		"q7": [
+			"Mouth by Bush",
+			"So Much For The Afterglow by Everclear",
+			"Jailhouse Rock by Elvis Presley",
+			"Lithium by Nirvana"
+		],
+		"q8": [
+			"Rush",
+			"Pink Floyd",
+			"Thin Lizzy",
+			"They Might Be Giants"
+		],
+		"q9": [
+			"Guns ‘N Roses",
+			"Metallica",
+			"Poison",
+			"Motley Crue"
+		],
+		"q10": [
+			"Eight Days A Week",
+			"Blackbird",
+			"All You Need Is Love",
+			"Help"
+		],
+		"q11": [
+			"Vodka Tonic",
+			"Bloody Mary",
+			"Tonic and Gin",
+			"Screwdriver"
+		],
+		"q12": [
+			"Supertramp",
+			"The Allman Brothers",
+			"The Byrds",
+			"ELO"
+		],
+		"q13": [
+			"Rammstein",
+			"Aerosmith",
+			"Metallica",
+			"Queen"
+		],
+		"q14": [
+			"Jim",
+			"John",
+			"Davy",
+			"Captain Jack"
+		],
+		"q15": [
+			"2000 Men",
+			"Monday Man",
+			"Black Diamond",
+			"Sunday Driver"
+		],
+		"q16": [
+			"May",
+			"Yamizori",
+			"Toshiba",
+			"Kyoko"
+		],
+		"q17": [
+			"An obsessed fan named Layla",
+			"George Harrison’s wife Pattie",
+			"His sister",
+			"An ex girlfriend"
+		],
+		"q18": [
+			"Led Zeppelin III",
+			"Led Zeppelin IV",
+			"Led Zeppelin II",
+			"House Of The Holy"
+		],
+		"q19": [
+			"Europe, Sweden",
+			"Yes, England",
+			"Asia, USA",
+			"Modern Talking, Germany"
+		],
+		"q20": [
+			"Boomtown Rats",
+			"The Sex Pistols",
+			"Slade",
+			"Oasis"
+		]
 	},
-	
-	"correct_answers" : 
-	{
-		"q1" : "1977",
-		"q2" : "George Harrison",
-		"q3" : "Fleetwood Mac",
-		"q4" : "His Comets",
-		"q5" : "Aerosmith",
-		"q6" : "John Lennon",
-		"q7" : "Lithium by Nirvana",
-		"q8" : "Rush",
-		"q9" : "Guns ‘N Roses",
-		
-		"q10" : "Help",
-		"q11" : "Tonic and Gin",
-		"q12" : "The Byrds",
-		"q13" : "Queen",
-		"q14" : "Davy",
-		"q15" : "Sunday Driver",
-		"q16" : "Kyoko",
-		"q17" : "George Harrison’s wife Pattie",
-		"q18" : "Led Zeppelin IV",
-		"q19" : "Europe, Sweden",
-		"q20" : "The Sex Pistols"
+	"correct_answers": {
+		"q1": "1977",
+		"q2": "George Harrison",
+		"q3": "Fleetwood Mac",
+		"q4": "His Comets",
+		"q5": "Aerosmith",
+		"q6": "John Lennon",
+		"q7": "Lithium by Nirvana",
+		"q8": "Rush",
+		"q9": "Guns ‘N Roses",
+		"q10": "Help",
+		"q11": "Tonic and Gin",
+		"q12": "The Byrds",
+		"q13": "Queen",
+		"q14": "Davy",
+		"q15": "Sunday Driver",
+		"q16": "Kyoko",
+		"q17": "George Harrison’s wife Pattie",
+		"q18": "Led Zeppelin IV",
+		"q19": "Europe, Sweden",
+		"q20": "The Sex Pistols"
 	}
 }

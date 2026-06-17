@@ -305,6 +305,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="A1" type="Button" parent="Control/Bottom_HUD/Answers_Container/Control" unique_id=2011064063]
+self_modulate = Color(1, 1, 1, 0.5)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -317,7 +318,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_font_sizes/font_size = 48
-disabled = true
 action_mode = 0
 text = "A. Answer..."
 autowrap_mode = 2
@@ -339,6 +339,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="A2" type="Button" parent="Control/Bottom_HUD/Answers_Container/Control2" unique_id=1513467770]
+self_modulate = Color(1, 1, 1, 0.5)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -351,7 +352,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_font_sizes/font_size = 48
-disabled = true
 action_mode = 0
 text = "B. Answer..."
 autowrap_mode = 2
@@ -373,6 +373,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="A3" type="Button" parent="Control/Bottom_HUD/Answers_Container/Control3" unique_id=337363808]
+self_modulate = Color(1, 1, 1, 0.5)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -385,7 +386,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_font_sizes/font_size = 48
-disabled = true
 action_mode = 0
 text = "C. Answer..."
 autowrap_mode = 2
@@ -407,6 +407,7 @@ mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="A4" type="Button" parent="Control/Bottom_HUD/Answers_Container/Control4" unique_id=932022377]
+self_modulate = Color(1, 1, 1, 0.5)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -419,10 +420,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 0
 theme_override_font_sizes/font_size = 48
-disabled = true
 action_mode = 0
 text = "D. Answer..."
 autowrap_mode = 2
+metadata/_edit_group_ = true
 metadata/_edit_lock_ = true
 
 [node name="ButtonComponent" type="Node" parent="Control/Bottom_HUD/Answers_Container/Control4/A4" unique_id=843504664 node_paths=PackedStringArray("button")]

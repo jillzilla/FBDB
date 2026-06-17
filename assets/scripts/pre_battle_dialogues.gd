@@ -9,19 +9,20 @@ extends Node
 
 var data: Dictionary = {};
 
-@export var textbox: CanvasLayer;
-@export var background: Sprite2D;
+@onready var textbox: CanvasLayer = $TextBox;
 
-@export var diltocutscene: VideoStreamPlayer;
+@onready var background: Sprite2D = $Bg;
+
+@onready var diltocutscene: VideoStreamPlayer = $DiltoCutscene;
 
 #functions
 func _ready() -> void:
 	var file: FileAccess = FileAccess.open(Global._get_stage_2_play([stage_1, stage_2, stage_3, stage_4, stage_5]), FileAccess.READ);
 	var json_text: String = file.get_as_text();
 	
-	file.close();
-	
 	data = JSON.parse_string(json_text);
+
+	file.close();
 	
 	background.texture = load(data["background"]);
 	
