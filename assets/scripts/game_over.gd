@@ -1,6 +1,7 @@
 extends Node
 
-@export var button : Button;
+#variables
+@onready var button : Button = $Button;
 
 #functions
 func _ready() -> void:

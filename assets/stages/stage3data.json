@@ -35,7 +35,7 @@
 		"q17" : "What does Char plan to drop on Earth in Gundam: Char's Counterattack?",
 		"q18" : "In Kamen Rider Black RX, what is the name of the enemy organization?",
 		"q19" : "What is the magic spell at the end of Laputa: Castle in the Sky?:",
-		"q20" : "In Legend of the Galactic Heroes, Reinhard Von Lohengramm’s former last name is…?",
+		"q20" : "In Legend of the Galactic Heroes, Reinhard Von Lohengramm’s former last name is…?"
 	},
 	
 	"answers" :
@@ -60,7 +60,7 @@
 		"q17" : ["Axis","Jupitoris","Solar Ray Cannon","Asteroid Bomb"],
 		"q18" : ["Crisis Empire","Shocker","Golgom","Titania"],
 		"q19" : ["Hadal","Balus","Modem","Flying Squirrel"],
-		"q20" : ["Easel","Musel","Mauser","Kaise"],
+		"q20" : ["Easel","Musel","Mauser","Kaise"]
 	},
 	
 	"correct_answers" : 
@@ -85,6 +85,6 @@
 		"q17" : "Axis",
 		"q18" : "Crisis Empire",
 		"q19" : "Balus",
-		"q20" : "Musel",
-	},
+		"q20" : "Musel"
+	}
 }

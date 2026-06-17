@@ -35,7 +35,7 @@
 		"q17" : "What is the name of the girl that saves Link in the beginning of The Legend of Zelda: Link’s Awakening?",
 		"q18" : "In DELTARUNE Chapter 3, what item do you need to get in order to finish the first level of the SWORD route?",
 		"q19" : "The name of the final boss in Kirby’s Adventure is…",
-		"q20" : "What is the name of Travis Touchdown’s brother?",
+		"q20" : "What is the name of Travis Touchdown’s brother?"
 	},
 	
 	"answers" :
@@ -60,7 +60,7 @@
 		"q17" : ["Lilia","Marin","Malon","Cremia"],
 		"q18" : ["The six eggs","The weird controller","The sword","The ice key"],
 		"q19" : ["King Dedede","Nightmare","Dark Mind","Dark Matter"],
-		"q20" : ["Henry Cooldown","Henry Touchdown","Sir Henry Motherfucker","Henry Kristell"],
+		"q20" : ["Henry Cooldown","Henry Touchdown","Sir Henry Motherfucker","Henry Kristell"]
 	},
 	
 	"correct_answers" : 
@@ -85,6 +85,6 @@
 		"q17" : "Marin",
 		"q18" : "The ice key",
 		"q19" : "Nightmare",
-		"q20" : "Henry Cooldown",
-	},
+		"q20" : "Henry Cooldown"
+	}
 }

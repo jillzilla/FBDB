@@ -28,40 +28,39 @@ var player_health : int = 4;
 @export_file_path("*.json") var stage_4 : String = "";
 @export_file_path("*.json") var stage_5 : String = "";
 
-@export_category("Gameplay Output")
-@export var time_counter : Label;
-@export var stage_info : Label;
+@onready var time_counter : Label = $Control/Top_HUD/Info/Time;
+@onready var stage_info : Label = $Control/Top_HUD/Info/Stage;
 
-@export var buttons_cover : Control;
+@onready var buttons_cover : Control = $Control/Bottom_HUD/Buttons_Cover;
 
-@export var timer_seconds : Timer;
+@onready var timer_seconds : Timer = $Timer_Seconds;
 
-@export var player_health_bar : ProgressBar = null;
-@export var enemy_health_bar : ProgressBar = null;
+@onready var player_health_bar : ProgressBar = $Control/Top_HUD/PlayerHealth;
+@onready var enemy_health_bar : ProgressBar = $Control/Top_HUD/EnemyHealth;
 
-@export var question : Label = null;
+@onready var question : Label = $Control/QuestionTextContainer/ScrollContainer/Question;
 
-@export var answer_1 : Button = null;
-@export var answer_2 : Button = null;
-@export var answer_3 : Button = null;
-@export var answer_4 : Button = null;
+@onready var answer_1 : Button = $Control/Bottom_HUD/Answers_Container/Control/A1;
+@onready var answer_2 : Button = $Control/Bottom_HUD/Answers_Container/Control2/A2;
+@onready var answer_3 : Button = $Control/Bottom_HUD/Answers_Container/Control3/A3;
+@onready var answer_4 : Button = $Control/Bottom_HUD/Answers_Container/Control4/A4;
 
-@export var timer_flash : Timer;
+@onready var timer_flash : Timer = $Timer_Flash;
 
-@export var lose_screen : Control = null;
+@onready var lose_screen : Control = $Control/LoseScreen;
 
-@export var question_text_container : PanelContainer;
+@onready var question_text_container : PanelContainer = $Control/QuestionTextContainer;
 
-@export var scroll_container : ScrollContainer = null;
+@onready var scroll_container : ScrollContainer = $Control/QuestionTextContainer/ScrollContainer;
 
-@export var animation_question_message_box : AnimationPlayer = null;
+@onready var animation_question_message_box : AnimationPlayer = $Control/QuestionTextContainer/AnimationPlayer;
 
-@export var opponent : Sprite2D;
+@onready var opponent : Sprite2D = $Opponent;
 
-@export var correctsfx : AudioStreamPlayer;
-@export var wrongsfx : AudioStreamPlayer;
+@onready var correctsfx : AudioStreamPlayer = $Correct;
+@onready var wrongsfx : AudioStreamPlayer = $Wrong;
 
-@export var background : Sprite2D;
+@onready var background : Sprite2D = $Bg;
 
 #functions
 func _ready() -> void:
@@ -166,7 +165,7 @@ func _damage_player() -> void:
 	player_health -= 1;
 	
 	if tween_health_player:
-		tween_health_player = null;
+		tween_health_player.kill();
 	tween_health_player = create_tween();
 	
 	tween_health_player.tween_property(player_health_bar,"value",player_health,0.5).set_trans(Tween.TRANS_CUBIC);
@@ -188,7 +187,7 @@ func _damage_enemy() -> void:
 	Global.enemy_health -= 1;
 	
 	if tween_health_opponent:
-		tween_health_opponent = null;
+		tween_health_opponent.kill();
 	tween_health_opponent = create_tween();
 	
 	tween_health_opponent.tween_property(enemy_health_bar,"value",Global.enemy_health,0.5).set_trans(Tween.TRANS_CUBIC);
@@ -241,27 +240,18 @@ func _button_appear_effect() -> void:
 	answer_3.scale = Vector2(0.5,0.5);
 	answer_4.scale = Vector2(0.5,0.5);
 	
-	var t1 : Tween = null;
-	var t2 : Tween = null;
-	
 	animation_question_message_box.play("transition");
 	
 	await animation_question_message_box.animation_finished;
 	
 	for i in range(answers_group_unshuffled.size()):
-		if t1:
-			t1 = null;
-		if t2:
-			t2 = null;
-			
-		t1 = create_tween();
-		t2 = create_tween();
+		var t1 : Tween = create_tween();
+		var t2 : Tween = create_tween();
 		
 		t1.tween_property(answers_group_unshuffled[i],"scale",Vector2(0.9,0.9),0.5).set_trans(Tween.TRANS_CUBIC);
 		t2.tween_property(answers_group_unshuffled[i],"modulate:a",1,0.5).set_trans(Tween.TRANS_CUBIC);
 		
 		await t1.finished;
-		await t2.finished;
 		
 	answer_1.disabled = false;
 	answer_2.disabled = false;

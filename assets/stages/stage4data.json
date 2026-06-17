@@ -35,7 +35,7 @@
 		"q17" : "In which year did the United States enter World War I?",
 		"q18" : "Which iconic figure was associated with female defense workers during World War II?:",
 		"q19" : "Who was the first U.S. astronaut to travel in space?:",
-		"q20" : "How many states are there in the United States of America?",
+		"q20" : "How many states are there in the United States of America?"
 	},
 	
 	"answers" :
@@ -60,7 +60,7 @@
 		"q17" : ["1919","1914","1918","1917"],
 		"q18" : ["Betty Boop","Wonder Woman","Minnie Mouse","Rosie the Riveter"],
 		"q19" : ["Alan B. Shepard Jr.","Buzz Aldrin","Jim Lovell","Neil Armstrong"],
-		"q20" : ["10","50","73","40"],
+		"q20" : ["10","50","73","40"]
 	},
 	
 	"correct_answers" : 
@@ -85,6 +85,6 @@
 		"q17" : "1917",
 		"q18" : "Rosie the Riveter",
 		"q19" : "Alan B. Shepard Jr.",
-		"q20" : "50",
-	},
+		"q20" : "50"
+	}
 }

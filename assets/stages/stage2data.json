@@ -35,7 +35,7 @@
 		"q17" : "Eric Clapton wrote the lyrics for 'Layla' about:",
 		"q18" : "'Stairway To Heaven' is featured on which Led Zeppelin album?:",
 		"q19" : "The rock anthem 'The Final Countdown' was by which group and from which country?:",
-		"q20" : "Sid Vicious was a member of:",
+		"q20" : "Sid Vicious was a member of:"
 	},
 	
 	"answers" :
@@ -60,7 +60,7 @@
 		"q17" : ["An obsessed fan named Layla","George Harrison’s wife Pattie","His sister","An ex girlfriend"],
 		"q18" : ["Led Zeppelin III","Led Zeppelin IV","Led Zeppelin II","House Of The Holy"],
 		"q19" : ["Europe, Sweden","Yes, England","Asia, USA","Modern Talking, Germany"],
-		"q20" : ["Boomtown Rats","The Sex Pistols","Slade","Oasis"],
+		"q20" : ["Boomtown Rats","The Sex Pistols","Slade","Oasis"]
 	},
 	
 	"correct_answers" : 
@@ -85,6 +85,6 @@
 		"q17" : "George Harrison’s wife Pattie",
 		"q18" : "Led Zeppelin IV",
 		"q19" : "Europe, Sweden",
-		"q20" : "The Sex Pistols",
-	},
+		"q20" : "The Sex Pistols"
+	}
 }
