@@ -1,12 +1,13 @@
 extends Node
 
 #variables
-@export var start : AudioStreamPlayer;
+@onready var start: AudioStreamPlayer = $Start;
 
-@export var play_button : Button = null;
-@export var settings_button : Button = null;
-@export var credits_button : Button = null;
-@export var quit_button : Button = null;
+@onready var play_button: Button = $Control/Buttons/Control/Play;
+@onready var credits_button: Button = $Control/Buttons/Control4/Credits;
+@onready var quit_button: Button = $Control/Buttons/Control3/Quit;
+
+@onready var credits: Control = $Credits;
 
 #functions
 func _ready() -> void:
@@ -16,7 +17,6 @@ func _ready() -> void:
 func _on_play_pressed() -> void:
 	start.play();
 	play_button.queue_free();
-	settings_button.queue_free();
 	quit_button.queue_free();
 	credits_button.queue_free();
 	Transition._make_sure_it_stops();
@@ -30,4 +30,4 @@ func _on_quit_pressed() -> void:
 	get_tree().quit(0);
 
 func _on_credits_pressed() -> void:
-	$credits.show();
+	credits.show();

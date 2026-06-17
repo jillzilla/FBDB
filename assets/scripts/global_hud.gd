@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 #variables
-@export var credits_counter : Label = null;
+@onready var credits_counter: Label = $Credits_Counter;
 
 #functions
 func _update_credits_counter() -> void:

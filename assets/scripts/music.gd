@@ -1,13 +1,12 @@
 extends Node
 
 #variables
-@export var music : AudioStreamPlayer;
+@export var music: AudioStreamPlayer;
 
 #functions
 func _play_music(path: String) -> void:
 	if music.is_playing():
 		_stop_music();
-		
 	music.stream = load(path);
 	music.play();
 

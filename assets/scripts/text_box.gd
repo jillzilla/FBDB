@@ -5,23 +5,23 @@ signal dialogue_finished;
 signal update_graphics;
 
 #variables
-const CHAR_READ_RATE : float = 0.03;
+const CHAR_READ_RATE: float = 0.03;
 
-@export var whole_thing : Control;
+@export var whole_thing: Control;
 
-@export var name_container : MarginContainer;
+@export var name_container: MarginContainer;
 
-@export var name_dialogue : Label;
-@export var text_dialogue : Label;
+@export var name_dialogue: Label;
+@export var text_dialogue: Label;
 
-@export var character_1 : TextureRect;
-@export var character_2 : TextureRect;
+@export var character_1: TextureRect;
+@export var character_2: TextureRect;
 
-@onready var tween : Tween = null;
+@onready var tween: Tween = null;
 
-@export var strt : AudioStreamPlayer;
+@export var strt: AudioStreamPlayer;
 
-@export var five_big_booms : AudioStreamPlayer;
+@export var five_big_booms: AudioStreamPlayer;
 
 enum States
 {
@@ -30,12 +30,12 @@ enum States
 	FINISHED,
 }
 
-var current_state : Variant = States.READY;
+var current_state: Variant = States.READY;
 
-var name_queue : Array[String] = [];
-var text_queue : Array[String] = [];
+var name_queue: Array[String] = [];
+var text_queue: Array[String] = [];
 
-@export var timer : Timer;
+@export var timer: Timer;
 
 #functions
 func _ready() -> void:
@@ -65,7 +65,7 @@ func _hide_textbox() -> void:
 	text_dialogue.text = "";
 
 func _process(_delta: float) -> void:
-	match(current_state):
+	match (current_state):
 		States.READY:
 			if !text_queue.is_empty():
 				_display_text();
@@ -92,8 +92,8 @@ func _queue_text(n: String, t: String) -> void:
 	text_queue.push_back(t);
 
 func _display_text() -> void:
-	var n : String = name_queue.pop_front();
-	var t : String = text_queue.pop_front();
+	var n: String = name_queue.pop_front();
+	var t: String = text_queue.pop_front();
 	
 	if n != "":
 		name_dialogue.text = n;
@@ -113,7 +113,7 @@ func _display_text() -> void:
 	tween = create_tween();
 	
 	timer.start();
-	tween.tween_property(text_dialogue,"visible_ratio", 1, len(t) * CHAR_READ_RATE);
+	tween.tween_property(text_dialogue, "visible_ratio", 1, len(t) * CHAR_READ_RATE);
 	
 	await tween.finished;
 	
@@ -123,7 +123,7 @@ func _text_ended() -> void:
 	_change_state(States.FINISHED);
 	timer.stop();
 
-func _change_state(next_state : Variant) -> void:
+func _change_state(next_state: Variant) -> void:
 	current_state = next_state;
 
 func _on_timer_timeout() -> void:

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b0x6xf18fc006" path="res://assets/scripts/lose_screen.gd" id="1_68f7m"]
 [ext_resource type="Script" uid="uid://dt364jws1e5kc" path="res://assets/components/button_component.gd" id="2_fvpp7"]
 
-[node name="LoseScreen" type="Control" unique_id=790205029 node_paths=PackedStringArray("next")]
+[node name="LoseScreen" type="Control" unique_id=790205029]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_68f7m")
-next = NodePath("Panel/Buttons/Control/Next")
 metadata/_edit_lock_ = true
 
 [node name="Panel" type="Panel" parent="." unique_id=489813202]

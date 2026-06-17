@@ -63,15 +63,13 @@ _data = {
 &"whole_anim": SubResource("Animation_e3bu7")
 }
 
-[node name="VSScreen" type="Node" unique_id=1979009933 node_paths=PackedStringArray("name2text", "opponent")]
+[node name="VSScreen" type="Node" unique_id=1979009933]
 script = ExtResource("1_e3bu7")
-name2text = NodePath("Name2")
 stage_1 = "res://assets/stages/stage1data.json"
 stage_2 = "res://assets/stages/stage2data.json"
 stage_3 = "res://assets/stages/stage3data.json"
 stage_4 = "res://assets/stages/stage4data.json"
 stage_5 = "res://assets/stages/stage5data.json"
-opponent = NodePath("Opponent")
 
 [node name="BG" type="ColorRect" parent="." unique_id=274234780]
 anchors_preset = 15

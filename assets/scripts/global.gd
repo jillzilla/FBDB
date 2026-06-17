@@ -1,13 +1,12 @@
 extends Node
 
 #variables
-var stage_2_play : int = 1;
-var credits : int = 4;
+var stage_2_play: int = 1;
+var credits: int = 4;
+var enemy_health: int = 0;
 
-var enemy_health : int = 0;
-var enemy_health_loaded : bool = false;
-
-var fullscreen : bool = false;
+var enemy_health_loaded: bool = false;
+var fullscreen: bool = false;
 
 #functions
 func _input(event: InputEvent) -> void:
@@ -24,3 +23,6 @@ func _reset_game_status() -> void:
 	credits = 4;
 	enemy_health_loaded = false;
 	GlobalHud._update_credits_counter();
+
+func _get_stage_2_play(stages: Array[String]) -> String:
+	return stages[stage_2_play - 1];

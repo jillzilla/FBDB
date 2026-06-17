@@ -1,8 +1,8 @@
 extends Control
 
 #variables
-@export var next : Button = null;
-@export var timer_seconds : Timer = null;
+@onready var next: Button = $Panel/Buttons/Control/Next;
+@export var timer_seconds: Timer = null;
 
 #functions
 func _on_next_pressed() -> void:

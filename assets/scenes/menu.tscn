@@ -8,21 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://bsful3gnchdt" path="res://assets/sounds/start_or_select_kirby.ogg" id="5_q8r6g"]
 [ext_resource type="AudioStream" uid="uid://beyifnit1qtin" path="res://assets/music/Snowboarding  Club Penguin Elite Penguin Force OST.mp3" id="6_l0v2w"]
 
-[sub_resource type="Animation" id="Animation_q8r6g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_l0v2w"]
 resource_name = "move"
 loop_mode = 2
@@ -42,23 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0wlwb"]
 _data = {
-&"RESET": SubResource("Animation_q8r6g"),
 &"move": SubResource("Animation_l0v2w")
-}
-
-[sub_resource type="Animation" id="Animation_ugn2o"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_xuqax"]
@@ -80,21 +49,16 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q8r6g"]
 _data = {
-&"RESET": SubResource("Animation_ugn2o"),
 &"rotation": SubResource("Animation_xuqax")
 }
 
-[node name="Menu" type="Node" unique_id=369496558 node_paths=PackedStringArray("start", "play_button", "settings_button", "credits_button", "quit_button")]
+[node name="Menu" type="Node" unique_id=369496558]
 script = ExtResource("1_8omcj")
-start = NodePath("start")
-play_button = NodePath("Control/Buttons/Control/Play")
-settings_button = NodePath("Control/Buttons/Control2/Settings")
-credits_button = NodePath("Control/Buttons/Control4/Credits")
-quit_button = NodePath("Control/Buttons/Control3/Quit")
 
 [node name="MenuScreen" type="Sprite2D" parent="." unique_id=828187027]
 position = Vector2(700, 552)
 texture = ExtResource("2_xuqax")
+offset = Vector2(0, -190)
 metadata/_edit_lock_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MenuScreen" unique_id=337562509]
@@ -126,6 +90,7 @@ offset_right = 739.51996
 offset_bottom = 96.16
 grow_horizontal = 2
 grow_vertical = 2
+rotation = -0.08726646
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_constants/outline_size = 32
 theme_override_font_sizes/font_size = 128
@@ -176,35 +141,6 @@ text = "Start"
 metadata/_edit_lock_ = true
 
 [node name="ButtonComponent" type="Node" parent="Control/Buttons/Control/Play" unique_id=1983205352 node_paths=PackedStringArray("button")]
-script = ExtResource("3_ugn2o")
-button = NodePath("..")
-scale_min = 1.0
-scale_max = 1.1
-speed = 0.1
-metadata/_custom_type_script = "uid://dt364jws1e5kc"
-
-[node name="Control2" type="Control" parent="Control/Buttons" unique_id=1061864960]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="Settings" type="Button" parent="Control/Buttons/Control2" unique_id=1348310983]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-focus_mode = 0
-theme_override_font_sizes/font_size = 64
-action_mode = 0
-text = "Options"
-metadata/_edit_lock_ = true
-
-[node name="ButtonComponent" type="Node" parent="Control/Buttons/Control2/Settings" unique_id=60818540 node_paths=PackedStringArray("button")]
 script = ExtResource("3_ugn2o")
 button = NodePath("..")
 scale_min = 1.0
@@ -286,7 +222,7 @@ horizontal_alignment = 2
 vertical_alignment = 2
 metadata/_edit_lock_ = true
 
-[node name="credits" type="Control" parent="." unique_id=557935855]
+[node name="Credits" type="Control" parent="." unique_id=557935855]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -298,7 +234,7 @@ theme = ExtResource("2_8aat6")
 script = ExtResource("5_0wlwb")
 metadata/_edit_lock_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="credits" unique_id=1080038215]
+[node name="MarginContainer" type="MarginContainer" parent="Credits" unique_id=1080038215]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -314,12 +250,12 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Panel" type="Panel" parent="credits/MarginContainer" unique_id=100178286]
+[node name="Panel" type="Panel" parent="Credits/MarginContainer" unique_id=100178286]
 layout_mode = 2
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="MarginContainer" type="MarginContainer" parent="credits/MarginContainer/Panel" unique_id=427676501]
+[node name="MarginContainer" type="MarginContainer" parent="Credits/MarginContainer/Panel" unique_id=427676501]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -333,14 +269,14 @@ theme_override_constants/margin_bottom = 32
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="credits/MarginContainer/Panel/MarginContainer" unique_id=1124205086]
+[node name="ScrollContainer" type="ScrollContainer" parent="Credits/MarginContainer/Panel/MarginContainer" unique_id=1124205086]
 layout_mode = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Label" type="RichTextLabel" parent="credits/MarginContainer/Panel/MarginContainer/ScrollContainer" unique_id=1441597882]
+[node name="Label" type="RichTextLabel" parent="Credits/MarginContainer/Panel/MarginContainer/ScrollContainer" unique_id=1441597882]
 custom_minimum_size = Vector2(952, 2247)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -389,7 +325,7 @@ fit_content = true
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Button" type="Button" parent="credits" unique_id=919223913]
+[node name="Button" type="Button" parent="Credits" unique_id=919223913]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.35000002
@@ -407,7 +343,7 @@ action_mode = 0
 text = "Return"
 metadata/_edit_lock_ = true
 
-[node name="ButtonComponent" type="Node" parent="credits/Button" unique_id=980872853 node_paths=PackedStringArray("button")]
+[node name="ButtonComponent" type="Node" parent="Credits/Button" unique_id=980872853 node_paths=PackedStringArray("button")]
 script = ExtResource("3_ugn2o")
 button = NodePath("..")
 scale_min = 1.0
@@ -415,15 +351,15 @@ scale_max = 1.2
 speed = 0.1
 metadata/_custom_type_script = "uid://dt364jws1e5kc"
 
-[node name="start" type="AudioStreamPlayer" parent="." unique_id=1378141808]
+[node name="Start" type="AudioStreamPlayer" parent="." unique_id=1378141808]
 stream = ExtResource("5_q8r6g")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=39415466]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=39415466]
 stream = ExtResource("6_l0v2w")
 autoplay = true
 
 [connection signal="pressed" from="Control/Buttons/Control/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Control/Buttons/Control4/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Control/Buttons/Control3/Quit" to="." method="_on_quit_pressed"]
-[connection signal="meta_clicked" from="credits/MarginContainer/Panel/MarginContainer/ScrollContainer/Label" to="credits" method="_on_label_meta_clicked"]
-[connection signal="pressed" from="credits/Button" to="credits" method="_on_button_pressed"]
+[connection signal="meta_clicked" from="Credits/MarginContainer/Panel/MarginContainer/ScrollContainer/Label" to="Credits" method="_on_label_meta_clicked"]
+[connection signal="pressed" from="Credits/Button" to="Credits" method="_on_button_pressed"]

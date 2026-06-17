@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 #variables
-@export var animation : AnimationPlayer = null;
+@onready var animation: AnimationPlayer = $Animations;
 
 #functions
 func _make_sure_it_stops() -> void:

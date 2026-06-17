@@ -1,47 +1,26 @@
 extends Node
 
 #variables
-@export var name2text : Label;
+@export_file_path("*.json") var stage_1: String = "";
+@export_file_path("*.json") var stage_2: String = "";
+@export_file_path("*.json") var stage_3: String = "";
+@export_file_path("*.json") var stage_4: String = "";
+@export_file_path("*.json") var stage_5: String = "";
 
-@export_file_path("*.json") var stage_1 : String = "";
-@export_file_path("*.json") var stage_2 : String = "";
-@export_file_path("*.json") var stage_3 : String = "";
-@export_file_path("*.json") var stage_4 : String = "";
-@export_file_path("*.json") var stage_5 : String = "";
+@onready var name2text: Label = $Name2;
+@onready var opponent: Sprite2D = $Opponent;
 
-@export var opponent : Sprite2D;
-
-var stage_to_play_path : String = "";
-
-var data : Dictionary = {};
+var data: Dictionary = {};
 
 #functions
 func _ready() -> void:
 	AudioManager._play_music("res://assets/music/Versus - Street Fighter Arranged - Versus.mp3");
-	
-	match(Global.stage_2_play):
-		1:
-			stage_to_play_path = stage_1;
-		2:
-			stage_to_play_path = stage_2;
-		3:
-			stage_to_play_path = stage_3;
-		4:
-			stage_to_play_path = stage_4;
-		5:
-			stage_to_play_path = stage_5;
-	
-	var file : FileAccess = FileAccess.open(stage_to_play_path, FileAccess.READ);
-	var json_text : String = file.get_as_text();
-	
-	file.close();
-	
+	var file: FileAccess = FileAccess.open(Global._get_stage_2_play([stage_1, stage_2, stage_3, stage_4, stage_5]), FileAccess.READ);
+	var json_text: String = file.get_as_text();
 	data = JSON.parse_string(json_text);
-	
+	file.close();
 	opponent.texture = load(data["battle_enemy_sprite"]);
-	
 	name2text.text = data["enemy_name"];
-	
 	Transition._make_sure_it_stops();
 	Transition.animation.play_backwards("transition");
 

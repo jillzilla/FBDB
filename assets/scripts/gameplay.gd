@@ -3,91 +3,77 @@ extends Node
 signal blinky;
 
 #variables
-var stage_to_play_path : String = "";
+var questions_order: Array[String] = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10", "q11", "q12", "q13", "q14", "q15", "q16", "q17", "q18", "q19", "q20"];
 
-var questions_order : Array[String] = ["q1","q2","q3","q4","q5","q6","q7","q8","q9","q10","q11","q12","q13","q14","q15","q16","q17","q18","q19","q20"];
+var current_question: int = 0;
+var questions_counter: int = 20;
 
-var current_question : int = 0;
-var questions_counter : int = 20;
+var data: Dictionary = {};
+var answers_group: Array[Button] = [];
+var answers_group_unshuffled: Array[Button] = [];
 
-var data : Dictionary = {};
-var answers_group : Array[Button] = [];
-var answers_group_unshuffled : Array[Button] = [];
+var did_answered_correctly: bool = false;
 
-var did_answered_correctly : bool = false;
+var player_health: int = 4;
 
-var player_health : int = 4;
-
-@onready var tween_health_player : Tween = null;
-@onready var tween_health_opponent : Tween = null;
+@onready var tween_health_player: Tween = null;
+@onready var tween_health_opponent: Tween = null;
 
 @export_category("Data")
-@export_file_path("*.json") var stage_1 : String = "";
-@export_file_path("*.json") var stage_2 : String = "";
-@export_file_path("*.json") var stage_3 : String = "";
-@export_file_path("*.json") var stage_4 : String = "";
-@export_file_path("*.json") var stage_5 : String = "";
+@export_file_path("*.json") var stage_1: String = "";
+@export_file_path("*.json") var stage_2: String = "";
+@export_file_path("*.json") var stage_3: String = "";
+@export_file_path("*.json") var stage_4: String = "";
+@export_file_path("*.json") var stage_5: String = "";
 
-@onready var time_counter : Label = $Control/Top_HUD/Info/Time;
-@onready var stage_info : Label = $Control/Top_HUD/Info/Stage;
+@onready var time_counter: Label = $Control/Top_HUD/Info/Time;
+@onready var stage_info: Label = $Control/Top_HUD/Info/Stage;
 
-@onready var buttons_cover : Control = $Control/Bottom_HUD/Buttons_Cover;
+@onready var buttons_cover: Control = $Control/Bottom_HUD/Buttons_Cover;
 
-@onready var timer_seconds : Timer = $Timer_Seconds;
+@onready var timer_seconds: Timer = $Timer_Seconds;
 
-@onready var player_health_bar : ProgressBar = $Control/Top_HUD/PlayerHealth;
-@onready var enemy_health_bar : ProgressBar = $Control/Top_HUD/EnemyHealth;
+@onready var player_health_bar: ProgressBar = $Control/Top_HUD/PlayerHealth;
+@onready var enemy_health_bar: ProgressBar = $Control/Top_HUD/EnemyHealth;
 
-@onready var question : Label = $Control/QuestionTextContainer/ScrollContainer/Question;
+@onready var question: Label = $Control/QuestionTextContainer/ScrollContainer/Question;
 
-@onready var answer_1 : Button = $Control/Bottom_HUD/Answers_Container/Control/A1;
-@onready var answer_2 : Button = $Control/Bottom_HUD/Answers_Container/Control2/A2;
-@onready var answer_3 : Button = $Control/Bottom_HUD/Answers_Container/Control3/A3;
-@onready var answer_4 : Button = $Control/Bottom_HUD/Answers_Container/Control4/A4;
+@onready var answer_1: Button = $Control/Bottom_HUD/Answers_Container/Control/A1;
+@onready var answer_2: Button = $Control/Bottom_HUD/Answers_Container/Control2/A2;
+@onready var answer_3: Button = $Control/Bottom_HUD/Answers_Container/Control3/A3;
+@onready var answer_4: Button = $Control/Bottom_HUD/Answers_Container/Control4/A4;
 
-@onready var timer_flash : Timer = $Timer_Flash;
+@onready var timer_flash: Timer = $Timer_Flash;
 
-@onready var lose_screen : Control = $Control/LoseScreen;
+@onready var lose_screen: Control = $Control/LoseScreen;
 
-@onready var question_text_container : PanelContainer = $Control/QuestionTextContainer;
+@onready var question_text_container: PanelContainer = $Control/QuestionTextContainer;
 
-@onready var scroll_container : ScrollContainer = $Control/QuestionTextContainer/ScrollContainer;
+@onready var scroll_container: ScrollContainer = $Control/QuestionTextContainer/ScrollContainer;
 
-@onready var animation_question_message_box : AnimationPlayer = $Control/QuestionTextContainer/AnimationPlayer;
+@onready var animation_question_message_box: AnimationPlayer = $Control/QuestionTextContainer/AnimationPlayer;
 
-@onready var opponent : Sprite2D = $Opponent;
+@onready var opponent: Sprite2D = $Opponent;
 
-@onready var correctsfx : AudioStreamPlayer = $Correct;
-@onready var wrongsfx : AudioStreamPlayer = $Wrong;
+@onready var correctsfx: AudioStreamPlayer = $Correct;
+@onready var wrongsfx: AudioStreamPlayer = $Wrong;
 
-@onready var background : Sprite2D = $Bg;
+@onready var background: Sprite2D = $Bg;
 
 #functions
 func _ready() -> void:
-	answers_group = [answer_1,answer_2,answer_3,answer_4];
-	answers_group_unshuffled = [answer_1,answer_2,answer_3,answer_4];
+	answers_group = [answer_1, answer_2, answer_3, answer_4];
+	answers_group_unshuffled = [answer_1, answer_2, answer_3, answer_4];
 	
 	Transition._make_sure_it_stops();
 	Transition.animation.play_backwards("transition");
 	
-	match(Global.stage_2_play):
-		1:
-			stage_to_play_path = stage_1;
-		2:
-			stage_to_play_path = stage_2;
-		3:
-			stage_to_play_path = stage_3;
-		4:
-			stage_to_play_path = stage_4;
-		5:
-			stage_to_play_path = stage_5;
-	
-	var file : FileAccess = FileAccess.open(stage_to_play_path, FileAccess.READ);
-	var json_text : String = file.get_as_text();
-	
-	file.close();
+	var file: FileAccess = FileAccess.open(Global._get_stage_2_play([stage_1, stage_2, stage_3, stage_4, stage_5]), FileAccess.READ);
+	var json_text: String = file.get_as_text();
 	
 	data = JSON.parse_string(json_text);
+
+	file.close();
 	
 	background.texture = load(data["background"]);
 	
@@ -143,7 +129,7 @@ func _on_button_pressed(button: Button) -> void:
 	if player_health > 0 && Global.enemy_health > 0:
 		timer_seconds.stop();
 	
-	if button.text == data["correct_answers"][questions_order[current_question]]: 
+	if button.text == data["correct_answers"][questions_order[current_question]]:
 		correctsfx.play();
 		did_answered_correctly = true;
 	else:
@@ -168,7 +154,7 @@ func _damage_player() -> void:
 		tween_health_player.kill();
 	tween_health_player = create_tween();
 	
-	tween_health_player.tween_property(player_health_bar,"value",player_health,0.5).set_trans(Tween.TRANS_CUBIC);
+	tween_health_player.tween_property(player_health_bar, "value", player_health, 0.5).set_trans(Tween.TRANS_CUBIC);
 	
 	if player_health <= 0:
 		_destroy_everything();
@@ -190,7 +176,7 @@ func _damage_enemy() -> void:
 		tween_health_opponent.kill();
 	tween_health_opponent = create_tween();
 	
-	tween_health_opponent.tween_property(enemy_health_bar,"value",Global.enemy_health,0.5).set_trans(Tween.TRANS_CUBIC);
+	tween_health_opponent.tween_property(enemy_health_bar, "value", Global.enemy_health, 0.5).set_trans(Tween.TRANS_CUBIC);
 	
 	if Global.enemy_health <= 0:
 		Global.enemy_health_loaded = false;
@@ -207,7 +193,7 @@ func _on_timer_seconds_timeout() -> void:
 		wrongsfx.play();
 		_damage_player();
 		if player_health <= 0:
-			return;
+			return ;
 		_next_question();
 	elif player_health <= 0:
 		lose_screen.queue_free();
@@ -222,7 +208,7 @@ func _destroy_everything() -> void:
 	_button_disappear_effect();
 
 func _on_next_stage_pressed() -> void:
-	pass;
+	pass ;
 
 func _button_appear_effect() -> void:
 	answer_1.disabled = true;
@@ -235,21 +221,21 @@ func _button_appear_effect() -> void:
 	answer_3.modulate.a = 0;
 	answer_4.modulate.a = 0;
 	
-	answer_1.scale = Vector2(0.5,0.5);
-	answer_2.scale = Vector2(0.5,0.5);
-	answer_3.scale = Vector2(0.5,0.5);
-	answer_4.scale = Vector2(0.5,0.5);
+	answer_1.scale = Vector2(0.5, 0.5);
+	answer_2.scale = Vector2(0.5, 0.5);
+	answer_3.scale = Vector2(0.5, 0.5);
+	answer_4.scale = Vector2(0.5, 0.5);
 	
 	animation_question_message_box.play("transition");
 	
 	await animation_question_message_box.animation_finished;
 	
 	for i in range(answers_group_unshuffled.size()):
-		var t1 : Tween = create_tween();
-		var t2 : Tween = create_tween();
+		var t1: Tween = create_tween();
+		var t2: Tween = create_tween();
 		
-		t1.tween_property(answers_group_unshuffled[i],"scale",Vector2(0.9,0.9),0.5).set_trans(Tween.TRANS_CUBIC);
-		t2.tween_property(answers_group_unshuffled[i],"modulate:a",1,0.5).set_trans(Tween.TRANS_CUBIC);
+		t1.tween_property(answers_group_unshuffled[i], "scale", Vector2(0.9, 0.9), 0.5).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(answers_group_unshuffled[i], "modulate:a", 1, 0.5).set_trans(Tween.TRANS_CUBIC);
 		
 		await t1.finished;
 		
@@ -273,36 +259,34 @@ func _button_disappear_effect() -> void:
 	answer_3.modulate.a = 1;
 	answer_4.modulate.a = 1;
 	
-	answer_1.scale = Vector2(0.9,0.9);
-	answer_2.scale = Vector2(0.9,0.9);
-	answer_3.scale = Vector2(0.9,0.9);
-	answer_4.scale = Vector2(0.9,0.9);
+	answer_1.scale = Vector2(0.9, 0.9);
+	answer_2.scale = Vector2(0.9, 0.9);
+	answer_3.scale = Vector2(0.9, 0.9);
+	answer_4.scale = Vector2(0.9, 0.9);
 	
 	animation_question_message_box.play_backwards("transition");
 	
 	for i in range(answers_group_unshuffled.size()):
-		var t1 : Tween = create_tween();
-		var t2 : Tween = create_tween();
+		var t1: Tween = create_tween();
+		var t2: Tween = create_tween();
 		
-		t1.tween_property(answers_group_unshuffled[i],"scale",Vector2(0.5,0.5),0.5).set_trans(Tween.TRANS_CUBIC);
-		t2.tween_property(answers_group_unshuffled[i],"modulate:a",0,0.5).set_trans(Tween.TRANS_CUBIC);
+		t1.tween_property(answers_group_unshuffled[i], "scale", Vector2(0.5, 0.5), 0.5).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(answers_group_unshuffled[i], "modulate:a", 0, 0.5).set_trans(Tween.TRANS_CUBIC);
 
 func _blink_effect() -> void:
-	var correct_button : Button = null;
+	var correct_button: Button = null;
 	
 	for i in range(answers_group_unshuffled.size()):
 		if answers_group_unshuffled[i].text == data["correct_answers"][questions_order[current_question]]:
 			correct_button = answers_group_unshuffled[i];
-			break;
+			break ;
 		
 	for i in range(8):
 		timer_flash.start();
-		
 		if correct_button.modulate.a != 0:
 			correct_button.modulate.a = 0;
 		elif correct_button.modulate.a == 0:
 			correct_button.modulate.a = 1;
-		
 		await timer_flash.timeout;
 
 	blinky.emit();
