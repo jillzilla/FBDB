@@ -94,11 +94,9 @@ func _ready() -> void:
 		Global.enemy_health_loaded = true;
 		
 	enemy_health_bar.value = Global.enemy_health;
-	
-	answer_1.connect("pressed", _on_button_pressed.bind(answer_1));
-	answer_2.connect("pressed", _on_button_pressed.bind(answer_2));
-	answer_3.connect("pressed", _on_button_pressed.bind(answer_3));
-	answer_4.connect("pressed", _on_button_pressed.bind(answer_4));
+
+	for a in answers_group_unshuffled:
+		a.connect("pressed", _on_button_pressed.bind(a));
 	
 	stage_info.text = "Stage " + str(Global.stage_2_play) + "\n" + data["category"];
 	questions_order.shuffle();
@@ -119,7 +117,6 @@ func _ask_question() -> void:
 		
 func _next_question() -> void:
 	current_question += 1;
-	
 	if current_question < questions_counter:
 		_ask_question();
 	elif current_question >= questions_counter:
@@ -129,25 +126,19 @@ func _next_question() -> void:
 		
 func _on_button_pressed(button: Button) -> void:
 	buttons_cover.visible = true;
-	
 	if player_health > 0 && Global.enemy_health > 0:
 		timer_seconds.stop();
-	
 	if button.text == data["correct_answers"][questions_order[current_question]]:
 		correctsfx.play();
 		did_answered_correctly = true;
 	else:
 		wrongsfx.play();
-	
 	_blink_effect();
-	
 	await blinky;
-	
 	if did_answered_correctly:
 		_damage_enemy();
 	else:
 		_damage_player();
-	
 	if player_health > 0 && Global.enemy_health > 0:
 		_next_question();
 
@@ -257,12 +248,10 @@ func _button_disappear_effect() -> void:
 
 func _blink_effect() -> void:
 	var correct_button: Button = null;
-	
 	for a in answers_group_unshuffled:
 		if a.text == data["correct_answers"][questions_order[current_question]]:
 			correct_button = a;
 			break ;
-		
 	for i in range(8):
 		timer_flash.start();
 		if correct_button.modulate.a != 0:
@@ -270,5 +259,4 @@ func _blink_effect() -> void:
 		elif correct_button.modulate.a == 0:
 			correct_button.modulate.a = 1;
 		await timer_flash.timeout;
-
 	blinky.emit();
