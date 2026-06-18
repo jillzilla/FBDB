@@ -3,9 +3,13 @@
 ## GET READY FOR SOME HARDCORE TRIVIA. AND WIGS!
 
 Director: BerserkerKong02 (G-Desu)
+
 Writers: BerserkerKong02 (G-Desu) and Yaikat
+
 Artist: Yaikat
+
 Programmer: Jill Zilla
+
 Featuring Music from Ockeroid!
 
 ## BUILDING

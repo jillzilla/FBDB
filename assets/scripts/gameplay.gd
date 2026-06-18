@@ -211,12 +211,8 @@ func _destroy_everything() -> void:
 	timer_seconds.stop();
 	_button_disappear_effect();
 
-func _on_next_stage_pressed() -> void:
-	pass ;
-
 func _button_appear_effect() -> void:
 	for a in answers_group_unshuffled:
-		a.release_focus();
 		a.mouse_filter = Control.MOUSE_FILTER_IGNORE;
 		a.self_modulate.a = DISABLEDBUTTONMODULATE;
 		a.scale = Vector2(BUTTONSCALEDMIN, BUTTONSCALEDMIN);
@@ -244,7 +240,6 @@ func _button_appear_effect() -> void:
 
 func _button_disappear_effect() -> void:
 	for a in answers_group_unshuffled:
-		a.release_focus();
 		a.mouse_filter = Control.MOUSE_FILTER_IGNORE;
 		a.self_modulate.a = BUTTONSCALEDMIN;
 		a.scale = Vector2(BUTTONSCALEDMAX, BUTTONSCALEDMAX);

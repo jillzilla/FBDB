@@ -14,6 +14,9 @@ func _ready() -> void:
 	Transition._make_sure_it_stops();
 	Transition.animation.play_backwards("transition");
 
+	if !Global.is_executable:
+		quit_button.hide();
+
 func _on_play_pressed() -> void:
 	start.play();
 	play_button.queue_free();

@@ -1,7 +1,7 @@
 extends Node
 
 #variables
-@onready var button: Button = $Button;
+@onready var button: Button = $Control/Button;
 
 #functions
 func _on_button_pressed() -> void:
