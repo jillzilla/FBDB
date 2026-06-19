@@ -2,21 +2,6 @@
 
 [ext_resource type="Script" uid="uid://clib6jdgxrw0i" path="res://assets/scripts/transition.gd" id="1_dl0he"]
 
-[sub_resource type="Animation" id="Animation_dl0he"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Texture:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 1080)]
-}
-
 [sub_resource type="Animation" id="Animation_p3f57"]
 resource_name = "transition"
 step = 0.1
@@ -47,13 +32,12 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dl0he"]
 _data = {
-&"RESET": SubResource("Animation_dl0he"),
 &"transition": SubResource("Animation_p3f57")
 }
 
 [node name="Transition" type="CanvasLayer" unique_id=1082871854]
 process_mode = 3
-layer = 2
+layer = 3
 script = ExtResource("1_dl0he")
 
 [node name="Texture" type="ColorRect" parent="." unique_id=1914793630]
@@ -62,7 +46,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 1080.0
-offset_bottom = 1079.9995
+offset_bottom = 1080.0007
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)

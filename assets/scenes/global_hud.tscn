@@ -10,6 +10,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Global_HUD" type="CanvasLayer" unique_id=834348981]
 process_mode = 3
+layer = 4
 script = ExtResource("1_ws0sm")
 
 [node name="Credits_Counter" type="Label" parent="." unique_id=1475466767]
