@@ -7,6 +7,7 @@ const DISABLEDBUTTONMODULATE: float = 0.5;
 const ENABLEDBUTTONMODULATE: float = 1;
 const BUTTONSCALEDMIN: float = 0.5;
 const BUTTONSCALEDMAX: float = 0.9;
+const BUTTONANIMSPEED: float = 0.5;
 
 var questions_order: Array[String] = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10", "q11", "q12", "q13", "q14", "q15", "q16", "q17", "q18", "q19", "q20"];
 
@@ -144,13 +145,10 @@ func _on_button_pressed(button: Button) -> void:
 
 func _damage_player() -> void:
 	player_health -= 1;
-	
 	if tween_health_player:
 		tween_health_player.kill();
 	tween_health_player = create_tween();
-	
 	tween_health_player.tween_property(player_health_bar, "value", player_health, 0.5).set_trans(Tween.TRANS_CUBIC);
-	
 	if player_health <= 0:
 		_destroy_everything();
 		await animation_question_message_box.animation_finished;
@@ -166,13 +164,10 @@ func _damage_player() -> void:
 
 func _damage_enemy() -> void:
 	Global.enemy_health -= 1;
-	
 	if tween_health_opponent:
 		tween_health_opponent.kill();
 	tween_health_opponent = create_tween();
-	
 	tween_health_opponent.tween_property(enemy_health_bar, "value", Global.enemy_health, 0.5).set_trans(Tween.TRANS_CUBIC);
-	
 	if Global.enemy_health <= 0:
 		Global.enemy_health_loaded = false;
 		time_counter.visible = false;
@@ -208,43 +203,36 @@ func _button_appear_effect() -> void:
 		a.self_modulate.a = DISABLEDBUTTONMODULATE;
 		a.scale = Vector2(BUTTONSCALEDMIN, BUTTONSCALEDMIN);
 		a.modulate.a = 0;
-	
 	animation_question_message_box.play("transition");
 	await animation_question_message_box.animation_finished;
-	
 	for a in answers_group_unshuffled:
 		var t1: Tween = create_tween();
 		var t2: Tween = create_tween();
 		a.scale = Vector2(BUTTONSCALEDMIN, BUTTONSCALEDMIN);
 		a.modulate.a = 0;
-		t1.tween_property(a, "scale", Vector2(BUTTONSCALEDMAX, BUTTONSCALEDMAX), 0.5).set_trans(Tween.TRANS_CUBIC);
-		t2.tween_property(a, "modulate:a", 1, 0.5).set_trans(Tween.TRANS_CUBIC);
+		t1.tween_property(a, "scale", Vector2(BUTTONSCALEDMAX, BUTTONSCALEDMAX), BUTTONANIMSPEED).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(a, "modulate:a", 1, BUTTONANIMSPEED).set_trans(Tween.TRANS_CUBIC);
 		await t1.finished;
-
 	for a in answers_group_unshuffled:
 		a.mouse_filter = Control.MOUSE_FILTER_STOP;
 		a.self_modulate.a = ENABLEDBUTTONMODULATE;
-	
 	timer_seconds.start();
-	
 	buttons_cover.visible = false;
 
 func _button_disappear_effect() -> void:
 	for a in answers_group_unshuffled:
 		a.mouse_filter = Control.MOUSE_FILTER_IGNORE;
-		a.self_modulate.a = BUTTONSCALEDMIN;
+		a.self_modulate.a = ENABLEDBUTTONMODULATE;
 		a.scale = Vector2(BUTTONSCALEDMAX, BUTTONSCALEDMAX);
 		a.modulate.a = 1;
-	
 	animation_question_message_box.play_backwards("transition");
-	
 	for a in answers_group_unshuffled:
 		var t1: Tween = create_tween();
 		var t2: Tween = create_tween();
 		a.scale = Vector2(BUTTONSCALEDMAX, BUTTONSCALEDMAX);
 		a.modulate.a = 1;
-		t1.tween_property(a, "scale", Vector2(BUTTONSCALEDMIN, BUTTONSCALEDMIN), 0.5).set_trans(Tween.TRANS_CUBIC);
-		t2.tween_property(a, "modulate:a", 0, 0.5).set_trans(Tween.TRANS_CUBIC);
+		t1.tween_property(a, "scale", Vector2(BUTTONSCALEDMIN, BUTTONSCALEDMIN), BUTTONANIMSPEED).set_trans(Tween.TRANS_CUBIC);
+		t2.tween_property(a, "modulate:a", 0, BUTTONANIMSPEED).set_trans(Tween.TRANS_CUBIC);
 
 func _blink_effect() -> void:
 	var correct_button: Button = null;

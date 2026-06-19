@@ -1,5 +1,13 @@
 extends Node
 
+# I really hate the way I programmed this dialogue system, but we didn't
+# have much time, so I tried to get it done as quickly as possible.
+# I doubt I'll update it, but maybe one day, if I feel like it,
+# I'll give it a try.
+
+# - Jill.
+
+#variables
 @export_category("Data")
 @export_file_path("*.json") var stage_1: String = "";
 @export_file_path("*.json") var stage_2: String = "";
