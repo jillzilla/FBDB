@@ -8,7 +8,7 @@ var enemy_health: int = 0;
 var enemy_health_loaded: bool = false;
 var fullscreen: bool = false;
 
-var is_executable : bool = true;
+var is_executable : bool = false;
 
 #functions
 func _input(event: InputEvent) -> void:
